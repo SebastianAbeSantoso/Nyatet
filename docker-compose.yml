@@ -1,0 +1,9 @@
+services:
+  nyatet:
+    build:
+      context: ./serving
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_DIR=/app/models/tagger
+      - NUM_THREADS=1          

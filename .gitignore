@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+*.egg-info/
+
+training/**/checkpoints/
+training/**/onnx_fp32/
+training/**/onnx_int8*/
