@@ -1,0 +1,11 @@
+Place the exported ONNX model here, alongside its tokenizer files:
+
+    model.onnx
+    config.json          <- must contain id2label; the server reads it
+    tokenizer.json / vocab.txt
+    tokenizer_config.json
+    special_tokens_map.json
+
+Produced by the export cell in training/benchmark/ or training/order/.
+The server reads its label inventory from config.json, so no code change
+is needed when swapping domains.
