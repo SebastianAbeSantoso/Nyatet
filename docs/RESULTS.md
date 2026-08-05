@@ -28,7 +28,7 @@
 | B1 | 29 Jul | Benchmark · NERP | indobert-lite-base-p2 | done |
 | B2 | 29 Jul | Benchmark · NERP | indobert-base-p2 | done |
 | -  | 30 Jul | Order | Sahabat-AI 8B + token-classification head | abandoned, see [C7](#8-caveats) |
-| O1 | **6 Aug** | **Order** | **indobert-lite-p2, synthetic train** | **done — shipped** |
+| O1 | 6 Aug | Order | indobert-lite-p2, synthetic train | done |
 | O2 | TBA | Order | distilled 4-layer student | not started |
 | O3 | TBA | Order | RAG baseline | not started |
 
