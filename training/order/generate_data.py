@@ -18,7 +18,7 @@ CAKE_UNITS = {"loyang": 2, "biji": 1}
 VARIANTS = {
     "mentah": 6, "digoreng": 2, "goreng": 1, "mentahnya": 1,
     "di goreng": 1, "begoreng": 2, "sdh begoreng": 1, "frozen": 2,
-    "yg mentah": 1, "sdh masak": 1, "yg masak": 1,
+    "sdh masak": 1, "masak": 1,
 }
 
 ANAPHORIC = ["ky biasa", "kya biasa", "kaya biasa", "ky kmrn", "kaya kmrn",
