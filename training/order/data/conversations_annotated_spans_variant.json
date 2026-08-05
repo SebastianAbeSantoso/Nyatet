@@ -1,0 +1,5099 @@
+[
+  {
+    "conv_id": 1,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Mau pesan buat sore selasa bisa ?",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Brp buting dan jam brp ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Naik kah hrga nya ka ?",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Brp whini ?",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "2.500 sebuting ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Mau lah ka",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 5
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Buat besok 80 biji goreng semua",
+        "is_order": true
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Jam 5 diambl ya",
+        "is_order": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Jam 5 sore kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 8
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Iya jam 5 sore",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "seller",
+        "text": "Inggih bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Okey kakk",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Jam 5 harus sudah siap ya kakk",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Maaf sebelumnya kalo bisa di dp dulu",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "Boleh brp",
+        "is_order": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "Brp ?",
+        "is_order": false
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Paling kd setengah nya dlu ka",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 2,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kaaa",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Jam 4 lewat diambl bisa lh",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Soalnya acara nya dimajuin",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Mohon maaf kak, kd kwa 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Tapi kalo sblm jam 5 sdh siap ambil langsung kami kabari ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Okey",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 3,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kaaa",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Bisa pesan risol kah ?",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Untuk hari ini",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Jam brp bisaaa ?",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Kaaaa",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Brp ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Pesan buat sabtu aj",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Jam 11 an bisa ?",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Pesan 80 buting ya",
+        "is_order": true
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Kalo bisa aku dp",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Oke malam ini ulun dp",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Lagi di jalan ka",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 4,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Kalo ada lebih mau ya",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Tambah 10",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Uln goreng akan ai dlu ka, soalnya hnyar tbca 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Okey kdpp",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Kaka ulun otw sudh",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Kdpp sidin mhdngi",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 5,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kaaa",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Esk bisa pesan risol kah ?",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Pesan buat jam 2:30 ya",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "50 biji",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Sore kh ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 3,
+        "quotes_idx": 3
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Jam 14:30 siang",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Enggeh bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Oke bsk lah diambl kya biasa",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 6,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka yg ngambil otw ya",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Langsung ke pintu samping",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Inggh",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Duit nya cash aja ya",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 7,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kakk",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Esok pesan risol lah",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "24 biji aja",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Jam 8 pagi diambl",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 8,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kaaa",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Pesan risol tapi diambl jam 6 pagi bisa lah ?",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "30 buting",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Bisa, buat besok kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Inggh",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Jam 6 pagi sudah siap ya ka",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Mau di bawa tulak soalnya",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Di goreng kh ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 2
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Goreng kakk",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 9,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kaaa",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Besok beolah risol kah",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Tiap hari produksi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Mau ka 15 buting aja",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Jam 10 pagi di ambl lah",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Inggih, goreng kh mentah ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Goreng ka",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Mksh ka",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Sama-sama",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 10,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamuallaikum bu",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "kalo ulun handak pesan risolnya bisakah",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "yg begoreng",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "untuk tgl. 30 Mei 2026",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Bisa, mohon maaf dlu untuk harga resoles nya sekarang 2500/biji.🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Bisa, mohon maaf dlu untuk harga resoles nya sekarang 2500/biji.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "iya bu",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "ulun pesan 80 biji bu , sore jam 4 atuau jam 5 ulun ambil",
+        "is_order": true
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Maaf sebelumnya kalo bisa di dp dulu, paling kd setengah nya dlu 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "ok",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "sdh ulun antar , sore kemarin  dp 100 rbu",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Enggeh atas nama Pearson, terimakasih dlu 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Pearson",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 11,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "bu",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "risol nya jam 3 sore bisalah ulun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "iya kena ulun ambil",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 12,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "pagi bu",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "bisa kah ulun pesan risolnya hari sabtu tgl. 13 Juni 2026",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Pagi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "ulun pesan 80 buting lah bu",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "jam 4 sore ulun ambilnya",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 13,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "seller",
+        "text": "Assalamualaikum, untuk resoles pesanan p sdh ready.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "nggeh sdh ulun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "makasih tukar bu lh",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 14,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "lun pesan buat hari minggu tgl 19 juli = 50 biji",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Begoreng atau frozen, kisaran jam brp p ambil?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "begoreng bu jam 4 sore ulun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 15,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "ibu",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "ulun mau pesan risol nya tgl 30 juli 2026",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "60 buting",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Jam brp diambil nanti?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Digoreng kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 2
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "jam 7 pagi, iya di goreng bu",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 16,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "pagi bu",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "ulun mau ambil risol nya sekarang bisakah bu",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "yg 60 buting",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Maaf belum ka🙏🏻",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 17,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pesan hari ni risol 20 adakah Bu, kemarin Ulun kewarung Pian kd bejualan☺️",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 14,
+            "end": 19
+          },
+          {
+            "type": "QTY",
+            "text": "20",
+            "start": 20,
+            "end": 22
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Tolong dibalas chatnya soalnya klo kd  jualan Ulun kd mendatangi soalnya jauh jaraknya bu🙏🏻",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 18,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ibu pesan pagi ni 20 biji jam 7 Ulun ambil bisakah bu",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Maaf baru lht hp 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Jd kh nyaman uln goreng akan ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Inggih Ulun kira kd jualan,Ulun td kesana☺️",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "20 bj bu",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Inggih wrg nasi kuning tutup sementara ka,",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Tp untuk risoles terima pesanan aj",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Ok iya diambil jam 8.15 ya",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Ambil nya d pintu samping lah ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Iya sebentar lg ada yg digawi telat 15 menit lg",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 19,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Esok tinggali 20 biji ya, jam 08.15 diambil",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "20",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 17,
+            "end": 21
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggih ka, d goreng kh?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Inggih digoreng spt biasa🙏🏻",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 20,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pagi ini tinggali risol goreng 10 biji, risol mentah 10 biji, jam 07.30 diambil ya bu",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 18,
+            "end": 23
+          },
+          {
+            "type": "VARIANT",
+            "text": "goreng",
+            "start": 24,
+            "end": 30
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 31,
+            "end": 33
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 34,
+            "end": 38
+          },
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 40,
+            "end": 45
+          },
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 46,
+            "end": 52
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 53,
+            "end": 55
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 56,
+            "end": 60
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Bu tinggalijam 7.30 ya bu",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Maaf ka untuk hari ini kehabisan bnyak yg pesan sdh, takutnya kurang 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Besok produksi lagi ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Ya maka hari ini mau ngasi sepupu pulang kebalikppn 😢",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Besok produksi lagi ka",
+        "is_clarifying_question": false,
+        "quotes_idx": 2
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "10 biji ga adakah",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 3,
+            "end": 7
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Maaf kdd jua ka 🙏🏻 takutan kurang soalnya 🙏🏻",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 21,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pagi ini tinggali risol goreng 10 biji, risol mentah 10 biji, jam 07.30 diambil ya bu",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 22,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamualikum",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Besok jualanlah risol",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Klu jualan bisa pesanlah",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Wallaikumsallam",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false,
+        "quotes_idx": 2
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Pagi jam 8 diambil",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Pagi 12 digoreng",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "12",
+            "start": 5,
+            "end": 7
+          },
+          {
+            "type": "VARIANT",
+            "text": "digoreng",
+            "start": 8,
+            "end": 16
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Yg mentah 10",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 3,
+            "end": 9
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 10,
+            "end": 12
+          }
+        ]
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih jd total 22 lh ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Iya jd 55 ribu kalo duitnya",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 23,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "seller",
+        "text": "Untuk resoles p sdh ready, pengambilan nya p masuk aja lewat pintu samping kena lah",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Oke setumat lg kesanalah",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 24,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Besok adalah risol tp yg mentahnya aja 10 buting",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 13,
+            "end": 18
+          },
+          {
+            "type": "VARIANT",
+            "text": "mentahnya",
+            "start": 25,
+            "end": 34
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 39,
+            "end": 41
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 42,
+            "end": 48
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Tiap hari produksi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Untuk jam brp p?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Jam setengah 9 diambil bisa",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Inggih bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Oke yg mentahlah besok 10",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "VARIANT",
+            "text": "mentahlah",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 23,
+            "end": 25
+          }
+        ]
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 25,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pagi ka",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Ini yg pesan risol td",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Boleh ak qriss z kaa ka",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 26,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamu'alaikum.. Pesanan buat hri minggu di ambil boleh kh, tp yg mentah nya aja",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Boleh, tiap hari kami pasti beolah, brp buting p, kisaran jam brp di ambil nya",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Antara siang / sore minggu",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Itu di freezer thn brp hri ka",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Untuk frozen nya biasa tahan 4 sampe 5 hari",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Oh enggeh",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Kna lun chat brp jumlah nya",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Mau jmput skolah dlu",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Harga mentah nya brp",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Untuk mentah sama goreng sma, 2500/pcs.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Oh Enggeh..",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Besok lun chat lg pian",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "Enggeh 👍",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 27,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ini ready lah ka resoles nya",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Klo 15 biji ada kh resoles nya",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Maaf lupa ngabarin",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Ada ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Kna sorean aja lun ambilnya",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 28,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka hari ini ready kh resoles nya",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Klo ready mau pesan lg",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Wallaikumsallam.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Masih ad mau brp buting p?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "30 biji ada kah",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Ada ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Enggeh,, itu olahan yg hri ini jua klo ka.. 😁",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih, tiap hari produksi ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Sore lun ambil,, atau parak magrib ka,, soalnya dri rumah dia",
+        "is_order": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Kena habari klo p otw",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Enggeh bs jam 17.30 mulai otw kna",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Lun bawa toples jd biar kd pakai kotak bawa nya",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Ka.. Ambil bnyk hrg nya pas kh 😁🙏",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Ka.. Ambil bnyk hrg nya pas kh",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Pass sdh harga nya mba, maaf 🙏🏻😆",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "Enggeh.. Maaf lun menawar 😁",
+        "is_order": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "Ni lun otw,, hbs hbs magrib j mengambil nya",
+        "is_order": false
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 29,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka pesan resoles lg",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "40 biji",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Minta di kotaki aja ka lah",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Kna sore at",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "au mlm lun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Untuk kpan ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Hri ini bs kh",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Kalo untuk hari ini kebetulan kehabisan ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Besok baru produksi lagi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Oh iya kh",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Hndk pgi pesan lupa",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Yg hri ini hbs sm skli kh",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "Inggih ka habis untuk hari ini ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "Oh Enggeh..",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 30,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka pesan resoles",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "40 biji",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Wallaikumsallam, untuk kapan p",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Hri ini siang atau sore lun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Ready klo ka hri ini",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Ready ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Enggeh sore aja di ambilnya",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Kna kabari aja",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Ka.. Duit nya bs lun tf kh ke dana atau rek ka",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Bank aja u bisi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Enggeh tp kd pa2 lah lun tf ka",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 31,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamu'alaikum.. Ka mau pesan resoles",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Pesan resoles 50 biji",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "resoles",
+            "start": 6,
+            "end": 13
+          },
+          {
+            "type": "QTY",
+            "text": "50",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 17,
+            "end": 21
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Sore lun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Jam brp ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 2
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Mentah kh ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Enggeh mentah",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Jam 5 atau jam 6an lun ambil,, mau ke rs dlu",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Ka duit nya lun tf j lh",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 32,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Resol nya ready kh ka",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Wallaikumsallam ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Maaf untuk hari ini kehabisan 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Besok baru produksi lagi 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Oh Enggeh",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 33,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Resol 20 ada kh",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Kisaran jam setengah 10 atau jam 10 ada ka, soalnya masih meanukan pesanan org",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Iya kd pp",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Untuk resoles p sdh ready",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 34,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Resol 16 adakh",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "Resol",
+            "start": 0,
+            "end": 5
+          },
+          {
+            "type": "QTY",
+            "text": "16",
+            "start": 6,
+            "end": 8
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Begoreng kh p?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Kisaran jam brp di ambil?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Jam 10",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Bagoreng",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Enggeh bisa",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 35,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pesan Resol 20 kw lh jam 10 diambil",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Bisa, begoreng semua klo p?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Iya",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 36,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Resol 16 lh",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Maaf hari ini kehabisan ka 🙏🏻Besok baru produksi lg",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 37,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "ssalamualaikum ka bisa pesan risol kah",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Wallaikumsallam",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Untuk kapan ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Brp buting?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "50 buting ka yg ftozen aja ka, jam 3 an diambil bisa lah ka?",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Untuk hari apa ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Hari ini ka",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Maaf kalo hari ini kd cukup 50 ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Sisa 30",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Inggih ka 30 aja gin",
+        "is_order": true
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Untuk harganya skrang 2.500/pcs lah ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Inggiih ka",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Ka bisa di gojek akan aja lah",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "Bisa tp pian yg order ka, soalnya takut titik salah klo kami yg order golek nya",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Maps nya Warung Fargoloi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Untuk patokan nya, padahi di seberang komplek impek, pagar tali masuk aja langsung ke pintu samping.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "Inggihh kak klo jam 2 an sudah bisa diambil lah?",
+        "is_order": false
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 18,
+        "role": "buyer",
+        "text": "Inggih ka berapa total ny ka biar u tf dulu",
+        "is_order": false
+      },
+      {
+        "idx": 19,
+        "role": "seller",
+        "text": "Total 75rb ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 20,
+        "role": "buyer",
+        "text": "Inggih sdh masuk ka",
+        "is_order": false
+      },
+      {
+        "idx": 21,
+        "role": "buyer",
+        "text": "Ka ulun sudah pesan maxsim",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 38,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "bu bisa pesan buat risol mentah besok 60 pcs untuk siang sekitar jam 1 bu? 🙏🏻",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 19,
+            "end": 24
+          },
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 25,
+            "end": 31
+          },
+          {
+            "type": "QTY",
+            "text": "60",
+            "start": 38,
+            "end": 40
+          },
+          {
+            "type": "UNIT",
+            "text": "pcs",
+            "start": 41,
+            "end": 44
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "inggih esok ulun ambil ya bu 🙏🏻",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "ulun bayar dp dulu kah bu hari ini ke rmh?",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Inggih bisa ka",
+        "is_clarifying_question": false,
+        "quotes_idx": 3
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Mohon maaf untuk harganya skrang naik ka jd 2.500 satuannya 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "berarti pesan 50 pcs aja kak",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "50",
+            "start": 14,
+            "end": 16
+          },
+          {
+            "type": "UNIT",
+            "text": "pcs",
+            "start": 17,
+            "end": 20
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "25 nya di goreng 25 yg mentah",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "25",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "type": "VARIANT",
+            "text": "di goreng",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "type": "QTY",
+            "text": "25",
+            "start": 17,
+            "end": 19
+          },
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 23,
+            "end": 29
+          }
+        ]
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "bsa kak?",
+        "is_order": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "oke kak bsok aku ambil sekitar jam 1 an",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "ada no rekening lah akk?",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 39,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "bu bila sdh selesai risolnya kabarin bu lah",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "biar ulun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "bu",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Sdh selesai ka dr jam 1 td",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "kak bisa pesan risol lah 30 biji untuk rabu jam stngh 7 pagi?",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Bisa, yg mentah atau begoreng p",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "begoreng bu",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "harganya masih sama lah bu 2500?",
+        "is_order": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Inggih ka 2.500",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "kak nambah bisa lah?",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "jdinya 50?",
+        "is_order": true
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "jam 7 pagi bu 🙏🏻",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "Inggih bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "siap bu, terima kasih ya bu 😊🙏🏻",
+        "is_order": false
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Sama-sama",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 40,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Kawakah pesan risoles yg mentah 100 buting diambil kamis pagi jam 7",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risoles",
+            "start": 14,
+            "end": 21
+          },
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 25,
+            "end": 31
+          },
+          {
+            "type": "QTY",
+            "text": "100",
+            "start": 32,
+            "end": 35
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 36,
+            "end": 42
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggih bisa kak",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Maaf sebelumnya kalo bisa di dp dulu, paling kd setengah nya ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Ok besok pagi aq antar sekalian turun keja lh",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Yg diambil jam 11 hr ini, 20 digoreng aja",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "20",
+            "start": 26,
+            "end": 28
+          },
+          {
+            "type": "VARIANT",
+            "text": "digoreng",
+            "start": 29,
+            "end": 37
+          }
+        ]
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Aq pesan yg mentah 10 hari ini jam 2 diambil bisalh",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "VARIANT",
+            "text": "mentah",
+            "start": 12,
+            "end": 18
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 19,
+            "end": 21
+          }
+        ]
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Kena langsung ke pintu samping p lah,",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 41,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Bisakh pesan risoles yg mentah 20, jadikan 2 kotak",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Yang digoreng 6",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Untuk kapan?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Kalo hari ini kehabisan soalnya 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Buat besok aja yg mentah 20, jadikan 2 kotak",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Besok diambil jam 11",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Inggih bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Kisaran jam brp ka diambil pesanannya?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Jd nyaman disiapkan sblm pian datang",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Setengah 1",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 42,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka, pagi ini warung bejualan lah?",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Sementara tutup, soal nya ibu nya lgi tulak umrah 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Mungkin bisa bulan depan baru buka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Kalau risol pagi ini ad kh?",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Ada",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Mau brp ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 3
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "20",
+        "is_order": true
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Jam brp ready?",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Hndk skrng kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 7
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Stgh jam lg kwa ai, jd langsung uln goreng skrng",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Untuk harganya 2.500 skrg lah ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Oke",
+        "is_order": false,
+        "quotes_idx": 9
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Iyaa",
+        "is_order": false,
+        "quotes_idx": 10
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "Kabari ulun mun sdh",
+        "is_order": false
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Sdh ready",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 16,
+        "role": "seller",
+        "text": "Meambil nya di pintu samping lah",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 17,
+        "role": "buyer",
+        "text": "Okeyy",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 43,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Ka, besok ulun bepesan risol yg sdh begoreng 20pcs, ulun ambil sblm jam 7 pagi",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Ka, besok ulun bepesan risol yg sdh begoreng 20pcs, ulun ambil sblm jam 7 pagi lah",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Ka, besok ulun bepesan risol yg sdh begoreng 30 pcs, ulun ambil sblm jam 7 pagi lah",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Ka, besok ulun bepesan risol yg sdh begoreng 12 pcs aja kw lah? ulun ambil sblm jam 7 pagi",
+        "is_order": true
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Inggih bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Okey",
+        "is_order": false,
+        "quotes_idx": 7
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Ka, ulun kw lah bepesan risol gsn siang ini jam 1?",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Mau 12 pcs yg sdh begoreng",
+        "is_order": true
+      },
+      {
+        "idx": 11,
+        "role": "seller",
+        "text": "Kwa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false,
+        "quotes_idx": 10
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Okey",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Risol nya sdh ready ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Untuk resoles nya sdh ready",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "Ka, besok ulun bepesan risol yg sdh begoreng 30 pcs. Ulun ambil jam 7 pagi",
+        "is_order": true
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 44,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Udh ready kh mas?",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Ready ka, klo hndk langsung d ambil bisa aja",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Nggh siap",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Ada lebihan kh mas?",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Mau nambah kh pian ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 3
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Mau brp ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 3
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "20 ada mas?",
+        "is_order": true
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "mnt d bungkus beda",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Maaf ka, klo 20 kd sampai, 10 aja adanya 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Nggh boleh",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Digoreng jua kh?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 6
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Nggh d goreng",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Klo udh siap kabarin lah",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "uln pesen gosend aja",
+        "is_order": false
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 16,
+        "role": "seller",
+        "text": "Ready ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Sisanya 25rb",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 18,
+        "role": "buyer",
+        "text": "uln qris / trf?",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 45,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamu'alaikum warahmatullahi wabarokatuh",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Ding pesan tuk bsk Kamis 20 Mei'26",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "320 buting risol lh.",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "320",
+            "start": 0,
+            "end": 3
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 4,
+            "end": 10
+          },
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 11,
+            "end": 16
+          }
+        ]
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Jam 6 pagi ibu Ambil",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Nak",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Kawakh orderan ibu",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Nak brp jadinya kawa orderan ibu",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Yg pian kawa pastikan ibu ambil yg jam 6",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "100 bu kwa nya u sanggup 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Siap",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Jam 6 ibu ambil nak lh🙏",
+        "is_order": false
+      },
+      {
+        "idx": 11,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "Assalamu'alaikum warahmatullahi wabarokatuh...",
+        "is_order": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Nak ibu pesan Risol gsn hari Senin 25 Mei'26",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "200 butinglh.",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "200",
+            "start": 0,
+            "end": 3
+          },
+          {
+            "type": "UNIT",
+            "text": "butinglh",
+            "start": 4,
+            "end": 12
+          }
+        ]
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "Ibu ambil jam 6 kaya biasa",
+        "is_order": false
+      },
+      {
+        "idx": 16,
+        "role": "seller",
+        "text": "Wallaikumsallam  bisa bu",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 17,
+        "role": "buyer",
+        "text": "Om...",
+        "is_order": false
+      },
+      {
+        "idx": 18,
+        "role": "buyer",
+        "text": "Ibu mengingatkan pesanan risol 200  buting. Senin 25 April'26",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 25,
+            "end": 30
+          },
+          {
+            "type": "QTY",
+            "text": "200",
+            "start": 31,
+            "end": 34
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 36,
+            "end": 42
+          }
+        ]
+      },
+      {
+        "idx": 19,
+        "role": "buyer",
+        "text": "Ibu ambil jam 06.00 wita terimakasih",
+        "is_order": false
+      },
+      {
+        "idx": 20,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 46,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamu'alaikum warahmatullahi wabarokatuh",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Om esk pagi ibu ambil ky biasa jam 6 pagi 45 buting bisalh",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Kd usah pakai saos pedas. Pakai lombok aj",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Wallaikumsallam bu",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Tp lombok nya kdd 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Berarti biar pakai saos pedas aj",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Om pesan risol tuk besok 50 lh",
+        "is_order": true
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Pagi jam 06.30 ibu ambil",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Om pesanan ibu besok  d ambil jam 6. Sebanyak 70 lh. Terimakasih",
+        "is_order": true
+      },
+      {
+        "idx": 11,
+        "role": "seller",
+        "text": "Waduh klo jam segitu kya nya kd sanggup bu",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Ad pesanan jua pagi itu soal nya",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Ibu kira kmrin tu pian kawa jam seitu yg pas b tlpnn wan mama pian.",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "Klo jam 7 kawalh om",
+        "is_order": false
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "???",
+        "is_order": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "U melihat chat p yg di atas tuh jam setengah 7",
+        "is_order": false
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Insya allah setengah 7 bisa",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 18,
+        "role": "buyer",
+        "text": "Om besok pesan 55 buting risol kawa e klo",
+        "is_order": true
+      },
+      {
+        "idx": 19,
+        "role": "seller",
+        "text": "Jam brp?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 18
+      },
+      {
+        "idx": 20,
+        "role": "buyer",
+        "text": "Jam 06.30",
+        "is_order": false
+      },
+      {
+        "idx": 21,
+        "role": "seller",
+        "text": "Inggih, bisa bu",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 47,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamualaikum kak saya mau pesan risol untuk sore ini bisa kah",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "60 biji untuk sore ini jam set5 Ulun ngambil",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "60",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 3,
+            "end": 7
+          }
+        ]
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Wallaikumsallam bisa ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Di goreng kh mentah ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 1
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Untuk harga nya skrng 2.500/Pcs lah ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Di goreng kak",
+        "is_order": false,
+        "quotes_idx": 3
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Baik kak",
+        "is_order": false,
+        "quotes_idx": 4
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Siangan kena Ulun julung duitnya ,jadi ngambilnya sore kna",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 48,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Masih ada kah risol",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Maaf habis ka 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Besok baru produksi lagi 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Besok pesan risol 15  1 kotak",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risol",
+            "start": 12,
+            "end": 17
+          },
+          {
+            "type": "QTY",
+            "text": "15",
+            "start": 18,
+            "end": 20
+          },
+          {
+            "type": "QTY",
+            "text": "1",
+            "start": 22,
+            "end": 23
+          },
+          {
+            "type": "UNIT",
+            "text": "kotak",
+            "start": 24,
+            "end": 29
+          }
+        ]
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Isi 10 1 kotak",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 4,
+            "end": 6
+          },
+          {
+            "type": "QTY",
+            "text": "1",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "type": "UNIT",
+            "text": "kotak",
+            "start": 9,
+            "end": 14
+          }
+        ]
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "5 nya belain kytu kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Risol isi 15 1 kotak",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "Risol",
+            "start": 0,
+            "end": 5
+          },
+          {
+            "type": "QTY",
+            "text": "15",
+            "start": 10,
+            "end": 12
+          },
+          {
+            "type": "QTY",
+            "text": "1",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "type": "UNIT",
+            "text": "kotak",
+            "start": 15,
+            "end": 20
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Risol isi 10 1 kotak",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "Risol",
+            "start": 0,
+            "end": 5
+          },
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 10,
+            "end": 12
+          },
+          {
+            "type": "QTY",
+            "text": "1",
+            "start": 13,
+            "end": 14
+          },
+          {
+            "type": "UNIT",
+            "text": "kotak",
+            "start": 15,
+            "end": 20
+          }
+        ]
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Inggih siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Mksh dulu",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "Jm brp esok Ready kabari lahh",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 49,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "seller",
+        "text": "Kalo tesiang hbs dzuhur ada ai jar ka ai, soalnya td kehabisan diborong ibu yg td,,",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Ohh Ykh",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Hdg aku pdhi org x dululah",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Iya 20 habis zuhur lah",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Buat 2 kotak isi 10",
+        "is_order": true
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Inggih, siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Sdh kah risol",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Sdh ready ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Ok",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "ad risoles kah",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 50,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Pesan risoles nya 16 buting, bsk di ambil jm 10 lah, yg sdh masak..",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "risoles",
+            "start": 6,
+            "end": 13
+          },
+          {
+            "type": "QTY",
+            "text": "16",
+            "start": 18,
+            "end": 20
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 21,
+            "end": 27
+          },
+          {
+            "type": "VARIANT",
+            "text": "sdh masak",
+            "start": 56,
+            "end": 65
+          }
+        ]
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggig",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Risoles masie ad laa, jm 11 ini kena di ambil 8 buting aj, boleh pake kotak laa..",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "Risoles",
+            "start": 0,
+            "end": 7
+          },
+          {
+            "type": "QTY",
+            "text": "8",
+            "start": 46,
+            "end": 47
+          },
+          {
+            "type": "UNIT",
+            "text": "buting",
+            "start": 48,
+            "end": 54
+          },
+          {
+            "type": "UNIT",
+            "text": "kotak",
+            "start": 70,
+            "end": 75
+          }
+        ]
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 51,
+    "split": "train",
+    "tags": [
+      "standing_order"
+    ],
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "risol jam 10 34 lah ka",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "selasa - jumat 34, sabtu 38",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "besok belain yg masak 24lah",
+        "is_order": true
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Jdi 38 sama 24 kh ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 3
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "nggjh",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 52,
+    "split": "train",
+    "tags": [
+      "standing_order"
+    ],
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "senin- rabu : 34, jumat 30, sabtu 36",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "hari ini 30 sampai jumat, sabtu 36",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "senin 34 sm 50, selasa 30, mentah 10",
+        "is_order": true
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "yg senin 50 jam 1 diambil",
+        "is_order": true
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Untuk resoles nya sdh ready",
+        "is_clarifying_question": false,
+        "quotes_idx": 4
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "astagfirullah kd ingat lun",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "risol yg mana ka",
+        "is_order": false,
+        "quotes_idx": 6
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "lun pesan smlm aja yg siang",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "ini",
+        "is_order": false,
+        "quotes_idx": 3
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "pian meolah 50 kah",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Bukan kak 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "nggih",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "esok 34, jumat 34, sabtu 38",
+        "is_order": true
+      },
+      {
+        "idx": 15,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 16,
+        "role": "buyer",
+        "text": "esok selasa-jumat 34, sabtu 38",
+        "is_order": true
+      },
+      {
+        "idx": 17,
+        "role": "seller",
+        "text": "Enggeh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 18,
+        "role": "buyer",
+        "text": "pesan senin- jumat 36, sabtu 40",
+        "is_order": true
+      },
+      {
+        "idx": 19,
+        "role": "seller",
+        "text": "Maaf dlu sebelum nya untuk hari ini tutup orderan besok baru buka lgi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 20,
+        "role": "seller",
+        "text": "Orang nya garing yg meolah 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 21,
+        "role": "buyer",
+        "text": "nggih kada pa2, semoga cepat sembuh, Aamiin",
+        "is_order": false
+      },
+      {
+        "idx": 22,
+        "role": "buyer",
+        "text": "tambahan esok belain yg masak 20",
+        "is_order": true
+      },
+      {
+        "idx": 23,
+        "role": "buyer",
+        "text": "pesan senin-jumat 36, sabtu 40",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 53,
+    "split": "train",
+    "tags": [
+      "standing_order"
+    ],
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "tambahan belain senin 50 jam 2 diambil",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "yg 50 lun ambil jam 3an lah, esok lupa tgl.merah, jd esok libur lanjut rabu",
+        "is_order": true
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Sdh ready ka pesanan pian",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "nggih",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Mun hndk d ambil skrg kd pp jua, karna sdh ready dr jam 2 td",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "nggih lun sekalian kena meantar jam 3an aja",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "pesan senin-jumat 36, sabtu 40",
+        "is_order": true
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "buyer",
+        "text": "ka bisalah risol jam 10 : 36",
+        "is_order": true
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "selasa - jumat : 36, sabtu 40",
+        "is_order": true
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "mksh ka",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "seller",
+        "text": "Sama-sama",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "pesan senin- jumat 36, sabtu 40",
+        "is_order": true
+      },
+      {
+        "idx": 16,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 17,
+        "role": "buyer",
+        "text": "jni lah ka pesanan",
+        "is_order": false,
+        "quotes_idx": 15
+      },
+      {
+        "idx": 18,
+        "role": "seller",
+        "text": "Enggeh kya biasa jua klo",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 19,
+        "role": "seller",
+        "text": "Kena klo libur atau apa langsung kabari lh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 20,
+        "role": "buyer",
+        "text": "nggih siap",
+        "is_order": false
+      },
+      {
+        "idx": 21,
+        "role": "buyer",
+        "text": "esok risol 46",
+        "is_order": true
+      },
+      {
+        "idx": 22,
+        "role": "buyer",
+        "text": "selanjutnya senin-jumat 40, sabtu 46",
+        "is_order": true
+      },
+      {
+        "idx": 23,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 24,
+        "role": "buyer",
+        "text": "ky biasa lah",
+        "is_order": false
+      },
+      {
+        "idx": 25,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 54,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamualaikum",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Risol ready kh",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Kemarin ada tnya",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Mau 20bj",
+        "is_order": true
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Yg mentah",
+        "is_order": false
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Wallaikumsallam ka, maaf hnyr tbls ka,,",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Jd kh risolnya ka?",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Jadi..",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Simpan kn dlu lah 20 bj",
+        "is_order": true
+      },
+      {
+        "idx": 9,
+        "role": "buyer",
+        "text": "Kena d ambil skalian hndk k rs",
+        "is_order": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Anak ulun yg m ambil risoles nya",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "seller",
+        "text": "Inggih, langsung k belakang aj ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 13,
+        "role": "buyer",
+        "text": "Inggih",
+        "is_order": false
+      },
+      {
+        "idx": 14,
+        "role": "buyer",
+        "text": "Risoles mau 20 bji lagi lah",
+        "is_order": true
+      },
+      {
+        "idx": 15,
+        "role": "buyer",
+        "text": "Buat besok",
+        "is_order": false
+      },
+      {
+        "idx": 16,
+        "role": "seller",
+        "text": "Mentah atau goreng ka ?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 14
+      },
+      {
+        "idx": 17,
+        "role": "buyer",
+        "text": "Yg mentah",
+        "is_order": false
+      },
+      {
+        "idx": 18,
+        "role": "seller",
+        "text": "Jam brp ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 15
+      },
+      {
+        "idx": 19,
+        "role": "buyer",
+        "text": "Jam 9 an kira\"",
+        "is_order": false
+      },
+      {
+        "idx": 20,
+        "role": "buyer",
+        "text": "Kena d kabari aja klo nya agak telat m ambil nya",
+        "is_order": false
+      },
+      {
+        "idx": 21,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 22,
+        "role": "buyer",
+        "text": "Risoles mentah ada kh 20 biji",
+        "is_order": true
+      },
+      {
+        "idx": 23,
+        "role": "seller",
+        "text": "Ada",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 24,
+        "role": "buyer",
+        "text": "Inggih kena d ambil jam 4 sore",
+        "is_order": false
+      },
+      {
+        "idx": 25,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 26,
+        "role": "seller",
+        "text": "Untuk risoles pian kapan diambil ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 14
+      },
+      {
+        "idx": 27,
+        "role": "buyer",
+        "text": "Bntr ka lah ..hbs magrib lun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 28,
+        "role": "buyer",
+        "text": "Hnyr dtg ulun dari luar kota tdi..",
+        "is_order": false
+      },
+      {
+        "idx": 29,
+        "role": "seller",
+        "text": "Enggeh siap, tdh u hendak keluar ,takut nya klo ae p meambil pass u kdd. Nuh sdh di rmh hendak u siap akan sekarang kh?",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 30,
+        "role": "buyer",
+        "text": "Lun ambil pakai  maxim aja gin lah",
+        "is_order": false
+      },
+      {
+        "idx": 31,
+        "role": "buyer",
+        "text": "Lun tf aja byr nya",
+        "is_order": false
+      },
+      {
+        "idx": 32,
+        "role": "buyer",
+        "text": "Mnta ni rek pian lwn alamat gsn pesan ojol nya",
+        "is_order": false
+      },
+      {
+        "idx": 33,
+        "role": "buyer",
+        "text": "Kena lun yg m order ojol nya",
+        "is_order": false
+      },
+      {
+        "idx": 34,
+        "role": "seller",
+        "text": "Atas nama fargoloi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 35,
+        "role": "seller",
+        "text": "Alamat nya ketik aja warung fargoloi",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 36,
+        "role": "seller",
+        "text": "Patokan nya di seberang komplek impek yg pagar nya betali",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 37,
+        "role": "seller",
+        "text": "Masuk aja p langsung ke pintu samping",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 38,
+        "role": "buyer",
+        "text": "Inggih siap",
+        "is_order": false
+      },
+      {
+        "idx": 39,
+        "role": "buyer",
+        "text": "Tf kmna",
+        "is_order": false
+      },
+      {
+        "idx": 40,
+        "role": "buyer",
+        "text": "50 rb lah",
+        "is_order": false
+      },
+      {
+        "idx": 41,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 42,
+        "role": "buyer",
+        "text": "Maxim nya sdh otw",
+        "is_order": false
+      },
+      {
+        "idx": 43,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 44,
+        "role": "buyer",
+        "text": "Duhh salah order ulun",
+        "is_order": false
+      },
+      {
+        "idx": 45,
+        "role": "buyer",
+        "text": "Tebalik",
+        "is_order": false
+      },
+      {
+        "idx": 46,
+        "role": "seller",
+        "text": "Yakah, pantas  u hadang2 kdd",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 47,
+        "role": "buyer",
+        "text": "Inggih",
+        "is_order": false
+      },
+      {
+        "idx": 48,
+        "role": "buyer",
+        "text": "Hdng ulun order  ulang",
+        "is_order": false
+      },
+      {
+        "idx": 49,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 50,
+        "role": "buyer",
+        "text": "Ada sdh lah",
+        "is_order": false
+      },
+      {
+        "idx": 51,
+        "role": "seller",
+        "text": "Yg datang 2 ini",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 52,
+        "role": "buyer",
+        "text": "Nahh itu yg salah tdi",
+        "is_order": false
+      },
+      {
+        "idx": 53,
+        "role": "buyer",
+        "text": "Biar aja sdh ulun byr jua",
+        "is_order": false
+      },
+      {
+        "idx": 54,
+        "role": "buyer",
+        "text": "Brrti yg k 2 yg pian unjuk risoles nya",
+        "is_order": false
+      },
+      {
+        "idx": 55,
+        "role": "seller",
+        "text": "Yakah, u teunjuk  yg bapak2 tdh",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 56,
+        "role": "buyer",
+        "text": "Nahh kypa tuu yuu",
+        "is_order": false
+      },
+      {
+        "idx": 57,
+        "role": "buyer",
+        "text": "Soal nya tdi sdin krmh ulun tdi",
+        "is_order": false
+      },
+      {
+        "idx": 58,
+        "role": "buyer",
+        "text": "Iya salah picik tujuan nya tebalik",
+        "is_order": false
+      },
+      {
+        "idx": 59,
+        "role": "seller",
+        "text": "P kawa chat driver  nya lgi lah",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 60,
+        "role": "buyer",
+        "text": "Sdh ulun chat",
+        "is_order": false
+      },
+      {
+        "idx": 61,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 62,
+        "role": "buyer",
+        "text": "Assalamualaikum",
+        "is_order": false
+      },
+      {
+        "idx": 63,
+        "role": "buyer",
+        "text": "Risoles frozen ada kh yg ready",
+        "is_order": false
+      },
+      {
+        "idx": 64,
+        "role": "seller",
+        "text": "Brp buting p?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 63
+      },
+      {
+        "idx": 65,
+        "role": "seller",
+        "text": "Sisa 30",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 66,
+        "role": "buyer",
+        "text": "20 ja ulun",
+        "is_order": true,
+        "quotes_idx": 65
+      },
+      {
+        "idx": 67,
+        "role": "seller",
+        "text": "Ngeh siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 68,
+        "role": "buyer",
+        "text": "Stumt lagi ulun ambil",
+        "is_order": false
+      },
+      {
+        "idx": 69,
+        "role": "seller",
+        "text": "Langsung u siap akan ae lah",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 70,
+        "role": "buyer",
+        "text": "Pian siapi ja dlu",
+        "is_order": false
+      },
+      {
+        "idx": 71,
+        "role": "buyer",
+        "text": "Foto",
+        "is_order": false
+      },
+      {
+        "idx": 72,
+        "role": "buyer",
+        "text": "Mau 20 pc ka yg frozen",
+        "is_order": true
+      },
+      {
+        "idx": 73,
+        "role": "seller",
+        "text": "Ada ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 74,
+        "role": "seller",
+        "text": "Diambil jam brp ka?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 72
+      },
+      {
+        "idx": 75,
+        "role": "buyer",
+        "text": "Kena dhabari",
+        "is_order": false
+      },
+      {
+        "idx": 76,
+        "role": "seller",
+        "text": "Inggih",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 77,
+        "role": "seller",
+        "text": "Ka, pian jd kh risolnya ?",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 78,
+        "role": "buyer",
+        "text": "Inggih jadi..motor lun kdd eh masih blmn tuntung dbengkel",
+        "is_order": false
+      },
+      {
+        "idx": 79,
+        "role": "buyer",
+        "text": "Lun maxim kn aja gin kaya smlm lah",
+        "is_order": false
+      },
+      {
+        "idx": 80,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 81,
+        "role": "buyer",
+        "text": "Hdng lun order maxim nya dlu",
+        "is_order": false
+      },
+      {
+        "idx": 82,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 83,
+        "role": "buyer",
+        "text": "Otw maxim nya",
+        "is_order": false
+      },
+      {
+        "idx": 84,
+        "role": "seller",
+        "text": "Enggeh siap",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 85,
+        "role": "seller",
+        "text": "Kda dpt maxim nya mncari jar",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 86,
+        "role": "seller",
+        "text": "Tdi sdh ulun pdhi ciri\" nya",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 87,
+        "role": "seller",
+        "text": "Baru di bawa maxim nya",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 88,
+        "role": "seller",
+        "text": "Terimakasih dlu atas pesanan nya 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 89,
+        "role": "seller",
+        "text": "Di jual 🙏🏻",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 90,
+        "role": "buyer",
+        "text": "Inggih",
+        "is_order": false
+      },
+      {
+        "idx": 91,
+        "role": "buyer",
+        "text": "Dtukarr",
+        "is_order": false
+      },
+      {
+        "idx": 92,
+        "role": "buyer",
+        "text": "Mau 20 pc yg frozen",
+        "is_order": true
+      },
+      {
+        "idx": 93,
+        "role": "buyer",
+        "text": "Jam 5 an d ambil",
+        "is_order": false
+      },
+      {
+        "idx": 94,
+        "role": "seller",
+        "text": "Inggih ka",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 95,
+        "role": "buyer",
+        "text": "Otw m ambil ka",
+        "is_order": false
+      }
+    ]
+  },
+  {
+    "conv_id": 55,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Assalamu'alaikum",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "boleh lh aq pesan kue broniew yg ky kmren tp nnti di 21 agustus 2026 10 loyang untuk acra kawinan ponakan",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Waalaikumsalam...",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "inggih Bu, 🙏",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "insyaallah bisa.",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "trimksih bnyak",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "seller",
+        "text": "Sama\" Bu 🙏🙏🙏",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 56,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Brp an Bu bolu nya masih bisa lah pesan 🤭",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Bsok mlm tp, aeja lun olahkn, kyp? Kami bsok hr raya 🤭",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Sore bisa Lah Bu pesan 2 lun",
+        "is_order": true
+      }
+    ]
+  },
+  {
+    "conv_id": 57,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "seller",
+        "text": "Bu mau",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Brp buting?",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 2,
+        "role": "buyer",
+        "text": "Kna lun pdhkn ading lun, utk rasa dijamin enak🤭",
+        "is_order": false
+      },
+      {
+        "idx": 3,
+        "role": "seller",
+        "text": "Gsn bebila",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Sore kh?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 2
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Boleh",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "10 biji gin bu",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "type": "UNIT",
+            "text": "biji",
+            "start": 3,
+            "end": 7
+          }
+        ]
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Okey..",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 8,
+        "role": "buyer",
+        "text": "Lun pdhkn ading lun",
+        "is_order": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "Klo Frozen ada jua",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 10,
+        "role": "seller",
+        "text": "Andak di freezer",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 11,
+        "role": "buyer",
+        "text": "Yg frozen aja gin bu ae",
+        "is_order": false
+      },
+      {
+        "idx": 12,
+        "role": "buyer",
+        "text": "10 yg Frozen kytu",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "QTY",
+            "text": "10",
+            "start": 0,
+            "end": 2
+          },
+          {
+            "type": "VARIANT",
+            "text": "Frozen",
+            "start": 6,
+            "end": 12
+          }
+        ]
+      },
+      {
+        "idx": 13,
+        "role": "seller",
+        "text": "inggih bu",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 58,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "ini satu jua",
+        "is_order": true
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "ini satu jua bu",
+        "is_order": true
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "inggih, insyaallah ready 3 hr sblum lebaran y 🙏",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Nanti lun antarkn",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Inggih bu, pun lun sehari sebelum lebaran aja kna bu lah 😁😁",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Okey Siyap 😁🙏",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Makasih banyak dulu lun",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "inggih Sama\"",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 59,
+    "split": "train",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "buyer",
+        "text": "Mau bu ada kh lebihanya",
+        "is_order": false
+      },
+      {
+        "idx": 1,
+        "role": "seller",
+        "text": "Sore lh,  vla'nya kehabisan? Mau brp?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 0
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Ukuran kecil yg ini, 2000 aj",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "15 biji aja bu",
+        "is_order": true
+      },
+      {
+        "idx": 4,
+        "role": "seller",
+        "text": "Okey,,",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 5,
+        "role": "buyer",
+        "text": "Kue Pian udah siap?",
+        "is_order": false
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Ulun ambil kh bu",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "seller",
+        "text": "Bisa",
+        "is_clarifying_question": false
+      }
+    ]
+  },
+  {
+    "conv_id": 60,
+    "split": "evaluation",
+    "messages": [
+      {
+        "idx": 0,
+        "role": "seller",
+        "text": "Ada ukuran 20*20 d ukuran 20*10",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 1,
+        "role": "buyer",
+        "text": "Yg nia olah ukuran berapa",
+        "is_order": false
+      },
+      {
+        "idx": 2,
+        "role": "seller",
+        "text": "Terseerah Pian, nymn lun siapkn bahanny",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 3,
+        "role": "buyer",
+        "text": "Yang manalah harganya berapa",
+        "is_order": false
+      },
+      {
+        "idx": 4,
+        "role": "buyer",
+        "text": "Nia broniesnya olahkan 3 gasan membari acil sama om berp harganya",
+        "is_order": true,
+        "spans_text": [
+          {
+            "type": "ITEM",
+            "text": "broniesnya",
+            "start": 4,
+            "end": 14
+          },
+          {
+            "type": "QTY",
+            "text": "3",
+            "start": 23,
+            "end": 24
+          }
+        ]
+      },
+      {
+        "idx": 5,
+        "role": "seller",
+        "text": "Yg ukuran brp, cil?",
+        "is_clarifying_question": true,
+        "triggered_by_idx": 4
+      },
+      {
+        "idx": 6,
+        "role": "buyer",
+        "text": "Bsok Pian kebanjar?",
+        "is_order": false
+      },
+      {
+        "idx": 7,
+        "role": "buyer",
+        "text": "Banjarmasin mksdnya",
+        "is_order": false
+      },
+      {
+        "idx": 8,
+        "role": "seller",
+        "text": "Ukuran 20*10 insyaAllah kebjm wadainya bawakan keacara kawinan pelastiknya satu2 kalau ada yg hirang kd nyaman kelihatan berapa harganya",
+        "is_clarifying_question": false
+      },
+      {
+        "idx": 9,
+        "role": "seller",
+        "text": "inggih cil, Bsok lun bwakn",
+        "is_clarifying_question": false
+      }
+    ]
+  }
+]

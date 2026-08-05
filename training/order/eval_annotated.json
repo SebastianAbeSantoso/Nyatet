@@ -1,0 +1,695 @@
+[
+ {
+  "text": "Pesan hari ni risol 20 adakah Bu, kemarin Ulun kewarung Pian kd bejualan☺️",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 14,
+    "end": 19
+   },
+   {
+    "type": "QTY",
+    "start": 20,
+    "end": 22
+   }
+  ],
+  "conv_id": 17,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "Esok tinggali 20 biji ya, jam 08.15 diambil",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 14,
+    "end": 16
+   },
+   {
+    "type": "UNIT",
+    "start": 17,
+    "end": 21
+   }
+  ],
+  "conv_id": 19,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "Pagi ini tinggali risol goreng 10 biji, risol mentah 10 biji, jam 07.30 diambil ya bu",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 18,
+    "end": 23
+   },
+   {
+    "type": "VARIANT",
+    "start": 24,
+    "end": 30
+   },
+   {
+    "type": "QTY",
+    "start": 31,
+    "end": 33
+   },
+   {
+    "type": "UNIT",
+    "start": 34,
+    "end": 38
+   },
+   {
+    "type": "ITEM",
+    "start": 40,
+    "end": 45
+   },
+   {
+    "type": "VARIANT",
+    "start": 46,
+    "end": 52
+   },
+   {
+    "type": "QTY",
+    "start": 53,
+    "end": 55
+   },
+   {
+    "type": "UNIT",
+    "start": 56,
+    "end": 60
+   }
+  ],
+  "conv_id": 20,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "10 biji ga adakah",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 2
+   },
+   {
+    "type": "UNIT",
+    "start": 3,
+    "end": 7
+   }
+  ],
+  "conv_id": 20,
+  "idx": 6,
+  "is_order": true
+ },
+ {
+  "text": "Pagi 12 digoreng",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 5,
+    "end": 7
+   },
+   {
+    "type": "VARIANT",
+    "start": 8,
+    "end": 16
+   }
+  ],
+  "conv_id": 22,
+  "idx": 6,
+  "is_order": true
+ },
+ {
+  "text": "Yg mentah 10",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 3,
+    "end": 9
+   },
+   {
+    "type": "QTY",
+    "start": 10,
+    "end": 12
+   }
+  ],
+  "conv_id": 22,
+  "idx": 7,
+  "is_order": true
+ },
+ {
+  "text": "Besok adalah risol tp yg mentahnya aja 10 buting",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 13,
+    "end": 18
+   },
+   {
+    "type": "VARIANT",
+    "start": 25,
+    "end": 34
+   },
+   {
+    "type": "QTY",
+    "start": 39,
+    "end": 41
+   },
+   {
+    "type": "UNIT",
+    "start": 42,
+    "end": 48
+   }
+  ],
+  "conv_id": 24,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "Oke yg mentahlah besok 10",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 7,
+    "end": 16
+   },
+   {
+    "type": "QTY",
+    "start": 23,
+    "end": 25
+   }
+  ],
+  "conv_id": 24,
+  "idx": 5,
+  "is_order": true
+ },
+ {
+  "text": "Pesan resoles 50 biji",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 6,
+    "end": 13
+   },
+   {
+    "type": "QTY",
+    "start": 14,
+    "end": 16
+   },
+   {
+    "type": "UNIT",
+    "start": 17,
+    "end": 21
+   }
+  ],
+  "conv_id": 31,
+  "idx": 1,
+  "is_order": true
+ },
+ {
+  "text": "Resol 16 adakh",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 0,
+    "end": 5
+   },
+   {
+    "type": "QTY",
+    "start": 6,
+    "end": 8
+   }
+  ],
+  "conv_id": 34,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "bu bisa pesan buat risol mentah besok 60 pcs untuk siang sekitar jam 1 bu? 🙏🏻",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 19,
+    "end": 24
+   },
+   {
+    "type": "VARIANT",
+    "start": 25,
+    "end": 31
+   },
+   {
+    "type": "QTY",
+    "start": 38,
+    "end": 40
+   },
+   {
+    "type": "UNIT",
+    "start": 41,
+    "end": 44
+   }
+  ],
+  "conv_id": 38,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "berarti pesan 50 pcs aja kak",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 14,
+    "end": 16
+   },
+   {
+    "type": "UNIT",
+    "start": 17,
+    "end": 20
+   }
+  ],
+  "conv_id": 38,
+  "idx": 6,
+  "is_order": true
+ },
+ {
+  "text": "25 nya di goreng 25 yg mentah",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 2
+   },
+   {
+    "type": "VARIANT",
+    "start": 7,
+    "end": 16
+   },
+   {
+    "type": "QTY",
+    "start": 17,
+    "end": 19
+   },
+   {
+    "type": "VARIANT",
+    "start": 23,
+    "end": 29
+   }
+  ],
+  "conv_id": 38,
+  "idx": 7,
+  "is_order": true
+ },
+ {
+  "text": "Kawakah pesan risoles yg mentah 100 buting diambil kamis pagi jam 7",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 14,
+    "end": 21
+   },
+   {
+    "type": "VARIANT",
+    "start": 25,
+    "end": 31
+   },
+   {
+    "type": "QTY",
+    "start": 32,
+    "end": 35
+   },
+   {
+    "type": "UNIT",
+    "start": 36,
+    "end": 42
+   }
+  ],
+  "conv_id": 40,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "Yg diambil jam 11 hr ini, 20 digoreng aja",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 26,
+    "end": 28
+   },
+   {
+    "type": "VARIANT",
+    "start": 29,
+    "end": 37
+   }
+  ],
+  "conv_id": 40,
+  "idx": 5,
+  "is_order": true
+ },
+ {
+  "text": "Aq pesan yg mentah 10 hari ini jam 2 diambil bisalh",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 12,
+    "end": 18
+   },
+   {
+    "type": "QTY",
+    "start": 19,
+    "end": 21
+   }
+  ],
+  "conv_id": 40,
+  "idx": 7,
+  "is_order": true
+ },
+ {
+  "text": "320 buting risol lh.",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 3
+   },
+   {
+    "type": "UNIT",
+    "start": 4,
+    "end": 10
+   },
+   {
+    "type": "ITEM",
+    "start": 11,
+    "end": 16
+   }
+  ],
+  "conv_id": 45,
+  "idx": 2,
+  "is_order": true
+ },
+ {
+  "text": "200 butinglh.",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 3
+   },
+   {
+    "type": "UNIT",
+    "start": 4,
+    "end": 12
+   }
+  ],
+  "conv_id": 45,
+  "idx": 14,
+  "is_order": true
+ },
+ {
+  "text": "Ibu mengingatkan pesanan risol 200  buting. Senin 25 April'26",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 25,
+    "end": 30
+   },
+   {
+    "type": "QTY",
+    "start": 31,
+    "end": 34
+   },
+   {
+    "type": "UNIT",
+    "start": 36,
+    "end": 42
+   }
+  ],
+  "conv_id": 45,
+  "idx": 18,
+  "is_order": true
+ },
+ {
+  "text": "60 biji untuk sore ini jam set5 Ulun ngambil",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 2
+   },
+   {
+    "type": "UNIT",
+    "start": 3,
+    "end": 7
+   }
+  ],
+  "conv_id": 47,
+  "idx": 1,
+  "is_order": true
+ },
+ {
+  "text": "Besok pesan risol 15  1 kotak",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 12,
+    "end": 17
+   },
+   {
+    "type": "QTY",
+    "start": 18,
+    "end": 20
+   },
+   {
+    "type": "QTY",
+    "start": 22,
+    "end": 23
+   },
+   {
+    "type": "UNIT",
+    "start": 24,
+    "end": 29
+   }
+  ],
+  "conv_id": 48,
+  "idx": 3,
+  "is_order": true
+ },
+ {
+  "text": "Isi 10 1 kotak",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 4,
+    "end": 6
+   },
+   {
+    "type": "QTY",
+    "start": 7,
+    "end": 8
+   },
+   {
+    "type": "UNIT",
+    "start": 9,
+    "end": 14
+   }
+  ],
+  "conv_id": 48,
+  "idx": 4,
+  "is_order": true
+ },
+ {
+  "text": "Risol isi 15 1 kotak",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 0,
+    "end": 5
+   },
+   {
+    "type": "QTY",
+    "start": 10,
+    "end": 12
+   },
+   {
+    "type": "QTY",
+    "start": 13,
+    "end": 14
+   },
+   {
+    "type": "UNIT",
+    "start": 15,
+    "end": 20
+   }
+  ],
+  "conv_id": 48,
+  "idx": 6,
+  "is_order": true
+ },
+ {
+  "text": "Risol isi 10 1 kotak",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 0,
+    "end": 5
+   },
+   {
+    "type": "QTY",
+    "start": 10,
+    "end": 12
+   },
+   {
+    "type": "QTY",
+    "start": 13,
+    "end": 14
+   },
+   {
+    "type": "UNIT",
+    "start": 15,
+    "end": 20
+   }
+  ],
+  "conv_id": 48,
+  "idx": 7,
+  "is_order": true
+ },
+ {
+  "text": "Pesan risoles nya 16 buting, bsk di ambil jm 10 lah, yg sdh masak..",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 6,
+    "end": 13
+   },
+   {
+    "type": "QTY",
+    "start": 18,
+    "end": 20
+   },
+   {
+    "type": "UNIT",
+    "start": 21,
+    "end": 27
+   },
+   {
+    "type": "VARIANT",
+    "start": 56,
+    "end": 65
+   }
+  ],
+  "conv_id": 50,
+  "idx": 0,
+  "is_order": true
+ },
+ {
+  "text": "Risoles masie ad laa, jm 11 ini kena di ambil 8 buting aj, boleh pake kotak laa..",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 0,
+    "end": 7
+   },
+   {
+    "type": "QTY",
+    "start": 46,
+    "end": 47
+   },
+   {
+    "type": "UNIT",
+    "start": 48,
+    "end": 54
+   },
+   {
+    "type": "UNIT",
+    "start": 70,
+    "end": 75
+   }
+  ],
+  "conv_id": 50,
+  "idx": 2,
+  "is_order": true
+ },
+ {
+  "text": "10 biji gin bu",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 2
+   },
+   {
+    "type": "UNIT",
+    "start": 3,
+    "end": 7
+   }
+  ],
+  "conv_id": 57,
+  "idx": 6,
+  "is_order": true
+ },
+ {
+  "text": "10 yg Frozen kytu",
+  "spans": [
+   {
+    "type": "QTY",
+    "start": 0,
+    "end": 2
+   },
+   {
+    "type": "VARIANT",
+    "start": 6,
+    "end": 12
+   }
+  ],
+  "conv_id": 57,
+  "idx": 12,
+  "is_order": true
+ },
+ {
+  "text": "Lua broniesnya olahkan 3 gasan membari acil sama om berp harganya",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 4,
+    "end": 14
+   },
+   {
+    "type": "QTY",
+    "start": 23,
+    "end": 24
+   }
+  ],
+  "conv_id": 60,
+  "idx": 4,
+  "is_order": true
+ },
+ {
+  "text": "Inggih digoreng spt biasa🙏🏻",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 7,
+    "end": 15
+   },
+   {
+    "type": "ANAPHORIC",
+    "start": 16,
+    "end": 25
+   }
+  ],
+  "conv_id": 19,
+  "idx": 2,
+  "is_order": false
+ },
+ {
+  "text": "Ibu ambil jam 6 kaya biasa",
+  "spans": [
+   {
+    "type": "ANAPHORIC",
+    "start": 16,
+    "end": 26
+   }
+  ],
+  "conv_id": 45,
+  "idx": 15,
+  "is_order": false
+ }
+]
