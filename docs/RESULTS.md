@@ -2,7 +2,7 @@
 
 > Single source for all measurements in this project.
 
-**Last updated:** 6 August 2026 · **Latest run:** O1
+**Last updated:** 8 August 2026 · **Latest run:** O1
 
 ---
 
@@ -42,32 +42,15 @@ Task: IndoNLU NERP. Both runs used identical training and export code, only the 
 
 `ALBERT` · 11.7 M parameters · vocab 29,999
 
-#### Accuracy
+#### Variants
 
-| Variant | F1 |
-|---|---|
-| PyTorch checkpoint | 0.81 |
-| ONNX fp32 | 0.8040 |
-| int8 default | 0.8076 |
-| int8 v2 · MatMul only | 0.8024 |
-| int8 v3 · MatMul + Gather | 0.8014 |
-
-#### Size
-
-| Variant | Size | Compression |
-|---|---|---|
-| fp32 | 42.6 MB | - |
-| int8 default | 38.2 MB | 1.1× |
-| int8 v2 | 23.25 MB | 1.83× |
-| **int8 v3** | **11.53 MB** | **3.7×** |
-
-#### Latency
-
-Single thread · 100 runs · 19 tokens · batch 1
-
-| Variant | Median | p95 |
-|---|---|---|
-| int8 v3 | 31.0 ms | 34.1 ms |
+| Variant | F1 | Size | Compression | Median | p95 |
+|---|---|---|---|---|---|
+| PyTorch checkpoint | 0.81 | — | — | — | — |
+| ONNX fp32 | 0.8040 | 42.6 MB | — | — | — |
+| int8 default | 0.8076 | 38.2 MB | 1.1× | — | — |
+| int8 v2 · MatMul only | 0.8024 | 23.25 MB | 1.83× | — | — |
+| int8 v3 · MatMul + Gather | 0.8014 | 11.53 MB | 3.7× | 31.0 ms | 34.1 ms |
 
 Multi-thread means over 50 runs: fp32 29.8 · int8 default 22.7 · v2 17.9 · v3 18.3 ms
 
@@ -79,37 +62,24 @@ Not recorded. See [C3](#8-caveats).
 
 ### 2.2 B2: indobert-base-p2
 
-`BERT` · 124 M parameters · vocab 30,521 · **best variant: int8 default**
+`BERT` · 124 M parameters · vocab 30,521 · **best (smallest at no accuracy cost) variant: int8 default**
 
-#### Accuracy
+#### Variants
 
-| Variant | F1 |
-|---|---|
-| ONNX fp32 | 0.8077 |
-| int8 default | 0.8077 |
-| int8 v2 · MatMul only | 0.8106 |
-| int8 v3 · MatMul + Gather | 0.8088 |
+| Variant | F1 | Size | Compression | Median | p95 |
+|---|---|---|---|---|---|
+| fp32 | 0.8077 | 472.7 MB | — | — | — |
+| int8 default | 0.8077 | 118.9 MB | 4.0× | — | — |
+| int8 v2 · MatMul only | 0.8106 | 240.95 MB | 1.96× | — | — |
+| int8 v3 · MatMul + Gather | 0.8088 | 124.57 MB | 3.8× | 31.5 ms | 33.8 ms |
 
-#### Size
+Latency: single thread · 100 runs · 19 tokens · batch 1. Only v3 was measured
+under this protocol; see [C12](#8-caveats). Multi-thread means over 50 runs,
+a superseded protocol: fp32 47.2 · int8 default 23.4 · v2 17.9 · v3 18.1 ms.
 
-| Variant | Size | Compression |
-|---|---|---|
-| fp32 | 472.7 MB | - |
-| **int8 default** | **118.9 MB** | **4.0×** |
-| int8 v2 | 240.95 MB | 1.96× |
-| int8 v3 | 124.57 MB | 3.8× |
-
-The v3 configuration is *larger* here. BERT has no shared weights, so default quantization already recovers full compression; v3 only adds scale and zero-point tensors.
-
-#### Latency
-
-Single thread · 100 runs · 19 tokens · batch 1
-
-| Variant | Median | p95 |
-|---|---|---|
-| int8 v3 | 31.5 ms | 33.8 ms |
-
-Multi-thread means over 50 runs: fp32 47.2 · int8 default 23.4 · v2 17.9 · v3 18.1 ms
+The v3 configuration is larger here. BERT has no shared weights, so default
+quantization already recovers full compression; v3 only adds scale and
+zero-point tensors.
 
 #### Per-class
 
@@ -141,60 +111,75 @@ Test split, span-level strict.
 ## 3. Order domain
 
 ### 3.1 O1: indobert-lite-p2, synthetic training
-
-The target task. Trained on generated data, evaluated on **real held-out messages**.
-
+ 
+The target task. Trained on generated data, evaluated on real held-out messages.
+ 
 | | |
 |---|---|
 | Model | `indobenchmark/indobert-lite-base-p2` |
 | Labels | 5 span types → 11 BIO labels |
 | Training data | ~10,800 generated rows (8,000 orders + 35% negatives) |
-| Evaluation data | 31 real messages, hand-annotated, held out **by conversation** |
-| Shipped variant | **int8 v2** |
-
-#### Accuracy
-
-| Variant | F1 | Note |
-|---|---|---|
-| Synthetic held-out split | 1.0000 | diagnostic only, the generator grading itself |
-| PyTorch checkpoint | 0.9091–0.9247 | varies by run seed, see [C6](#8-caveats) |
-| ONNX fp32 | 0.9110 | - |
-| ONNX int8 v2 | 0.9158 | shipped |
-| ONNX int8 v3 | 0.8958 | −0.02 for −11 MB, declined |
-
-Per-class, int8 v2 · span-level strict · *n*=31 messages, 89 spans:
-
+| Evaluation data | 31 real messages, hand-annotated, held out by conversation |
+| Shipped variant | int8 v3 |
+ 
+#### Variants
+ 
+Single thread · 100 runs · 13 tokens · batch 1
+ 
+| Variant | F1 | Size | Median | p95 |
+|---|---|---|---|---|
+| fp32 | 0.8901 | 42.63 MB | 46.3 ms | 48.5 ms |
+| int8 v2 | 0.8962 | 22.17 MB | 22.0 ms | 23.3 ms |
+| int8 v3 | 0.9022 | 11.00 MB | 21.6 ms | 22.6 ms |
+ 
+Synthetic held-out split: 1.0000, diagnostic only, the generator grading itself.
+ 
+The three variants span 0.012 F1, inside the ±0.02 resolution limit at this
+sample size ([C6](#8-caveats)). v3 is shipped for being smallest at no
+measurable accuracy cost, not because it is better.
+ 
+#### Per-class
+ 
+int8 v3 · span-level strict · *n*=31 messages, 89 spans:
+ 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
 | QTY | 1.000 | 0.971 | 0.986 | 35 |
-| UNIT | 0.955 | 1.000 | 0.977 | 21 |
+| UNIT | 0.952 | 0.952 | 0.952 | 21 |
 | ITEM | 0.941 | 1.000 | 0.970 | 16 |
-| VARIANT | 0.737 | 1.000 | 0.848 | 15 |
-| ANAPHORIC | — | — | — | 2 |
-
-`ANAPHORIC` has 2 held-out instances, both detected. Not reportable as an F1, two examples can only produce 0, 0.5 or 1.0.
-
-`VARIANT` is the weakest measured class. Recall is perfect; precision is not the model over-predicts. Likely cause is the `di-` prefix: the generator lists `digoreng` / `di goreng` as variant forms while the untagged furniture contains few other `di-` words, so the prefix carries spurious signal against real passives (`diambil`, `dikirim`).
-
-#### Size and latency
-
-Single thread · 100 runs · 13 tokens · batch 1
-
-| Variant | Size | Median | p95 |
-|---|---|---|---|
-| fp32 | 42.63 MB | 46.3 ms | 47.3 ms |
-| int8 v2 | 22.17 MB | 24.6 ms | 25.7 ms |
-| int8 v3 | 11.00 MB | 24.9 ms | 25.6 ms |
-
-v3 halves the file for no speed gain and costs 0.02 F1, thus v2 is chosen.
-
+| VARIANT | 0.524 | 0.733 | 0.611 | 15 |
+| ANAPHORIC | 1.000 | 0.500 | 0.667 | 2 |
+ 
+`ANAPHORIC` has 2 held-out instances, 1 detected. Not reportable as an F1,
+two examples can only produce 0, 0.5 or 1.0.
+ 
+`VARIANT` is the weakest measured class by a wide margin, and consistently so
+across every run. Both precision (0.524) and recall (0.733) are low, so the
+model both over-predicts and misses.
+ 
+The `di-` prefix was the leading hypothesis: the generator lists `digoreng`
+and `di goreng` as variant forms while the untagged furniture contained few
+other `di-` words, so the prefix could carry spurious signal against ordinary
+passives (`diambil`, `dikirim`). This was tested by adding passive verbs to
+the generator at two ratios, see [F9](#4-findings). Neither improved the
+score, and the 10:1 ratio was worse. The cause remains unidentified.
+ 
 #### Confidence saturation
+ 
+Every predicted span returns tagging confidence ≥ 0.999995, including on
+deliberately ambiguous input (`kirim yg kmrn` → 0.999995). The model never
+expresses uncertainty.
+ 
+Cause: templated training data contains no genuine ambiguity, so the model
+never learned that uncertainty exists, the same fact the 1.0000 synthetic F1
+reports.
+ 
+**Consequence.** Tagging confidence is uninformative on this model and no
+threshold on it will fire. Resolution confidence is unaffected, being a
+retrieval margin computed in `resolver.py` rather than a model output. The
+two-score architecture holds; one of the two scores is currently a constant.
+See [C8](#8-caveats).
 
-Every predicted span returns tagging confidence ≥ 0.999995, including on deliberately ambiguous input (`kirim yg kmrn` → 0.999995). The model never expresses uncertainty.
-
-Cause: templated training data contains no genuine ambiguity, so the model never learned that uncertainty exists, the same fact the 1.0000 synthetic F1 reports.
-
-**Consequence.** Tagging confidence is uninformative on this model and no threshold on it will fire. Resolution confidence is unaffected, being a retrieval margin computed in `resolver.py` rather than a model output. The two-score architecture holds; one of the two scores is currently a constant. See [C8](#8-caveats).
 
 ### 3.2 Evaluation data
 
@@ -217,12 +202,13 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 |---|---|---|
 | F1 | Scale buys 0.007 F1 for 10.6× parameters | [2.3](#23-comparison) |
 | F2 | Parameter count determines size, not speed | 31.0 vs 31.5 ms across a 10.3× size gap; holds at both thread settings |
-| F3 | Quantization is accuracy-neutral | B-series spread 0.8014–0.8106 across 9 variants |
-| F4 | Quantization is the only source of speedup | 1.6–2.6× from quantization; 1.0× from model choice |
-| F5 | Weight-shared architectures need pre-processing + explicit op types | B1 default 1.1× vs v3 3.7×; B2 unaffected. See [§6](#6-quantization-recipe) |
-| F6 | Synthetic-to-real transfer holds: 0.916 on real messages from generated training data | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
+| F3 | Quantization is accuracy-neutral | B-series spread 0.8014-0.8106 across 9 variants |
+| F4 | Quantization is the only source of speedup | 1.6-2.6× from quantization; 1.0× from model choice |
+| F5 | Weight-shared architectures need pre-processing + explicit op types | B1 default 1.1× vs v3 3.7×; B2 unaffected. See [6](#6-quantization-recipe) |
+| F6 | Synthetic-to-real transfer holds: 0.902 on real messages from generated training data | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F7 | Templated training produces a saturated, uninformative confidence signal | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
-| F8 | Nearly half of real orders contain no product name (implicit item) | 14 of 29 annotated orders |
+| F8 | Nearly half of real orders contain no product name (implicit item) | 14 of 31 annotated orders |
+| F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883 — a 0.017 spread, inside the ±0.02 resolution limit of a 31-message set. See [C11](#8-caveats) |
 
 ---
 
@@ -233,7 +219,7 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | Student = reduced-layer non-shared BERT, ~4 layers | F2 |
 | Retain quantization in the pipeline | F3, F4 |
 | Claim size and offline capability, never speed | F2, F4 |
-| Quantize Gather only where it pays: yes on B1, no on O1 | F5, [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
+| Quantize Gather only where it pays: yes on B1 and O1 | F5, [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | Resolver must handle "quantity + variant, no item" as a normal case | F8 |
 | Do not surface tagging confidence in the UI | F7 |
 
@@ -287,7 +273,7 @@ quantize_dynamic(
 
 **Verification.** Check initializer dtypes rather than trusting file size, `quantize_dynamic` writes a pre-processed copy alongside the quantized model, and summing a directory double-counts.
 
-**Which to use is task-dependent.** On B1, v3 gave 3.7× for no accuracy cost. On O1, v3 cost 0.02 F1, concentrated in ITEM and VARIANT precision, the classes most dependent on embedding fidelity — so v2 shipped.
+Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1, v3 was smallest with no measurable accuracy difference across variants, so v3 shipped. On B2 (BERT, no shared weights) default quantization already recovers full compression and v3 is unnecessary.
 
 ---
 
@@ -319,6 +305,8 @@ quantize_dynamic(
 | **C8** | Tagging confidence is saturated and uninformative (F7). |
 | **C9** | O1 evaluation contains only messages that carry spans. Nothing currently measures whether the model correctly outputs *nothing* on non-order messages, the most likely live-demo failure. |
 | **C10** | Evaluation data comes from a single seller in one city. Real, but narrow. Cake and pastry orders are undersampled: 4 conversations, 1 in evaluation. |
+| **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. All differences are below the resolution limit (one span ≈ 0.011 F1), so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only — span vocabulary remains 99.2% real-corpus. |
+| **C12** | B-series latency was measured single-thread for v3 only. Other variants use a superseded multi-thread mean-of-50 protocol and are not comparable to each other or to O1. F4's 1.6-2.6× range derives from those figures and should be re-derived if they are re-measured. |
 
 ---
 
@@ -330,7 +318,7 @@ quantize_dynamic(
 | Record B1 per-class breakdown | C3 |
 | Align metric before citing IndoNLU baselines | C1 |
 | Annotate non-order messages in the evaluation split | C9 |
-| Add `di-` passives to generator furniture to lift VARIANT precision | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
+| Re-measure B-series latency across all variants under the standard protocol | C12 |
 
 ---
 
