@@ -27,7 +27,7 @@ Every commit follows [Conventional Commits](https://www.conventionalcommits.org/
 | `docs:` | Documentation, README, proposal |
 | `build:` | Build system, compilation, bundling, CI/CD, or packaging changes |
 | `chore:` | Dependencies, config, tooling, and repository maintenance not affecting the build system |
-
+| `test:` | Adding or fixing tests only |
 
 
 **Write the description so it means something to someone without context.**
@@ -41,6 +41,7 @@ refactor: split resolver confidence from tagging confidence
 docs: record B1/B2 comparison in RESULTS.md
 build: package ONNX model in Docker image
 chore: update .gitignore for ONNX export cache
+test: cover nested quantity adjacency rule
 ```
 
 Not acceptable:
@@ -75,7 +76,7 @@ Commit in steps, not lumps. Four commits that show work unfolding are better tha
 | `serving/inference/resolver.py` | Deterministic catalog matching | Uses a model |
 | `frontend/` | One page, no build step | Gains a second flow |
 | `tests/` | pytest for deterministic components | Requires a trained model |
-| `docs/` | PRD, RESULTS, rulebook digest | Holds duplicate numbers |
+| `docs/` | PRD, RESULTS, CONTRIBUTING | Holds duplicate numbers |
 
 Two rules hold the architecture together:
 
@@ -91,7 +92,7 @@ All measured numbers go in `docs/RESULTS.md`. Nowhere else.
 
 READMEs may carry the two or three headline figures and link out. No other file restates a measurement.
 
-Each run gets an ID (`B1`, `B2`, `O1`…) registered in the RESULTS index. Cite by ID rather than repeating numbers:
+Each run gets an ID (`B1`, `B2`, `O1`…) registered in the RESULTS index. Cite by ID rather than repeating numbers
 
 When you add a run:
 
@@ -145,4 +146,4 @@ pip install -r training/requirements.txt
 
 `training/environment-freeze.txt` is the full 881-package `pip freeze` from the environment that produced B1 and B2. It is a record for reproducing that exact environment, not a file to install from.
 
-Model artifacts (`.onnx`) are committed, not gitignored. At ~12 MB the model ships inside the repository, so `docker compose up` needs no download step.
+Model artifacts (`.onnx`) are committed, not gitignored. At ~11 MB the model ships inside the repository, so `docker compose up` needs no download step.
