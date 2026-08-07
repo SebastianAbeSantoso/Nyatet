@@ -1,0 +1,9 @@
+sku_id,name,product,variant,unit,pack_size,is_primary
+RSL-MTH,Risol mentah,risol,mentah,biji,1,true
+RSL-GRG,Risol goreng,risol,goreng,biji,1,true
+RSL-FRZ,Risol frozen,risol,frozen,biji,1,true
+RSL-KTK-10,Risol kotak isi 10,risol,,kotak,10,false
+RSL-KTK-15,Risol kotak isi 15,risol,,kotak,15,false
+BRW-2020,Brownies 20x20,bronies,,loyang,1,false
+BRW-2010,Brownies 20x10,bronies,,loyang,1,false
+BOL-STD,Bolu,bolu,,biji,1,false
