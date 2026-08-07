@@ -2,13 +2,14 @@
 
 # Nyatet
 
-A distilled span-tagging model, small enough to ship with the app and run on the shop's own device. It replaces a large-model API for pulling structure out of informal Indonesian text.
+An 11 MB span-tagging model, small enough to ship with the app and run on the shop's own device. It replaces a large-model API for pulling structure out of informal Indonesian text.
 
-> **Status:** The production order-parsing pipeline is not finished yet. This repository currently contains the architecture, the annotated evaluation data, and the benchmark experiments that validate the modeling approach. Progress is listed under [Status](#status).
+> **Status:** The order-parsing pipeline runs end to end. Distillation and the RAG comparison are not yet done. Progress is listed under [Status](#status).
 
 ![Model](https://img.shields.io/badge/model-IndoBERT--lite--p2-blue)
-![Size](https://img.shields.io/badge/ONNX%20int8-11.53%20MB-brightgreen)
-![Latency](https://img.shields.io/badge/latency-31%20ms%20(1%20thread)-green)
+![Size](https://img.shields.io/badge/ONNX%20int8-11.00%20MB-brightgreen)
+![Latency](https://img.shields.io/badge/latency-20.6%20ms%20(1%20thread)-green)
+![F1](https://img.shields.io/badge/F1-0.90%20(n%3D31)-brightgreen)
 ![Offline](https://img.shields.io/badge/inference-100%25%20offline-brightgreen)
 
 ---
@@ -40,17 +41,17 @@ So Nyatet goes the other way: let them type the way they always type, then parse
              │
              ▼
    ┌────────────────────────────┐
-   │ tagger                     │   
+   │ tagger                     │  BIO spans, the only model  
    └────────────────────────────┘   
              │
              ▼
    ┌────────────────────────────┐
-   │ normalizer                 │   
+   │ normalizer                 │  deterministic rules, no model
    └────────────────────────────┘  
              │
              ▼
    ┌────────────────────────────┐
-   │ resolver                   │   
+   │ resolver                   │  catalog match + confidence.
    └────────────────────────────┘  
              │
              ▼
@@ -81,18 +82,18 @@ The "tell an LLM to output JSON" approach needs a big model precisely because ge
 | `VARIANT` | `mentah`, `digoreng`, `frozen`, `sdh masak` |
 | `ANAPHORIC` | `ky biasa`, `kya kmrn` |
 
-`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 14 of 29 orders, and it frequently arrives **detached** from the product:
+`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 14 of 31 orders, and it frequently arrives **detached** from the product:
 
 ```
 25 nya di goreng 25 yg mentah
 → QTY "25", VARIANT "di goreng", QTY "25", VARIANT "mentah"
 ```
 
-`ANAPHORIC` covers references the system cannot resolve at all. `ky biasa` ("as usual") might mean the usual quantity, the usual variant, the usual pickup time, or all three — the seller knows from history, nobody else does. So the output is a flag, not a guess.
+`ANAPHORIC` covers references the system cannot resolve at all. `ky biasa` ("as usual") might mean the usual quantity, the usual variant, the usual pickup time, or all three, the seller knows from history, nobody else does. So the output is a flag, not a guess.
 
 ### Nearly half of real orders never name the product
 
-14 of 29 annotated orders contain no `ITEM` span:
+14 of 31 annotated orders contain no `ITEM` span:
 
 ```
 10 biji ga adakah
@@ -144,7 +145,7 @@ seller: Mentah kh ka?
 | Order-bearing buyer messages | 102 |
 | Seller clarifying questions (linked to trigger) | 47 |
 | Split | 45 conversations train / 15 evaluation, split **by conversation** |
-| Annotated with spans | 29 evaluation orders |
+| Annotated with spans | 31 evaluation orders |
 
 Splitting by conversation rather than by message matters: the same customer's phrasing must not appear on both sides.
 
@@ -156,17 +157,18 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 
 ## Measured results
 
-Architecture validation on IndoNLU NERP. This measures whether the span-tagging approach is viable, not the ordering task itself. Training and export code are identical for both models; only the checkpoint name differs.
+### Order tagger (O1): 31 real held-out messages, split by conversation.
+|   |   |
+|---|---|
+| F1 | 0.902 |
+| Per class | QTY 0.986 · UNIT 0.952 · ITEM 0.970 · VARIANT 0.611 |
+| Size (ONNX int8) | 11.00 MB |
+| Latency (1 thread) | 20.6 ms median, 22.7 ms p95 |
 
-| | lite (11.7M) | base (124M) |
-|---|---|---|
-| F1 | 0.8014 | 0.8088 |
-| Size (ONNX int8) | 11.53 MB | 118.9 MB |
-| Latency (1 thread) | 31.0 ms | 31.5 ms |
+At n=31 one span is ~0.011 F1, differences under ~0.02 are not measurable.
 
-**10.6× the parameters buys 0.007 F1 and no latency improvement.**
-
-Full methodology, per-class breakdowns, and variant comparisons: [docs/RESULTS.md](docs/RESULTS.md)
+Separately, on IndoNLU NERP, a 124M model scored 0.007 F1 above the 11.7M
+model at 10.8× the deployed size. Full comparison and quantization: [docs/RESULTS.md](docs/RESULTS.md)
 
 ---
 
@@ -186,7 +188,7 @@ serving/              the MVP
   requirements.txt    
 frontend/            
 tests/                pytest for every deterministic component
-docs/                 PRD, RESULTS
+docs/                 PRD, RESULTS, CONTRIBUTING
 docker-compose.yml    the only thing the judges need to run
 ```
 
@@ -202,37 +204,50 @@ docker compose up --build
 
 ```
 POST /parse
-{ "message": "risol mentah 20 biji, jam 7 pagi diambil" }
+{ "message": "Pesan resoles 50 biji" }
 
 {
+  "message": "Pesan resoles 50 biji",
+  "spans": [
+    { "type": "ITEM", "text": "resoles", "confidence": 1 },
+    { "type": "QTY",  "text": "50",      "confidence": 1 },
+    { "type": "UNIT", "text": "biji",    "confidence": 1 }
+  ],
   "order_lines": [{
-    "item_span": "risol",
-    "variant_span": "mentah",
-    "item_matched_name": "Risol mentah",
-    "tagging_confidence": 0.97,
-    "resolution_confidence": 0.94,
-    "qty_raw": "20", "qty_normalized": 20,
-    "unit_raw": "biji", "unit_normalized": "biji"
+    "item_span": "resoles",
+    "variant_span": null,
+    "matched_name": null,
+    "sku": null,
+    "resolution_confidence": 0.333,
+    "candidates": ["Risol mentah", "Risol goreng", "Risol frozen"],
+    "quantity": 50,
+    "per_container": null,
+    "unit": "biji",
+    "total_pieces": 50,
+    "item_inferred": false,
+    "needs_clarification": "variant"
   }],
-  "anaphoric_flags": []
+  "flags": [{
+    "kind": "variant",
+    "span_text": "resoles",
+    "note": "Varian tidak disebutkan — perlu dikonfirmasi (mentah / goreng / frozen)."
+  }]
 }
 ```
 
-`GET /health` returns `{"status": "ok", "model_loaded": true}`.
-
-One text box, one button, one result panel. No dashboard, no history, no auth.
+`GET /health` returns `{"status": "ok", "model_loaded": true, "catalog_loaded": true, "labels": [...], "catalog_items": 8}`.
 
 ---
 
 ## Known limitations
 
-- The evaluation set is small (n=29 orders) and comes from a single seller in one city. It is real, but narrow, nothing here shows the model generalizes to other businesses or regional varieties.
+- The evaluation set is small (n=31 orders) and comes from a single seller in one city. It is real, but narrow, nothing here shows the model generalizes to other businesses or regional varieties.
 - Cake and pastry orders are undersampled: 4 conversations, 1 in the evaluation split.
 - Training data is generated. The gap between synthetic training and real evaluation is the main open risk, and is reported rather than hidden.
+- Tagging confidence is saturated and carries no information. Every predicted span returns ≥0.99999, including on deliberately ambiguous input. Templated training data contains no genuine ambiguity, so the model never learned to express uncertainty. Resolution confidence is unaffected — it is a retrieval margin, not a model output — so the two-score design holds, but one of the two scores is currently a constant and is not surfaced in the UI.
 - Order-line grouping uses a positional heuristic. Attaching quantities correctly in multi-item messages is unsolved and is the likeliest error source.
 - Standing orders are detected and flagged, not parsed. A weekly-schedule customer is the highest-value customer in this dataset and the MVP declines to handle them.
 - Unit conversion only handles pack units the catalog declares.
-- Event spans are the weakest class on the benchmark (EVT 0.388 F1), unaddressed.
 - Latency was measured on Kaggle CPU, not the machine the demo will run on.
 
 ---
@@ -244,17 +259,17 @@ One text box, one button, one result panel. No dashboard, no history, no auth.
 - Architecture decided from measurement (see docs/RESULTS.md)
 - Benchmark results, B1 and B2
 - Real conversation dataset: collected, pseudonymized, role-labelled, split
-- Span annotation on the 29-message evaluation set
+- Span annotation on the 31-message evaluation set
 - Generator rebuilt from real-data distributions
-
-**In progress**
 - Order-domain training and evaluation (O1)
-
-**Planned**
-- Teacher–student distillation into a reduced-layer student
-- RAG comparison baseline
 - Normalizer, resolver, and frontend wiring
 - Standing-order detection
+
+**In progress**
+- Teacher-student distillation into a reduced-layer student
+
+**Planned**
+- RAG comparison baseline
 
 **Deferred to final round**
 - `PACK_SIZE`, `PAYMENT_NOTE`, `LOCATION` span types
@@ -267,3 +282,4 @@ One text box, one button, one result panel. No dashboard, no history, no auth.
 |---|---|
 | [docs/PRD.md](docs/PRD.md) | Full spec: architecture, data plan, evaluation, timeline, risks |
 | [docs/RESULTS.md](docs/RESULTS.md) | Measured results: methodology, metrics, model comparisons |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Commit convention, repo layout rules, where results go |
