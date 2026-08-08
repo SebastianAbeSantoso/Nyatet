@@ -2,7 +2,7 @@
 
 > Single source for all measurements in this project.
 
-**Last updated:** 8 August 2026 · **Latest run:** O1
+**Last updated:** 8 August 2026 · **Latest run:** O2
 
 ---
 
@@ -29,7 +29,7 @@
 | B2 | 29 Jul | Benchmark · NERP | indobert-base-p2 | done |
 | -  | 30 Jul | Order | Sahabat-AI 8B + token-classification head | abandoned, see [C7](#8-caveats) |
 | O1 | 6 Aug | Order | indobert-lite-p2, synthetic train | done |
-| O2 | TBA | Order | distilled 4-layer student | not started |
+| O2 | 8 Aug | Order | distilled 4-layer student | done |
 | O3 | TBA | Order | RAG baseline | not started |
 
 ---
@@ -180,8 +180,96 @@ retrieval margin computed in `resolver.py` rather than a model output. The
 two-score architecture holds; one of the two scores is currently a constant.
 See [C8](#8-caveats).
 
+### 3.2 O2: distillation into a reduced-layer student
 
-### 3.2 Evaluation data
+`indobert-base-p2` fine-tuned on the order data as teacher, distilled into a
+4-layer non-shared BERT. Same generator, same held-out set, same seed as O1,
+one variable changed.
+
+| | |
+|---|---|
+| Teacher | `indobert-base-p2`, 124 M, 12 layers × 768 hidden |
+| Student | 4 layers × 384 hidden, 6 heads, ~20 M, trained from scratch |
+| Initialization | Embeddings seeded from the teacher's first 384 dimensions; layers not copied |
+| Loss | `0.5 · CE(hard) + 0.5 · T² · KL(student/T ‖ teacher/T)`, T = 3.0 |
+| Training | 8 epochs · lr 1e-4 · batch 32 · warmup 0.1 |
+
+#### Teacher variants
+
+Single thread · 100 runs · 13 tokens · batch 1
+
+| Variant | F1 | Size | Median | p95 |
+|---|---|---|---|---|
+| fp32 | 0.9016 | 472.73 MB | 46.2 ms | 52.2 ms |
+| int8 v2 | 0.9016 | 229.79 MB | 24.1 ms | 24.9 ms |
+| int8 v3 | 0.9016 | 118.80 MB | 24.0 ms | 27.2 ms |
+
+Quantization is exactly accuracy-neutral here: identical F1 across all three.
+
+#### Student variants
+
+| Variant | F1 | Size | Median | p95 |
+|---|---|---|---|---|
+| fp32 | 0.8643 | 101.18 MB | 3.6 ms | 3.8 ms |
+| int8 v2 | 0.8600 | 80.94 MB | 2.5 ms | 2.6 ms |
+| int8 v3 | 0.8756 | 25.45 MB | 2.4 ms | 2.8 ms |
+
+#### Three-way comparison
+
+| | Params | Layers | F1 | Size (int8 v3) | Median |
+|---|---|---|---|---|---|
+| O2 teacher · base-p2 | 124 M | 12 | 0.9016 | 118.80 MB | 24.0 ms |
+| O1 · lite-p2, shipped | 11.7 M | 12 | 0.9022 | 11.00 MB | 21.6 ms |
+| O2 student · distilled | ~20 M | 4 | 0.8756 | 25.45 MB | 2.4 ms |
+
+Two results, in opposite directions:
+
+Parameters move size, not speed: A 10.6× parameter increase at constant
+depth gives 0.9016 against 0.9022 and 24.0 ms against 21.6 ms. Size moved
+10.8×; latency moved 11%.
+
+Depth moves speed: Cutting 12 layers to 4 gives 2.4 ms against 21.6 ms —
+9× faster. This is [F2](#4-findings) confirmed from the other side, on the
+target task rather than the benchmark.
+
+Note the student is larger than O1 (25.45 MB vs 11.00) while being 9×
+faster. Fewer layers, but no cross-layer weight sharing, so its parameters sit
+in storage rather than in compute. The same point from a third angle.
+
+#### Per-class, student int8 v3
+
+| Class | Precision | Recall | F1 | Support |
+|---|---|---|---|---|
+| QTY | 0.897 | 1.000 | 0.946 | 35 |
+| ITEM | 0.842 | 1.000 | 0.914 | 16 |
+| VARIANT | 0.875 | 0.933 | 0.903 | 15 |
+| UNIT | 0.808 | 1.000 | 0.894 | 21 |
+| ANAPHORIC | 0.167 | 1.000 | 0.286 | 2 |
+
+The 0.027 gap to O1 is concentrated in one class. Every content class
+holds up, and `VARIANT` is actually *better* on the student than on O1 (0.903
+vs 0.611). `ANAPHORIC` collapses: 2 true positives against 10 false ones.
+
+Likely cause: `ANAPHORIC` spans are long, multi-word and semantically loose
+(`ky biasa`, `kaya kmrn`), and a 4-layer model has less context capacity to
+bound them. The generator's 19 anaphoric surface forms may also be too varied
+for a student of this size. Not tested — modifying the generator would change
+two variables and invalidate the comparison against O1. See [C13](#8-caveats).
+
+#### Decision
+
+O1 ships. The student's 0.027 deficit is outside the resolution limit, so
+it is a real difference rather than noise.
+
+The distilled student is retained as measured evidence for the architecture
+finding, not as a candidate for deployment: at sixty messages a night the
+difference between 21.6 ms and 2.4 ms is imperceptible, while 0.027 F1 is not.
+
+Consequence for the contribution claim. The project describes a small
+model that runs offline. It does not describe a distilled one. Wording that
+implied distillation has been corrected in the PRD and README.
+
+### 3.3 Evaluation data
 
 | | |
 |---|---|
@@ -209,6 +297,8 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | F7 | Templated training produces a saturated, uninformative confidence signal | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F8 | Nearly half of real orders contain no product name (implicit item) | 14 of 31 annotated orders |
 | F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883 — a 0.017 spread, inside the ±0.02 resolution limit of a 31-message set. See [C11](#8-caveats) |
+| F10 | Depth determines speed where parameter count does not | 4 layers at 2.4 ms vs 12 layers at 21.6 ms, same task. See [3.2](#32-o2-distillation-into-a-reduced-layer-student) |
+| F11 | A 124M teacher does not outperform an 11.7M model on this task | 0.9016 vs 0.9022 under matched hyperparameters. F1 replicated on the target domain |
 
 ---
 
@@ -222,6 +312,8 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | Quantize Gather only where it pays: yes on B1 and O1 | F5, [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | Resolver must handle "quantity + variant, no item" as a normal case | F8 |
 | Do not surface tagging confidence in the UI | F7 |
+| Ship O1, not the distilled student | 3.2, 0.027 F1 for imperceptible latency gain |
+| Contribution described as small and offline, not distilled | 3.2 |
 
 ---
 
@@ -283,11 +375,14 @@ Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1
 |---|---|
 | Metric | `seqeval` span-level strict |
 | Benchmark training | 8 epochs · lr 5e-5 · batch 16 · max_len 128 |
-| Order training | 5 epochs · lr 5e-5 · batch 32 · max_len 96 |
+| O1 training | 5 epochs · lr 5e-5 · batch 32 · max_len 96 |
+| O2 teacher training | 8 epochs · lr 5e-5 · batch 32 · warmup 0.1 · weight decay 0.01 |
+| O2 student training | 8 epochs · lr 1e-4 · batch 32 · warmup 0.1 · α 0.5 · T 3.0 |
 | Latency protocol | 1 thread · 20 warmup · 100 runs · frozen input · batch 1 · median + p95 |
 | Hardware | Kaggle CPU (evaluation, latency) · T4 (training) |
 | Benchmark data | IndoNLU NERP · 6,720 / 840 / 840 · 11 IOB labels |
 | Order data | generated training · 31 real held-out messages |
+| Seed | 42 across all order-domain runs |
 
 ---
 
@@ -307,6 +402,7 @@ Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1
 | **C10** | Evaluation data comes from a single seller in one city. Real, but narrow. Cake and pastry orders are undersampled: 4 conversations, 1 in evaluation. |
 | **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. All differences are below the resolution limit (one span ≈ 0.011 F1), so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only — span vocabulary remains 99.2% real-corpus. |
 | **C12** | B-series latency was measured single-thread for v3 only. Other variants use a superseded multi-thread mean-of-50 protocol and are not comparable to each other or to O1. F4's 1.6-2.6× range derives from those figures and should be re-derived if they are re-measured. |
+| **C13** | The student's ANAPHORIC collapse (0.286 F1, 2 true positives against 10 false) was not investigated. Reducing the generator's anaphoric variety would have changed two variables and invalidated the O1 comparison. |
 
 ---
 
@@ -338,8 +434,18 @@ Loads IndoNLU NERP programmatically. No manual download.
 
 ```bash
 cd training/order
-python generate_data.py          
+python generate_data.py
 jupyter notebook nyatet_order_O1.ipynb
 ```
 
-Requires `eval_annotated.json` in the same directory.
+**Order (O2, distillation)**
+
+```bash
+cd training/order
+jupyter notebook nyatet_order_O2_distill.ipynb
+```
+
+Trains the teacher and the student in one pass. Uses the same generator and
+the same held-out set as O1, so no separate data preparation is needed.
+
+Both order notebooks require `eval_annotated.json` in the same directory.
