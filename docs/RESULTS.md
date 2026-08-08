@@ -2,7 +2,7 @@
 
 > Single source for all measurements in this project.
 
-**Last updated:** 8 August 2026 · **Latest run:** O2
+**Last updated:** 8 August 2026 · **Latest run:** O1 re-evaluated on expanded set
 
 ---
 
@@ -163,7 +163,7 @@ other `di-` words, so the prefix could carry spurious signal against ordinary
 passives (`diambil`, `dikirim`). This was tested by adding passive verbs to
 the generator at two ratios, see [F9](#4-findings). Neither improved the
 score, and the 10:1 ratio was worse. The cause remains unidentified.
- 
+
 #### Confidence saturation
  
 Every predicted span returns tagging confidence ≥ 0.999995, including on
@@ -179,6 +179,72 @@ threshold on it will fire. Resolution confidence is unaffected, being a
 retrieval margin computed in `resolver.py` rather than a model output. The
 two-score architecture holds; one of the two scores is currently a constant.
 See [C8](#8-caveats).
+
+### 3.1b O1b: re-evaluation on expanded set
+
+Same model, same weights, same `int8 v3` artifact as [3.1](#31-o1-indobert-lite-p2-synthetic-training). Only the evaluation set changed.
+
+The 31-message set contained only messages carrying spans, so nothing measured
+whether the model correctly outputs *nothing* on ordinary chatter, the failure
+most likely to appear in a live demonstration. 41 non-order buyer messages from
+the same 15 evaluation conversations were annotated with empty span lists, and
+9 entity-bearing non-orders were annotated normally.
+
+| | 31-message set | 81-message set |
+|---|---|---|
+| Messages | 31 | 81 |
+| With spans | 31 | 40 |
+| Empty (negatives) | 0 | 41 |
+| Spans | 89 | 98 |
+
+Annotation policy: Spans mark entity mentions, not order content. The
+model sees one message with no history, so `mentah` in `Enggeh mentah` and in
+`risol mentah 20 biji` are indistinguishable to it. Which mentions become order
+lines is decided by the resolver, not by the annotation.
+
+#### Results, int8 v3
+
+*F1 0.8365 (n=81)
+
+| Class | Precision | Recall | F1 | Support |
+|---|---|---|---|---|
+| QTY | 0.895 | 0.971 | 0.932 | 35 |
+| UNIT | 0.909 | 0.952 | 0.930 | 21 |
+| ITEM | 0.947 | 0.857 | 0.900 | 21 |
+| VARIANT | 0.483 | 0.737 | 0.583 | 19 |
+| ANAPHORIC | 0.500 | 0.500 | 0.500 | 2 |
+
+Content classes held up despite ITEM gaining five instances in harder contexts
+(`Masih ada kah risol`, `Besok jualanlah risol` — availability questions, not
+orders). `VARIANT` remains the weakest class and now carries more weight.
+
+#### Behaviour on non-order messages
+
+`seqeval` scores only messages with gold spans, so the 41 negatives contribute
+nothing to the F1 above. Measured separately:
+
+| | |
+|---|---|
+| Messages with a spurious span | 5 of 41 (12%) |
+| Spurious tokens | 10 |
+
+```
+Bu tinggalijam 7.30 ya bu → I-VARIANT, B-QTY, B-QTY
+Iya jd 55 ribu kalo duitnya → B-QTY, B-QTY
+Jam setengah 9 diambil bisa → B-QTY
+Yg pian kawa pastikan ibu ambil yg jam 6 → B-ANAPHORIC, I-ANAPHORIC
+Yg nia olah ukuran berapa → I-VARIANT, I-VARIANT
+```
+
+Three patterns, all fixable in the generator:
+
+- Numbers in time and price contexts tagged `QTY`. The generator produces times
+  only as `jam 7 pagi diambil`, never as prices or irregular formats.
+- The token `yg` triggering `ANAPHORIC` — most anaphoric forms in the generator
+  begin `yg`/`ky`/`kaya`, so the leading token carries excess signal.
+- One `I-VARIANT` with no preceding `B-`: malformed BIO output.
+
+Not fixed. Changing the generator would invalidate the O2 comparison ([3.2](#32-o2-distillation-into-a-reduced-layer-student)). See [C14](#8-caveats).
 
 ### 3.2 O2: distillation into a reduced-layer student
 
