@@ -4,11 +4,11 @@
 
 An 11 MB span-tagging model, small enough to ship with the app and run on the shop's own device. It replaces a large-model API for pulling structure out of informal Indonesian text.
 
-> **Status:** The order-parsing pipeline runs end to end. Distillation and the RAG comparison are not yet done. Progress is listed under [Status](#status).
+> **Status:** The order-parsing pipeline runs end to end. Distillation evaluated (O2), not shipped. RAG comparison is not yet done. Progress is listed under [Status](#status).
 
 ![Model](https://img.shields.io/badge/model-IndoBERT--lite--p2-blue)
 ![Size](https://img.shields.io/badge/ONNX%20int8-11.00%20MB-brightgreen)
-![Latency](https://img.shields.io/badge/latency-20.6%20ms%20(1%20thread)-green)
+![Latency](https://img.shields.io/badge/latency-21.6%20ms%20(1%20thread)-green)
 ![F1](https://img.shields.io/badge/F1-0.90%20(n%3D31)-brightgreen)
 ![Offline](https://img.shields.io/badge/inference-100%25%20offline-brightgreen)
 
@@ -82,7 +82,7 @@ The "tell an LLM to output JSON" approach needs a big model precisely because ge
 | `VARIANT` | `mentah`, `digoreng`, `frozen`, `sdh masak` |
 | `ANAPHORIC` | `ky biasa`, `kya kmrn` |
 
-`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 14 of 31 orders, and it frequently arrives **detached** from the product:
+`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 15 of 31 orders, and it frequently arrives detached from the product:
 
 ```
 25 nya di goreng 25 yg mentah
@@ -145,7 +145,7 @@ seller: Mentah kh ka?
 | Order-bearing buyer messages | 102 |
 | Seller clarifying questions (linked to trigger) | 47 |
 | Split | 45 conversations train / 15 evaluation, split **by conversation** |
-| Annotated with spans | 31 evaluation orders |
+| Annotated with spans | 29 orders plus 2 anaphoric non-order messages |
 
 Splitting by conversation rather than by message matters: the same customer's phrasing must not appear on both sides.
 
@@ -157,18 +157,16 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 
 ## Measured results
 
-### Order tagger (O1): 31 real held-out messages, split by conversation.
-|   |   |
-|---|---|
-| F1 | 0.902 |
-| Per class | QTY 0.986 · UNIT 0.952 · ITEM 0.970 · VARIANT 0.611 |
-| Size (ONNX int8) | 11.00 MB |
-| Latency (1 thread) | 20.6 ms median, 22.7 ms p95 |
+### Depth vs parameters
 
-At n=31 one span is ~0.011 F1, differences under ~0.02 are not measurable.
+| | Params | Layers | F1 | Size | Median |
+|---|---|---|---|---|---|
+| base-p2 teacher | 124 M | 12 | 0.9016 | 118.80 MB | 24.0 ms |
+| lite-p2, shipped | 11.7 M | 12 | 0.9022 | 11.00 MB | 21.6 ms |
+| distilled student | ~20 M | 4 | 0.8756 | 25.45 MB | 2.4 ms |
 
-Separately, on IndoNLU NERP, a 124M model scored 0.007 F1 above the 11.7M
-model at 10.8× the deployed size. Full comparison and quantization: [docs/RESULTS.md](docs/RESULTS.md)
+10.6× the parameters at constant depth changes nothing. Cutting 12 layers to 4
+gives 9× the speed for 0.027 F1. The shipped model takes the accuracy. Full comparison and quantization: [docs/RESULTS.md](docs/RESULTS.md)
 
 ---
 
@@ -264,11 +262,9 @@ POST /parse
 - Order-domain training and evaluation (O1)
 - Normalizer, resolver, and frontend wiring
 - Standing-order detection
-
-**In progress**
 - Teacher-student distillation into a reduced-layer student
 
-**Planned**
+**In progress**
 - RAG comparison baseline
 
 **Deferred to final round**
