@@ -18,6 +18,13 @@
   "is_order": true
  },
  {
+  "text": "Tolong dibalas chatnya soalnya klo kd  jualan Ulun kd mendatangi soalnya jauh jaraknya bu🙏🏻",
+  "spans": [],
+  "conv_id": 17,
+  "idx": 1,
+  "is_order": false
+ },
+ {
   "text": "Esok tinggali 20 biji ya, jam 08.15 diambil",
   "spans": [
    {
@@ -34,6 +41,24 @@
   "conv_id": 19,
   "idx": 0,
   "is_order": true
+ },
+ {
+  "text": "Inggih digoreng spt biasa🙏🏻",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 7,
+    "end": 15
+   },
+   {
+    "type": "ANAPHORIC",
+    "start": 16,
+    "end": 25
+   }
+  ],
+  "conv_id": 19,
+  "idx": 2,
+  "is_order": false
  },
  {
   "text": "Pagi ini tinggali risol goreng 10 biji, risol mentah 10 biji, jam 07.30 diambil ya bu",
@@ -84,6 +109,20 @@
   "is_order": true
  },
  {
+  "text": "Bu tinggalijam 7.30 ya bu",
+  "spans": [],
+  "conv_id": 20,
+  "idx": 1,
+  "is_order": false
+ },
+ {
+  "text": "Ya maka hari ini mau ngasi sepupu pulang kebalikppn 😢",
+  "spans": [],
+  "conv_id": 20,
+  "idx": 4,
+  "is_order": false
+ },
+ {
   "text": "10 biji ga adakah",
   "spans": [
    {
@@ -100,6 +139,40 @@
   "conv_id": 20,
   "idx": 6,
   "is_order": true
+ },
+ {
+  "text": "Assalamualikum",
+  "spans": [],
+  "conv_id": 22,
+  "idx": 0,
+  "is_order": false
+ },
+ {
+  "text": "Besok jualanlah risol",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 16,
+    "end": 21
+   }
+  ],
+  "conv_id": 22,
+  "idx": 1,
+  "is_order": false
+ },
+ {
+  "text": "Klu jualan bisa pesanlah",
+  "spans": [],
+  "conv_id": 22,
+  "idx": 2,
+  "is_order": false
+ },
+ {
+  "text": "Pagi jam 8 diambil",
+  "spans": [],
+  "conv_id": 22,
+  "idx": 5,
+  "is_order": false
  },
  {
   "text": "Pagi 12 digoreng",
@@ -138,6 +211,13 @@
   "is_order": true
  },
  {
+  "text": "Iya jd 55 ribu kalo duitnya",
+  "spans": [],
+  "conv_id": 22,
+  "idx": 9,
+  "is_order": false
+ },
+ {
   "text": "Besok adalah risol tp yg mentahnya aja 10 buting",
   "spans": [
    {
@@ -166,6 +246,13 @@
   "is_order": true
  },
  {
+  "text": "Jam setengah 9 diambil bisa",
+  "spans": [],
+  "conv_id": 24,
+  "idx": 3,
+  "is_order": false
+ },
+ {
   "text": "Oke yg mentahlah besok 10",
   "spans": [
    {
@@ -182,6 +269,19 @@
   "conv_id": 24,
   "idx": 5,
   "is_order": true
+ },
+ {
+  "text": "Assalamu'alaikum.. Ka mau pesan resoles",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 32,
+    "end": 39
+   }
+  ],
+  "conv_id": 31,
+  "idx": 0,
+  "is_order": false
  },
  {
   "text": "Pesan resoles 50 biji",
@@ -207,6 +307,40 @@
   "is_order": true
  },
  {
+  "text": "Sore lun ambil",
+  "spans": [],
+  "conv_id": 31,
+  "idx": 2,
+  "is_order": false
+ },
+ {
+  "text": "Enggeh mentah",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 7,
+    "end": 13
+   }
+  ],
+  "conv_id": 31,
+  "idx": 5,
+  "is_order": false
+ },
+ {
+  "text": "Jam 5 atau jam 6an lun ambil,, mau ke rs dlu",
+  "spans": [],
+  "conv_id": 31,
+  "idx": 6,
+  "is_order": false
+ },
+ {
+  "text": "Ka duit nya lun tf j lh",
+  "spans": [],
+  "conv_id": 31,
+  "idx": 8,
+  "is_order": false
+ },
+ {
   "text": "Resol 16 adakh",
   "spans": [
    {
@@ -223,6 +357,26 @@
   "conv_id": 34,
   "idx": 0,
   "is_order": true
+ },
+ {
+  "text": "Jam 10",
+  "spans": [],
+  "conv_id": 34,
+  "idx": 3,
+  "is_order": false
+ },
+ {
+  "text": "Bagoreng",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 0,
+    "end": 8
+   }
+  ],
+  "conv_id": 34,
+  "idx": 4,
+  "is_order": false
  },
  {
   "text": "bu bisa pesan buat risol mentah besok 60 pcs untuk siang sekitar jam 1 bu? 🙏🏻",
@@ -251,6 +405,20 @@
   "conv_id": 38,
   "idx": 0,
   "is_order": true
+ },
+ {
+  "text": "inggih esok ulun ambil ya bu 🙏🏻",
+  "spans": [],
+  "conv_id": 38,
+  "idx": 2,
+  "is_order": false
+ },
+ {
+  "text": "ulun bayar dp dulu kah bu hari ini ke rmh?",
+  "spans": [],
+  "conv_id": 38,
+  "idx": 3,
+  "is_order": false
  },
  {
   "text": "berarti pesan 50 pcs aja kak",
@@ -299,6 +467,27 @@
   "is_order": true
  },
  {
+  "text": "bsa kak?",
+  "spans": [],
+  "conv_id": 38,
+  "idx": 8,
+  "is_order": false
+ },
+ {
+  "text": "oke kak bsok aku ambil sekitar jam 1 an",
+  "spans": [],
+  "conv_id": 38,
+  "idx": 10,
+  "is_order": false
+ },
+ {
+  "text": "ada no rekening lah akk?",
+  "spans": [],
+  "conv_id": 38,
+  "idx": 11,
+  "is_order": false
+ },
+ {
   "text": "Kawakah pesan risoles yg mentah 100 buting diambil kamis pagi jam 7",
   "spans": [
    {
@@ -325,6 +514,13 @@
   "conv_id": 40,
   "idx": 0,
   "is_order": true
+ },
+ {
+  "text": "Ok besok pagi aq antar sekalian turun keja lh",
+  "spans": [],
+  "conv_id": 40,
+  "idx": 3,
+  "is_order": false
  },
  {
   "text": "Yg diambil jam 11 hr ini, 20 digoreng aja",
@@ -363,6 +559,20 @@
   "is_order": true
  },
  {
+  "text": "Assalamu'alaikum warahmatullahi wabarokatuh",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 0,
+  "is_order": false
+ },
+ {
+  "text": "Ding pesan tuk bsk Kamis 20 Mei'26",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 1,
+  "is_order": false
+ },
+ {
   "text": "320 buting risol lh.",
   "spans": [
    {
@@ -386,6 +596,75 @@
   "is_order": true
  },
  {
+  "text": "Jam 6 pagi ibu Ambil",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 3,
+  "is_order": false
+ },
+ {
+  "text": "Nak",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 4,
+  "is_order": false
+ },
+ {
+  "text": "Kawakh orderan ibu",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 5,
+  "is_order": false
+ },
+ {
+  "text": "Nak brp jadinya kawa orderan ibu",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 6,
+  "is_order": false
+ },
+ {
+  "text": "Yg pian kawa pastikan ibu ambil yg jam 6",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 7,
+  "is_order": false
+ },
+ {
+  "text": "Siap",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 9,
+  "is_order": false
+ },
+ {
+  "text": "Jam 6 ibu ambil nak lh🙏",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 10,
+  "is_order": false
+ },
+ {
+  "text": "Assalamu'alaikum warahmatullahi wabarokatuh...",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 12,
+  "is_order": false
+ },
+ {
+  "text": "Nak ibu pesan Risol gsn hari Senin 25 Mei'26",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 14,
+    "end": 19
+   }
+  ],
+  "conv_id": 45,
+  "idx": 13,
+  "is_order": false
+ },
+ {
   "text": "200 butinglh.",
   "spans": [
    {
@@ -402,6 +681,26 @@
   "conv_id": 45,
   "idx": 14,
   "is_order": true
+ },
+ {
+  "text": "Ibu ambil jam 6 kaya biasa",
+  "spans": [
+   {
+    "type": "ANAPHORIC",
+    "start": 16,
+    "end": 26
+   }
+  ],
+  "conv_id": 45,
+  "idx": 15,
+  "is_order": false
+ },
+ {
+  "text": "Om...",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 17,
+  "is_order": false
  },
  {
   "text": "Ibu mengingatkan pesanan risol 200  buting. Senin 25 April'26",
@@ -427,6 +726,26 @@
   "is_order": true
  },
  {
+  "text": "Ibu ambil jam 06.00 wita terimakasih",
+  "spans": [],
+  "conv_id": 45,
+  "idx": 19,
+  "is_order": false
+ },
+ {
+  "text": "Assalamualaikum kak saya mau pesan risol untuk sore ini bisa kah",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 35,
+    "end": 40
+   }
+  ],
+  "conv_id": 47,
+  "idx": 0,
+  "is_order": false
+ },
+ {
   "text": "60 biji untuk sore ini jam set5 Ulun ngambil",
   "spans": [
    {
@@ -443,6 +762,46 @@
   "conv_id": 47,
   "idx": 1,
   "is_order": true
+ },
+ {
+  "text": "Di goreng kak",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 0,
+    "end": 9
+   }
+  ],
+  "conv_id": 47,
+  "idx": 5,
+  "is_order": false
+ },
+ {
+  "text": "Baik kak",
+  "spans": [],
+  "conv_id": 47,
+  "idx": 6,
+  "is_order": false
+ },
+ {
+  "text": "Siangan kena Ulun julung duitnya ,jadi ngambilnya sore kna",
+  "spans": [],
+  "conv_id": 47,
+  "idx": 7,
+  "is_order": false
+ },
+ {
+  "text": "Masih ada kah risol",
+  "spans": [
+   {
+    "type": "ITEM",
+    "start": 14,
+    "end": 19
+   }
+  ],
+  "conv_id": 48,
+  "idx": 0,
+  "is_order": false
  },
  {
   "text": "Besok pesan risol 15  1 kotak",
@@ -552,6 +911,20 @@
   "is_order": true
  },
  {
+  "text": "Mksh dulu",
+  "spans": [],
+  "conv_id": 48,
+  "idx": 9,
+  "is_order": false
+ },
+ {
+  "text": "Jm brp esok Ready kabari lahh",
+  "spans": [],
+  "conv_id": 48,
+  "idx": 10,
+  "is_order": false
+ },
+ {
   "text": "Pesan risoles nya 16 buting, bsk di ambil jm 10 lah, yg sdh masak..",
   "spans": [
    {
@@ -608,6 +981,20 @@
   "is_order": true
  },
  {
+  "text": "Kna lun pdhkn ading lun, utk rasa dijamin enak🤭",
+  "spans": [],
+  "conv_id": 57,
+  "idx": 2,
+  "is_order": false
+ },
+ {
+  "text": "Boleh",
+  "spans": [],
+  "conv_id": 57,
+  "idx": 5,
+  "is_order": false
+ },
+ {
   "text": "10 biji gin bu",
   "spans": [
    {
@@ -624,6 +1011,26 @@
   "conv_id": 57,
   "idx": 6,
   "is_order": true
+ },
+ {
+  "text": "Lun pdhkn ading lun",
+  "spans": [],
+  "conv_id": 57,
+  "idx": 8,
+  "is_order": false
+ },
+ {
+  "text": "Yg frozen aja gin bu ae",
+  "spans": [
+   {
+    "type": "VARIANT",
+    "start": 3,
+    "end": 9
+   }
+  ],
+  "conv_id": 57,
+  "idx": 11,
+  "is_order": false
  },
  {
   "text": "10 yg Frozen kytu",
@@ -644,7 +1051,21 @@
   "is_order": true
  },
  {
-  "text": "Lua broniesnya olahkan 3 gasan membari acil sama om berp harganya",
+  "text": "Yg nia olah ukuran berapa",
+  "spans": [],
+  "conv_id": 60,
+  "idx": 1,
+  "is_order": false
+ },
+ {
+  "text": "Yang manalah harganya berapa",
+  "spans": [],
+  "conv_id": 60,
+  "idx": 3,
+  "is_order": false
+ },
+ {
+  "text": "Nia broniesnya olahkan 3 gasan membari acil sama om berp harganya",
   "spans": [
    {
     "type": "ITEM",
@@ -662,34 +1083,17 @@
   "is_order": true
  },
  {
-  "text": "Inggih digoreng spt biasa🙏🏻",
-  "spans": [
-   {
-    "type": "VARIANT",
-    "start": 7,
-    "end": 15
-   },
-   {
-    "type": "ANAPHORIC",
-    "start": 16,
-    "end": 25
-   }
-  ],
-  "conv_id": 19,
-  "idx": 2,
+  "text": "Bsok Pian kebanjar?",
+  "spans": [],
+  "conv_id": 60,
+  "idx": 6,
   "is_order": false
  },
  {
-  "text": "Ibu ambil jam 6 kaya biasa",
-  "spans": [
-   {
-    "type": "ANAPHORIC",
-    "start": 16,
-    "end": 26
-   }
-  ],
-  "conv_id": 45,
-  "idx": 15,
+  "text": "Banjarmasin mksdnya",
+  "spans": [],
+  "conv_id": 60,
+  "idx": 7,
   "is_order": false
  }
 ]
