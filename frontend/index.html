@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Nyatet — Trade Order Parsing Frontend (Architectural / Single-Column UX)
+  Nyatet - Trade Order Parsing Frontend (Architectural / Single-Column UX)
   Designed for proof-of-work split-screen recording & strict benchmark evaluation.
   
   6 Core UX Rules:
@@ -15,7 +15,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nyatet — Local Trade Order Parser</title>
+<title>Nyatet - Local Trade Order Parser</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,6 +53,10 @@
     --tag-anaphora-border: #a855f7;
     --tag-anaphora-text: #6b21a8;
 
+    --tag-variant-bg: #fce7f3;
+    --tag-variant-border: #ec4899;
+    --tag-variant-text: #9d174d;
+
     /* State Badges */
     --badge-resolved-bg: #d1fae5;
     --badge-resolved-text: #065f46;
@@ -62,6 +66,15 @@
 
     --badge-select-bg: #fef3c7;
     --badge-select-text: #92400e;
+
+    --badge-variant-bg: #fce7f3;
+    --badge-variant-text: #9d174d;
+
+    --badge-unknown-bg: #fef2f2;
+    --badge-unknown-text: #991b1b;
+
+    --badge-quantity-bg: #fff7ed;
+    --badge-quantity-text: #9a3412;
 
     --font-mono: 'JetBrains Mono', monospace;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -344,6 +357,11 @@
     border-color: var(--tag-anaphora-border);
     color: var(--tag-anaphora-text);
   }
+  .inline-chip.VARIANT {
+    background-color: var(--tag-variant-bg);
+    border-color: var(--tag-variant-border);
+    color: var(--tag-variant-text);
+  }
 
   .legend-row {
     display: flex;
@@ -393,11 +411,12 @@
     border-bottom: none;
   }
 
-  .col-qty { width: 8%; font-size: 1rem; font-weight: 600; }
-  .col-unit { width: 10%; color: var(--text-muted); }
-  .col-item { width: 38%; }
-  .col-conv { width: 18%; color: var(--text-muted); }
-  .col-state { width: 26%; }
+  .col-qty { width: 7%; font-size: 1rem; font-weight: 600; }
+  .col-unit { width: 8%; color: var(--text-muted); }
+  .col-item { width: 30%; }
+  .col-variant { width: 10%; color: var(--tag-variant-text); font-weight: 500; }
+  .col-conv { width: 16%; color: var(--text-muted); }
+  .col-state { width: 29%; }
 
   .item-title {
     font-weight: 700;
@@ -432,6 +451,18 @@
   .state-badge.select {
     background-color: var(--badge-select-bg);
     color: var(--badge-select-text);
+  }
+  .state-badge.variant {
+    background-color: var(--badge-variant-bg);
+    color: var(--badge-variant-text);
+  }
+  .state-badge.unknown {
+    background-color: var(--badge-unknown-bg);
+    color: var(--badge-unknown-text);
+  }
+  .state-badge.quantity {
+    background-color: var(--badge-quantity-bg);
+    color: var(--badge-quantity-text);
   }
 
   /* Dual Progress Bars (Rule 1) */
@@ -488,6 +519,48 @@
     background-color: var(--tag-qty-bg);
     border-left-color: var(--tag-qty-border);
     color: var(--tag-qty-text);
+  }
+  .banner-box.unknown-product {
+    background-color: var(--badge-unknown-bg);
+    border-left-color: #ef4444;
+    color: var(--badge-unknown-text);
+  }
+  .banner-box.variant-pick {
+    background-color: var(--badge-variant-bg);
+    border-left-color: var(--tag-variant-border);
+    color: var(--badge-variant-text);
+  }
+  .banner-box.quantity-unclear {
+    background-color: var(--badge-quantity-bg);
+    border-left-color: #f97316;
+    color: var(--badge-quantity-text);
+  }
+  .candidate-chip {
+    display: inline-block;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-main);
+    border-radius: 3px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0.25rem 0.25rem 0 0;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .candidate-chip:hover {
+    border-color: var(--border-dark);
+    background-color: var(--bg-hover);
+  }
+  .standing-order-banner {
+    background-color: var(--tag-anaphora-bg);
+    border: 1px solid var(--tag-anaphora-border);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: var(--tag-anaphora-text);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
   }
 
   /* Footer (Rule 2 & Rule 6) */
@@ -555,17 +628,17 @@
       <span class="meta-inference" id="metaInference">inference 83 ms &middot; 10 tokens &middot; CPU</span>
     </div>
 
-    <textarea class="input-area" id="msgInput" placeholder="pesen yg kyk kmrn aja bang, tambah rinso 1 dus"></textarea>
+    <textarea class="input-area" id="msgInput" placeholder="risol goreng 50 biji"></textarea>
 
     <div class="controls-row">
       <button class="btn-parse" id="btnParse">Parse message</button>
       <span class="samples-label">SAMPLES</span>
       <div class="samples-flex" id="samplesFlex">
-        <button class="sample-chip" data-text="indomi goreng 1 dus, gula 5 kg">indomi goreng 1 dus, gula 5 kg</button>
-        <button class="sample-chip" data-text="bu, minyak sama gula aja ya. yg biasa">bu, minyak sama gula aja ya. yg biasa</button>
-        <button class="sample-chip" data-text="kirim 2 dus indomi yg gede, teh sariwangi 1 ..">kirim 2 dus indomi yg gede, teh sariwangi 1 ..</button>
-        <button class="sample-chip" data-text="pesen yg kyk kmrn aja bang, tambah rinso 1 dus">pesen yg kyk kmrn aja bang, tambah rinso 1 dus</button>
-        <button class="sample-chip" data-text="seperempat kodi kopi kapal api, dua dus miny...">seperempat kodi kopi kapal api, dua dus miny...</button>
+        <button class="sample-chip" data-text="risol goreng 50 biji">risol goreng 50 biji</button>
+        <button class="sample-chip" data-text="risol mentah 1 kotak isi 15">risol mentah 1 kotak isi 15</button>
+        <button class="sample-chip" data-text="risol frozen 20 biji">risol frozen 20 biji</button>
+        <button class="sample-chip" data-text="pesen yg kyk kmrn aja, tambah risol goreng 10">pesen yg kyk kmrn aja, tambah risol goreng 10</button>
+        <button class="sample-chip" data-text="risol goreng 10 sama risol mentah 15 biji">risol goreng 10 sama risol mentah 15 biji</button>
       </div>
     </div>
   </div>
@@ -580,6 +653,7 @@
 
     <div class="legend-row">
       <div class="legend-item"><div class="legend-line" style="background:var(--tag-item-border)"></div> ITEM</div>
+      <div class="legend-item"><div class="legend-line" style="background:var(--tag-variant-border)"></div> VARIANT</div>
       <div class="legend-item"><div class="legend-line" style="background:var(--tag-qty-border)"></div> QTY</div>
       <div class="legend-item"><div class="legend-line" style="background:var(--tag-unit-border)"></div> UNIT</div>
       <div class="legend-item"><div class="legend-line" style="background:var(--tag-anaphora-border)"></div> ANAPHORIC</div>
@@ -594,6 +668,8 @@
       <span class="meta-inference" id="lineCount">2 lines</span>
     </div>
 
+    <div id="standingOrderBanner" class="standing-order-banner" style="display:none;"></div>
+
     <div class="table-wrapper">
       <table class="order-table">
         <thead>
@@ -601,6 +677,7 @@
             <th class="col-qty">QTY</th>
             <th class="col-unit">UNIT</th>
             <th class="col-item">ITEM</th>
+            <th class="col-variant">VARIANT</th>
             <th class="col-conv">CONVERSION</th>
             <th class="col-state">STATE &amp; CONFIDENCE</th>
           </tr>
@@ -610,21 +687,9 @@
     </div>
   </div>
 
-  <!-- Section: Raw Server API Inspector -->
-  <div class="section-card" id="rawInspectorCard">
-    <div class="card-top-bar" style="cursor:pointer;" id="toggleRawInspector">
-      <span class="card-label">&zap; RAW SERVER JSON RESPONSE (HTTP POST /parse)</span>
-      <span style="color:var(--text-sub); font-size:0.75rem;" id="rawToggleIcon">&#9660; click to view payload</span>
-    </div>
-    <div id="rawInspectorBody" style="display:none; margin-top:0.5rem;">
-      <pre id="rawJsonPre" style="background:var(--bg-page); border:1px solid var(--border-main); padding:1rem; border-radius:4px; font-size:0.75rem; overflow-x:auto; color:var(--text-main); max-height:260px;"></pre>
-    </div>
-  </div>
-
   <!-- Footer Footer Bar -->
   <footer>
-    <div>docker compose &middot; localhost &middot; no API key</div>
-    <div>BIO span tagger &middot; IndoBERT-lite int8 (ONNX) &middot; fuzzy resolver over catalog.csv</div>
+    <div>catalog.csv</div>
   </footer>
 
 <script>
@@ -633,6 +698,56 @@
 const API_BASE = window.NYATET_API_BASE
   || (location.protocol.startsWith("http") ? location.origin : "http://localhost:8000");
 
+// --- i18n Copy Map ---------------------------------------------
+const COPY = {
+  EN: {
+    // Flag kinds
+    anaphoric: "Reference to prior order detected. Cannot resolve without history - flagged for review.",
+    standing_order: "Customer is referencing a previous order.",
+    // needs_clarification values
+    variant: "Multiple variants match - pick one.",
+    ambiguous_option: "Multiple SKUs match - pick one.",
+    unknown_product: "Product not found in catalog.",
+    quantity: "Quantity is ambiguous or missing.",
+    // State badge text
+    badge_resolved: "RESOLVED",
+    badge_variant: "PICK VARIANT",
+    badge_select: "PICK SKU",
+    badge_unknown: "UNKNOWN PRODUCT",
+    badge_quantity: "UNCERTAIN QTY",
+    badge_history: "NEEDS HISTORY",
+    // UI labels
+    parse_btn: "Parse message",
+    samples_label: "SAMPLES",
+    empty_state: "No entity / order lines tagged by the model.",
+    standing_empty: "Standing order detected - not parsed."
+  },
+  ID: {
+    anaphoric: "Referensi ke pesanan sebelumnya terdeteksi. Tidak bisa di-resolve tanpa riwayat.",
+    standing_order: "Pelanggan mereferensikan pesanan sebelumnya.",
+    variant: "Varian ganda cocok - pilih salah satu.",
+    ambiguous_option: "SKU ganda cocok - pilih salah satu.",
+    unknown_product: "Produk tidak ditemukan di katalog.",
+    quantity: "Jumlah ambigu atau tidak ada.",
+    badge_resolved: "TERSELESAIKAN",
+    badge_variant: "PILIH VARIAN",
+    badge_select: "PILIH SKU",
+    badge_unknown: "TIDAK DIKENAL",
+    badge_quantity: "JML TIDAK PASTI",
+    badge_history: "BUTUH RIWAYAT",
+    parse_btn: "Proses pesan",
+    samples_label: "CONTOH",
+    empty_state: "Tidak ada baris pesanan yang di-tag oleh model.",
+    standing_empty: "Pesanan tetap terdeteksi - tidak di-parse."
+  }
+};
+
+let currentLang = "EN";
+let lastRenderData = null; // for re-render on language switch
+
+function t(key) { return COPY[currentLang][key] || COPY.EN[key] || key; }
+
+// --- DOM References --------------------------------------------
 const msgInput = document.getElementById("msgInput");
 const btnParse = document.getElementById("btnParse");
 const metaInference = document.getElementById("metaInference");
@@ -640,31 +755,22 @@ const spansDisplay = document.getElementById("spansDisplay");
 const linesTbody = document.getElementById("linesTbody");
 const lineCount = document.getElementById("lineCount");
 const statusPill = document.getElementById("statusPill");
-
 const samplesFlex = document.getElementById("samplesFlex");
+const standingOrderBanner = document.getElementById("standingOrderBanner");
 
-const toggleRawInspector = document.getElementById("toggleRawInspector");
-const rawInspectorBody = document.getElementById("rawInspectorBody");
-const rawToggleIcon = document.getElementById("rawToggleIcon");
-const rawJsonPre = document.getElementById("rawJsonPre");
-
-// Sample button click listener (only populates textarea)
+// --- Sample button click (only populates textarea) -------------
 if (samplesFlex) {
   samplesFlex.addEventListener("click", e => {
     const chip = e.target.closest(".sample-chip");
     if (!chip) return;
-
     document.querySelectorAll(".sample-chip").forEach(c => c.classList.remove("active"));
     chip.classList.add("active");
-
     const sampleText = chip.dataset.text;
-    if (sampleText) {
-      msgInput.value = sampleText;
-    }
+    if (sampleText) msgInput.value = sampleText;
   });
 }
 
-// Initialize with empty initial state
+// --- Initialize with empty state -------------------------------
 renderSample({
   text: "",
   tokens: 0,
@@ -673,55 +779,49 @@ renderSample({
   source: "READY",
   spans: [],
   lines: [],
+  flags: [],
   rawJson: JSON.stringify({ note: "No request sent yet. Type a message and click Parse message." }, null, 2)
 });
 
-// Health Check to detect backend ONNX model server status
+// --- Health Check ----------------------------------------------
 async function checkHealth() {
   try {
     const res = await fetch(`${API_BASE}/health`);
     if (!res.ok) throw new Error();
     const data = await res.json();
     if (data.model_loaded) {
-      statusPill.innerHTML = `<span class="status-dot-green"></span><span>● FASTAPI ONNX MODEL (LIVE)</span>`;
+      statusPill.innerHTML = `<span class="status-dot-green"></span><span>FASTAPI ONNX MODEL (LIVE)</span>`;
       statusPill.style.borderColor = "#cbe6d7";
       statusPill.style.backgroundColor = "#edf7f2";
       statusPill.style.color = "#236340";
       return true;
     }
   } catch (e) {}
-  statusPill.innerHTML = `<span class="status-dot-amber" style="width:7px;height:7px;border-radius:50%;background-color:#f59e0b;display:inline-block"></span><span>○ DEMO MODE (FALLBACK)</span>`;
+  statusPill.innerHTML = `<span class="status-dot-amber" style="width:7px;height:7px;border-radius:50%;background-color:#f59e0b;display:inline-block"></span><span>DEMO MODE (FALLBACK)</span>`;
   statusPill.style.borderColor = "#fef3c7";
   statusPill.style.backgroundColor = "#fffbeb";
   statusPill.style.color = "#92400e";
   return false;
 }
-
 checkHealth();
 
-// Language Switcher Listener
+// --- Language Switcher -----------------------------------------
 document.querySelectorAll(".lang-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    const lang = btn.textContent.trim();
-    if (lang === "ID") {
-      document.querySelector(".btn-parse").textContent = "Proses pesan";
-      document.querySelector(".samples-label").textContent = "CONTOH";
-    } else {
-      document.querySelector(".btn-parse").textContent = "Parse message";
-      document.querySelector(".samples-label").textContent = "SAMPLES";
-    }
+    currentLang = btn.textContent.trim();
+    document.querySelector(".btn-parse").textContent = t("parse_btn");
+    document.querySelector(".samples-label").textContent = t("samples_label");
+    // Re-render current result with new language if available
+    if (lastRenderData) renderSample(lastRenderData);
   });
 });
 
-// Raw Inspector Toggle Listener
-toggleRawInspector.addEventListener("click", () => {
-  const isHidden = rawInspectorBody.style.display === "none";
-  rawInspectorBody.style.display = isHidden ? "block" : "none";
-  rawToggleIcon.innerHTML = isHidden ? "&#9650; click to collapse" : "&#9660; click to view payload";
-});
+// --- Raw Inspector Toggle --------------------------------------
 
+
+// --- Parse Button Handler --------------------------------------
 btnParse.addEventListener("click", async () => {
   const text = msgInput.value.trim();
   if (!text) return;
@@ -729,7 +829,6 @@ btnParse.addEventListener("click", async () => {
   btnParse.disabled = true;
   const originalText = btnParse.textContent;
   btnParse.textContent = "Processing...";
-
   const startTime = performance.now();
 
   try {
@@ -757,6 +856,7 @@ btnParse.addEventListener("click", async () => {
       source: "SERVER UNREACHABLE",
       spans: [{ text: text, isTag: false }],
       lines: [],
+      flags: [],
       rawJson: JSON.stringify({ error: err.message, note: `Could not connect to FastAPI server at ${API_BASE}/parse` }, null, 2)
     });
   } finally {
@@ -765,12 +865,15 @@ btnParse.addEventListener("click", async () => {
   }
 });
 
+// --- formatApiResponse: Pure mapper over order_lines + flags ---
 function formatApiResponse(text, apiData, latencyMs) {
   const rawSpans = apiData.spans || [];
+  const orderLines = apiData.order_lines || [];
+  const flags = apiData.flags || [];
+
+  // Build inline span chips for the TAGGED SPANS display
   const spans = [];
   let lastIdx = 0;
-
-  // Map API spans back over full input text
   rawSpans.forEach(s => {
     const idx = text.indexOf(s.text, lastIdx);
     if (idx > lastIdx) {
@@ -779,73 +882,144 @@ function formatApiResponse(text, apiData, latencyMs) {
     spans.push({ text: s.text, type: s.type, isTag: true, confidence: s.confidence });
     lastIdx = idx >= 0 ? idx + s.text.length : lastIdx;
   });
-
   if (lastIdx < text.length) {
     spans.push({ text: text.substring(lastIdx), isTag: false });
   }
 
-  // Derive order lines from spans
-  const items = rawSpans.filter(s => s.type === "ITEM");
-  const qtys = rawSpans.filter(s => s.type === "QTY");
-  const units = rawSpans.filter(s => s.type === "UNIT");
-  const anaphorics = rawSpans.filter(s => s.type === "ANAPHORIC");
+  // Map order_lines to table rows (pure data pass-through)
+  const lines = orderLines.map(ol => {
+    // Compute TAGGING score: min confidence of backing spans
+    const backingSpans = rawSpans.filter(s =>
+      (s.type === "ITEM" && s.text === ol.item_span) ||
+      (s.type === "VARIANT" && s.text === ol.variant_span) ||
+      (s.type === "QTY" && ol.quantity !== null) ||
+      (s.type === "UNIT" && s.text === ol.unit)
+    );
+    const tagScore = backingSpans.length > 0
+      ? Math.min(...backingSpans.map(s => s.confidence))
+      : null;
 
-  const lines = [];
+    // Determine state from needs_clarification
+    let state, stateKey;
+    const nc = ol.needs_clarification;
+    if (!nc && ol.sku) {
+      state = "resolved"; stateKey = "badge_resolved";
+    } else if (nc === "variant") {
+      state = "variant"; stateKey = "badge_variant";
+    } else if (nc === "ambiguous_option") {
+      state = "select"; stateKey = "badge_select";
+    } else if (nc === "unknown_product") {
+      state = "unknown"; stateKey = "badge_unknown";
+    } else if (nc === "quantity") {
+      state = "quantity"; stateKey = "badge_quantity";
+    } else {
+      state = "resolved"; stateKey = "badge_resolved";
+    }
 
-  anaphorics.forEach(a => {
-    lines.push({
-      qty: "&mdash;",
-      unit: "&mdash;",
-      title: `&laquo;${escapeHtml(a.text)}&raquo;`,
-      meta: "ANAPHORIC span emitted",
-      conv: "&mdash;",
-      state: "history",
-      stateText: "NEEDS HISTORY",
-      tagScore: a.confidence || 0.96,
-      resScore: null,
-      banner: "Reference to prior order detected. Cannot resolve without history &mdash; flagged for review."
-    });
+    // Title: matched_name if resolved, else item_span
+    const title = ol.matched_name || ol.item_span || "-";
+
+    // Meta line: «item_span» → SKU · conversion
+    let meta = "";
+    if (ol.item_span) {
+      meta += `\u00AB${escapeHtml(ol.item_span)}\u00BB`;
+      if (ol.sku) meta += ` \u2192 ${escapeHtml(ol.sku)}`;
+      if (ol.per_container) meta += ` \u00B7 1 ${escapeHtml(ol.unit || 'unit')} = ${ol.per_container} pcs`;
+    }
+
+    // Conversion: quantity × per_container = total_pieces pcs
+    let conv = "-";
+    if (ol.total_pieces !== null && ol.total_pieces !== undefined) {
+      conv = `${ol.total_pieces} pcs`;
+    }
+
+    // Variant
+    const variant = ol.variant_span || "-";
+
+    // Banner: from needs_clarification or flag note
+    let banner = null;
+    let bannerClass = "";
+    if (nc) {
+      const matchingFlag = flags.find(f => f.kind === nc && f.span_text === ol.item_span);
+      banner = matchingFlag ? matchingFlag.note : t(nc);
+      if (nc === "variant") bannerClass = "variant-pick";
+      else if (nc === "ambiguous_option") bannerClass = "select-sku";
+      else if (nc === "unknown_product") bannerClass = "unknown-product";
+      else if (nc === "quantity") bannerClass = "quantity-unclear";
+    }
+
+    // Candidates
+    const candidates = ol.candidates || [];
+
+    return {
+      qty: ol.quantity !== null && ol.quantity !== undefined ? String(ol.quantity) : "-",
+      unit: ol.unit || "-",
+      title: escapeHtml(title),
+      meta: meta,
+      variant: escapeHtml(variant),
+      conv: conv,
+      state: state,
+      stateKey: stateKey,
+      tagScore: tagScore,
+      resScore: ol.resolution_confidence != null ? ol.resolution_confidence : null,
+      banner: banner,
+      bannerClass: bannerClass,
+      candidates: candidates
+    };
   });
 
-  items.forEach((item, idx) => {
-    const q = qtys[idx] ? qtys[idx].text : "1";
-    const u = units[idx] ? units[idx].text : "unit";
-    const conf = item.confidence || 0.95;
-
-    lines.push({
-      qty: escapeHtml(q),
-      unit: escapeHtml(u),
-      title: `"${escapeHtml(item.text)}"`,
-      meta: `&laquo;${escapeHtml(item.text)}&raquo; &middot; IndoBERT-lite ONNX model tagger`,
-      conv: "1 pcs",
-      state: conf > 0.9 ? "resolved" : "select",
-      stateText: conf > 0.9 ? "RESOLVED" : "PILIH SKU",
-      tagScore: conf,
-      resScore: conf > 0.9 ? 0.92 : 0.45
-    });
+  // Synthesize ANAPHORIC rows from flags (these are skipped by group_spans)
+  flags.forEach(f => {
+    if (f.kind === "anaphoric") {
+      const anaphoricSpan = rawSpans.find(s => s.type === "ANAPHORIC");
+      const spanText = f.span_text || (anaphoricSpan ? anaphoricSpan.text : "...");
+      lines.push({
+        qty: "-",
+        unit: "-",
+        title: `\u00AB${escapeHtml(spanText)}\u00BB`,
+        meta: "ANAPHORIC span emitted",
+        variant: "-",
+        conv: "-",
+        state: "history",
+        stateKey: "badge_history",
+        tagScore: anaphoricSpan ? anaphoricSpan.confidence : null,
+        resScore: null,
+        banner: t("anaphoric"),
+        bannerClass: "",
+        candidates: []
+      });
+    }
   });
 
-  // Do NOT add hardcoded fallback lines if model returned 0 entities
   return {
     text: text,
     tokens: Math.max(1, text.split(/\s+/).filter(Boolean).length),
     latency: `${latencyMs} ms`,
     device: "CPU",
     spans: spans,
-    lines: lines
+    lines: lines,
+    flags: flags
   };
 }
 
+// ─── renderSample: Render to DOM ───────────────────────────────
 function renderSample(data) {
-  // Rule 4: Latency + Token count + Device context + Execution Source
-  const sourceLabel = data.source ? ` \u00B7 ${data.source}` : '';
-  metaInference.textContent = `inference ${data.latency} \u00B7 ${data.tokens} tokens \u00B7 ${data.device || 'CPU'}${sourceLabel}`;
+  lastRenderData = data;
 
-  if (rawJsonPre) {
-    rawJsonPre.textContent = data.rawJson || JSON.stringify(data, null, 2);
+  // Inference meta line
+  const sourceLabel = data.source ? ` · ${data.source}` : '';
+  metaInference.textContent = `inference ${data.latency} · ${data.tokens} tokens · ${data.device || 'CPU'}${sourceLabel}`;
+
+  // Standing order banner
+  const standingFlag = (data.flags || []).find(f => f.kind === "standing_order");
+  if (standingFlag) {
+    standingOrderBanner.textContent = t("standing_order");
+    standingOrderBanner.style.display = "block";
+  } else {
+    standingOrderBanner.style.display = "none";
   }
 
-  // Render Spans Box (Rule 6)
+  // Render Tagged Spans
   let spansHtml = "";
   data.spans.forEach(s => {
     if (s.isTag) {
@@ -856,15 +1030,17 @@ function renderSample(data) {
   });
   spansDisplay.innerHTML = spansHtml;
 
-  // Render Table Order Lines (Rule 1 & Rule 3)
-  lineCount.textContent = `${data.lines.length} lines`;
+  // Render Order Lines Table
+  lineCount.textContent = `${data.lines.length} ${currentLang === "ID" ? "baris" : "lines"}`;
   let tableHtml = "";
 
   data.lines.forEach(line => {
-    // Rule 1: Two separate confidence scores (TAGGING & RESOLUTION)
-    const tagScorePct = Math.round(line.tagScore * 100);
-    const tagScoreStr = line.tagScore.toFixed(2);
+    // TAGGING score
+    const hasTag = line.tagScore !== null && line.tagScore !== undefined;
+    const tagScorePct = hasTag ? Math.round(line.tagScore * 100) : 0;
+    const tagScoreStr = hasTag ? line.tagScore.toFixed(2) : "-";
 
+    // RESOLUTION score
     let resScoreHtml = "";
     if (line.resScore !== null && line.resScore !== undefined) {
       const resScorePct = Math.round(line.resScore * 100);
@@ -890,7 +1066,10 @@ function renderSample(data) {
       `;
     }
 
-    // Main Row
+    // State badge text from i18n
+    const badgeText = t(line.stateKey);
+
+    // Main data row
     tableHtml += `
       <tr>
         <td class="col-qty">${line.qty}</td>
@@ -899,16 +1078,17 @@ function renderSample(data) {
           <div class="item-title">${line.title}</div>
           <div class="item-meta">${line.meta}</div>
         </td>
+        <td class="col-variant">${line.variant}</td>
         <td class="col-conv">${line.conv}</td>
         <td class="col-state">
-          <span class="state-badge ${line.state}">${line.stateText}</span>
+          <span class="state-badge ${line.state}">${escapeHtml(badgeText)}</span>
           <div class="scores-block">
             <div class="score-line">
               <span class="score-label">TAGGING</span>
               <div class="bar-track">
-                <div class="bar-fill" style="width:${tagScorePct}%"></div>
+                <div class="bar-fill${hasTag ? '' : ' empty'}" style="width:${tagScorePct}%"></div>
               </div>
-              <span class="score-val">${tagScoreStr}</span>
+              <span class="score-val"${hasTag ? '' : ' style="color:var(--text-sub)"'}>${tagScoreStr}</span>
             </div>
             ${resScoreHtml}
           </div>
@@ -916,28 +1096,40 @@ function renderSample(data) {
       </tr>
     `;
 
-    // Rule 3: Uncertainty banner row if present
+    // Uncertainty banner row
     if (line.banner) {
-      const bannerClass = line.state === 'select' ? 'select-sku' : '';
+      let candidatesHtml = "";
+      if (line.candidates && line.candidates.length > 0) {
+        candidatesHtml = '<div style="margin-top:0.4rem;">' +
+          line.candidates.map(c => {
+            const label = typeof c === 'string' ? c : (c.name || c.sku || JSON.stringify(c));
+            return `<span class="candidate-chip">${escapeHtml(label)}</span>`;
+          }).join('') +
+          '</div>';
+      }
       tableHtml += `
         <tr class="banner-row">
-          <td colspan="5">
-            <div class="banner-box ${bannerClass}">${line.banner}</div>
+          <td colspan="6">
+            <div class="banner-box ${line.bannerClass}">${line.banner}${candidatesHtml}</div>
           </td>
         </tr>
       `;
     }
   });
 
+  // Empty state
   if (data.lines.length === 0) {
-    tableHtml = `<tr><td colspan="5" style="text-align:center; color:var(--text-sub); padding:1.75rem;">No entity / order lines tagged by the ONNX model.</td></tr>`;
+    const emptyText = standingFlag ? t("standing_empty") : t("empty_state");
+    tableHtml = `<tr><td colspan="6" style="text-align:center; color:var(--text-sub); padding:1.75rem;">${emptyText}</td></tr>`;
   }
 
   linesTbody.innerHTML = tableHtml;
 }
 
+// --- Utility ---------------------------------------------------
 function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, c => ({
+  if (str == null) return '';
+  return String(str).replace(/[&<>"']/g, c => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
   }[c]));
 }
