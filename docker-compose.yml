@@ -7,4 +7,9 @@ services:
     environment:
       - MODEL_DIR=/app/models/tagger
       - CATALOG_PATH=/app/data/catalog.csv
-      - NUM_THREADS=1          
+      - NUM_THREADS=1
+      - FRONTEND_DIR=/app/frontend
+    volumes:
+      # Read-only bind mount, not a COPY: the build context is ./serving and
+      # cannot reach ../frontend. Also means UI edits need only a reload.
+      - ./frontend:/app/frontend:ro

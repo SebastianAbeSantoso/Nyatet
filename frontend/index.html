@@ -628,7 +628,10 @@
   </footer>
 
 <script>
-const API_BASE = window.NYATET_API_BASE || "http://localhost:8000";
+// Served by the API container itself, so same-origin is the normal case.
+// Opening this file directly still works and falls back to the mapped port.
+const API_BASE = window.NYATET_API_BASE
+  || (location.protocol.startsWith("http") ? location.origin : "http://localhost:8000");
 
 const msgInput = document.getElementById("msgInput");
 const btnParse = document.getElementById("btnParse");

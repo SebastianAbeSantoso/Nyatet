@@ -14,6 +14,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from inference.resolver import CatalogResolver, group_spans
@@ -22,6 +23,7 @@ from inference.tagger import SpanTagger
 MODEL_DIR = os.environ.get("MODEL_DIR", str(Path(__file__).parent / "models" / "tagger"))
 CATALOG_PATH = os.environ.get("CATALOG_PATH", str(Path(__file__).parent / "data" / "catalog.csv"))
 NUM_THREADS = int(os.environ.get("NUM_THREADS", "1"))
+FRONTEND_DIR = os.environ.get("FRONTEND_DIR", str(Path(__file__).parent.parent / "frontend"))
 
 app = FastAPI(title="Nyatet", version="1.0.0",
               description="Offline order parsing for informal Indonesian text")
@@ -143,3 +145,12 @@ def health():
         "labels": _tagger.labels if _tagger else [],
         "catalog_items": len(_resolver.items) if _resolver else 0,
     }
+
+
+# The UI is served from the same origin as the API so `docker compose up` is
+# still the only command. Mounted last: "/" would otherwise shadow the routes
+# above. Absent directory is not fatal — the API is usable on its own.
+if Path(FRONTEND_DIR).is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+else:
+    print(f"WARNING: no frontend at {FRONTEND_DIR}, serving API only")

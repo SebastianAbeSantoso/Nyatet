@@ -184,7 +184,7 @@ serving/              the MVP
     resolver.py       deterministic, no model
   models/tagger/      exported ONNX
   requirements.txt    
-frontend/            
+frontend/             static, bind-mounted into the container and served at /
 tests/                pytest for every deterministic component
 docs/                 PRD, RESULTS, CONTRIBUTING
 docker-compose.yml    the only thing the judges need to run
@@ -198,6 +198,14 @@ The AI / backend / frontend split is readable straight from the directory layout
 
 ```bash
 docker compose up --build
+```
+
+The UI and the API are served from the same origin on one port:
+
+```
+GET  http://localhost:8000/     (frontend)
+POST http://localhost:8000/parse
+GET  http://localhost:8000/health
 ```
 
 ```
