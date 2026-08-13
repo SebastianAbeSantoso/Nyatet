@@ -20,7 +20,7 @@ A span-tagging model small enough to ship with the app and run on the shop's own
 docker compose up --build
 ```
 
-Then open `frontend/index.html`, or hit the API directly at `http://localhost:8000/docs`.
+Then open `http://localhost:8000` the container serves the UI there.
 
 Try `Pesan resoles 50 biji`. The quantity resolves, the SKU stays open with three candidates, and the response asks which variant. That is the two-score design in one request.
 
