@@ -2,7 +2,7 @@
 
 > Single source for all measurements in this project.
 
-**Last updated:** 8 August 2026 · **Latest run:** O1 re-evaluated on expanded set
+**Last updated:** 12 Aug **Latest run:** O3 generative baselines (Sahabat-AI 8B, SEA-LION v4 8B)
 
 ---
 
@@ -30,29 +30,37 @@
 | -  | 30 Jul | Order | Sahabat-AI 8B + token-classification head | abandoned, see [C7](#8-caveats) |
 | O1 | 6 Aug | Order | indobert-lite-p2, synthetic train | done |
 | O2 | 8 Aug | Order | distilled 4-layer student | done |
-| O3 | TBA | Order | RAG baseline | not started |
+| O3 | 10 - 12 Aug | Order | RAG baseline | done |
 
 ---
 
 ## 2. Benchmark runs
 
-Task: IndoNLU NERP. Both runs used identical training and export code, only the checkpoint name differed, the basis of the architecture-transfer claim.
+- Task: IndoNLU NERP.
+- Both runs used identical training and export code, only the checkpoint name differed, the basis of the architecture-transfer claim.
 
 ### 2.1 B1: indobert-lite-base-p2
 
-`ALBERT` · 11.7 M parameters · vocab 29,999
-
 #### Variants
+- v1 = default
+- v2 = MatMul only
+- v3 = MatMul + Gather
 
 | Variant | F1 | Size | Compression | Median | p95 |
 |---|---|---|---|---|---|
-| PyTorch checkpoint | 0.81 | — | — | — | — |
-| ONNX fp32 | 0.8040 | 42.6 MB | — | — | — |
-| int8 default | 0.8076 | 38.2 MB | 1.1× | — | — |
-| int8 v2 · MatMul only | 0.8024 | 23.25 MB | 1.83× | — | — |
-| int8 v3 · MatMul + Gather | 0.8014 | 11.53 MB | 3.7× | 31.0 ms | 34.1 ms |
+| PyTorch checkpoint | 0.81 | - | - | - | - |
+| ONNX fp32 | 0.8040 | 42.6 MB | - | - | - |
+| int8 v1 | 0.8076 | 38.2 MB | 1.1× | - | - |
+| int8 v2 | 0.8024 | 23.25 MB | 1.83× | - | - |
+| int8 v3 | 0.8014 | 11.53 MB | 3.7× | 31.0 ms | 34.1 ms |
 
-Multi-thread means over 50 runs: fp32 29.8 · int8 default 22.7 · v2 17.9 · v3 18.3 ms
+Multi-thread means over 50 runs:
+| Variant | mean |
+|---|---|
+| fp32 | 29.8 ms |
+| int8 v1 | 22.7 ms |
+| int8 v2 | 17.9 ms |
+| int8 v3 | 18.3 ms |
 
 #### Per-class
 
@@ -62,24 +70,28 @@ Not recorded. See [C3](#8-caveats).
 
 ### 2.2 B2: indobert-base-p2
 
-`BERT` · 124 M parameters · vocab 30,521 · **best (smallest at no accuracy cost) variant: int8 default**
-
 #### Variants
+- v1 = default
+- v2 = MatMul only
+- v3 = MatMul + Gather
 
 | Variant | F1 | Size | Compression | Median | p95 |
 |---|---|---|---|---|---|
-| fp32 | 0.8077 | 472.7 MB | — | — | — |
-| int8 default | 0.8077 | 118.9 MB | 4.0× | — | — |
-| int8 v2 · MatMul only | 0.8106 | 240.95 MB | 1.96× | — | — |
-| int8 v3 · MatMul + Gather | 0.8088 | 124.57 MB | 3.8× | 31.5 ms | 33.8 ms |
+| fp32 | 0.8077 | 472.7 MB | - | - | - |
+| int8 v1 | 0.8077 | 118.9 MB | 4.0× | - | - |
+| int8 v2 | 0.8106 | 240.95 MB | 1.96× | - | - |
+| int8 v3 | 0.8088 | 124.57 MB | 3.8× | 31.5 ms | 33.8 ms |
 
-Latency: single thread · 100 runs · 19 tokens · batch 1. Only v3 was measured
-under this protocol; see [C12](#8-caveats). Multi-thread means over 50 runs,
-a superseded protocol: fp32 47.2 · int8 default 23.4 · v2 17.9 · v3 18.1 ms.
+- Latency: (single thread 100 runs, 19 tokens, batch 1. Only v3 was measured, under this protocol. See [C12](#8-caveats). 
+- Multi-thread means over 50 runs:
+| Variant | mean |
+|---|---|
+| fp32 | 47.2 ms |
+| int8 v1 |23.4 ms |
+| int8 v2 | 17.9 ms |
+| int8 v3 | 18.1 ms |
 
-The v3 configuration is larger here. BERT has no shared weights, so default
-quantization already recovers full compression; v3 only adds scale and
-zero-point tensors.
+The v3 configuration is larger here. BERT has no shared weights, so default quantization already recovers full compression, v3 only adds scale and zero-point tensors.
 
 #### Per-class
 
@@ -112,7 +124,7 @@ Test split, span-level strict.
 
 ### 3.1 O1: indobert-lite-p2, synthetic training
  
-The target task. Trained on generated data, evaluated on real held-out messages.
+- The target task. Trained on generated data, evaluated on real held-out messages.
  
 | | |
 |---|---|
@@ -124,7 +136,7 @@ The target task. Trained on generated data, evaluated on real held-out messages.
  
 #### Variants
  
-Single thread · 100 runs · 13 tokens · batch 1
+- Single thread · 100 runs · 13 tokens · batch 1
  
 | Variant | F1 | Size | Median | p95 |
 |---|---|---|---|---|
@@ -136,11 +148,11 @@ Synthetic held-out split: 1.0000, diagnostic only, the generator grading itself.
  
 The three variants span 0.012 F1, inside the ±0.02 resolution limit at this
 sample size ([C6](#8-caveats)). v3 is shipped for being smallest at no
-measurable accuracy cost, not because it is better.
+measurable accuracy cost.
  
 #### Per-class
  
-int8 v3 · span-level strict · *n*=31 messages, 89 spans:
+- int8 v3 · span-level strict · *n*=31 messages, 89 spans:
  
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
@@ -182,10 +194,10 @@ See [C8](#8-caveats).
 
 ### 3.1b O1b: re-evaluation on expanded set
 
-Same model, same weights, same `int8 v3` artifact as [3.1](#31-o1-indobert-lite-p2-synthetic-training). Only the evaluation set changed.
+- Same model, same weights, same `int8 v3` artifact as [3.1](#31-o1-indobert-lite-p2-synthetic-training). Only the evaluation set changed.
 
 The 31-message set contained only messages carrying spans, so nothing measured
-whether the model correctly outputs *nothing* on ordinary chatter, the failure
+whether the model correctly outputs nothing on ordinary chatter, the failure
 most likely to appear in a live demonstration. 41 non-order buyer messages from
 the same 15 evaluation conversations were annotated with empty span lists, and
 9 entity-bearing non-orders were annotated normally.
@@ -204,7 +216,7 @@ lines is decided by the resolver, not by the annotation.
 
 #### Results, int8 v3
 
-*F1 0.8365 (n=81)
+- F1 0.8365 (n=81)
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
@@ -215,7 +227,7 @@ lines is decided by the resolver, not by the annotation.
 | ANAPHORIC | 0.500 | 0.500 | 0.500 | 2 |
 
 Content classes held up despite ITEM gaining five instances in harder contexts
-(`Masih ada kah risol`, `Besok jualanlah risol` — availability questions, not
+(`Masih ada kah risol`, `Besok jualanlah risol`  availability questions, not
 orders). `VARIANT` remains the weakest class and now carries more weight.
 
 #### Behaviour on non-order messages
@@ -240,7 +252,7 @@ Three patterns, all fixable in the generator:
 
 - Numbers in time and price contexts tagged `QTY`. The generator produces times
   only as `jam 7 pagi diambil`, never as prices or irregular formats.
-- The token `yg` triggering `ANAPHORIC` — most anaphoric forms in the generator
+- The token `yg` triggering `ANAPHORIC` most anaphoric forms in the generator
   begin `yg`/`ky`/`kaya`, so the leading token carries excess signal.
 - One `I-VARIANT` with no preceding `B-`: malformed BIO output.
 
@@ -294,7 +306,7 @@ Parameters move size, not speed: A 10.6× parameter increase at constant
 depth gives 0.9016 against 0.9022 and 24.0 ms against 21.6 ms. Size moved
 10.8×; latency moved 11%.
 
-Depth moves speed: Cutting 12 layers to 4 gives 2.4 ms against 21.6 ms —
+Depth moves speed: Cutting 12 layers to 4 gives 2.4 ms against 21.6 ms, 
 9× faster. This is [F2](#4-findings) confirmed from the other side, on the
 target task rather than the benchmark.
 
@@ -319,7 +331,7 @@ vs 0.611). `ANAPHORIC` collapses: 2 true positives against 10 false ones.
 Likely cause: `ANAPHORIC` spans are long, multi-word and semantically loose
 (`ky biasa`, `kaya kmrn`), and a 4-layer model has less context capacity to
 bound them. The generator's 19 anaphoric surface forms may also be too varied
-for a student of this size. Not tested — modifying the generator would change
+for a student of this size. Not tested, modifying the generator would change
 two variables and invalidate the comparison against O1. See [C13](#8-caveats).
 
 #### Decision
@@ -334,8 +346,105 @@ difference between 21.6 ms and 2.4 ms is imperceptible, while 0.027 F1 is not.
 Consequence for the contribution claim. The project describes a small
 model that runs offline. It does not describe a distilled one. Wording that
 implied distillation has been corrected in the PRD and README.
+### 3.3 O3: generative baselines
 
-### 3.3 Evaluation data
+The organisers' 22 July clarification permits RAG, agentic workflows and tool
+calling as alternatives to fine-tuning. This measures the alternative rather
+than asserting it was the wrong choice.
+
+Two small instruction-tuned LLMs, few-shot prompted to extract the same five
+span types as JSON, evaluated on the same 81 messages with the same `seqeval`
+scoring. Both run locally, so the comparison isolates task formulation,
+bounded tagging against unbounded generation, rather than confounding it with
+cloud against local.
+
+Few-shot examples are retrieved per message by TF-IDF over character n-grams
+from a 2,700-row generated pool. That is the retrieval half of "RAG" in the
+only form this task admits: there are no documents to retrieve, only labelled
+examples.
+
+#### Comparison
+
+| | F1 | Size | sec/msg | Schema failures | Hallucinated spans | FP on 41 negatives |
+|---|---|---|---|---|---|---|
+| **Nyatet tagger, shipped** | 0.8365 | **11.00 MB** | **0.022** | **0** | **0** | 5 |
+| Sahabat-AI 8B | **0.8556** | ~8 GB | 136.7 | 0 | 10 | **1** |
+| SEA-LION v4 8B | 0.7623 | ~8 GB | 13.0 | 9 | 72 | 14 |
+
+Per class:
+
+| Class | Tagger | Sahabat-AI | SEA-LION | Support |
+|---|---|---|---|---|
+| ITEM | 0.900 | 0.923 | 0.745 | 21 |
+| QTY | 0.932 | 0.875 | 0.757 | 35 |
+| UNIT | 0.930 | 0.878 | 0.755 | 21 |
+| VARIANT | 0.583 | 0.789 | 0.850 | 19 |
+| ANAPHORIC | 0.500 | 0.400 | 0.400 | 2 |
+
+#### What this shows, and what it does not
+
+Sahabat-AI beats the shipped model on F1, 0.8556 against 0.8365, outside
+the ±0.02 resolution limit, so a real difference. It also produces fewer false
+positives on non-order messages: 1 of 41 against 5. Its precision is high
+across every class (ITEM 1.000, QTY 0.966) and its recall is lower (0.816
+against 0.888): conservative where the tagger is eager.
+
+The two baselines differ from each other more than either differs from the
+tagger. Same parameter count, same language focus, and one produced 10
+hallucinations while the other produced 72; one produced zero schema failures
+while the other produced 9. A generative baseline's behaviour is not
+predictable in advance from its size or its language coverage.
+
+Sahabat-AI wins on F1. Speed alone is meaningless when a server is available. 11 MB is worth nothing in isolation.
+The result is the combination: 0.8365 F1 at 11 MB at 22 ms, offline, on one
+CPU thread. The generative baseline buys 0.019 F1 for roughly 6,000× the
+latency and ~700× the storage, and no configuration of that approach retains
+its accuracy while fitting on the device the seller owns.
+
+F12 - Hallucination is structural, not statistical. Both baselines
+produced spans whose text does not appear in the input message: 10 and 72
+respectively. The tagger's rate is zero by construction, since every output
+token is a pointer into the input. Better prompting can reduce hallucination
+frequency; it cannot make it impossible.
+
+One observed case is characteristic. On `Pesan hari ni risol 20 adakah Bu`,
+which contains `ITEM` and `QTY` but no unit, a baseline emitted
+`UNIT: buting`. That is not garbling, it is pattern completion, filling the
+shape of a typical order with a plausible value. It would pass any
+well-formedness check and would reach the resolver as a quantity nobody
+stated.
+
+#### Experimental settings and their limits
+
+Run once, without iteration:
+
+| | |
+|---|---|
+| Prompt | Single few-shot prompt, not tuned |
+| Examples | 8, retrieved by TF-IDF character n-gram similarity |
+| Decoding | Greedy, `max_new_tokens=64` |
+| Quantization | 4-bit NF4, `compute_dtype` bfloat16 |
+| Hardware | 2× Tesla T4, layers split across devices (pipeline parallelism, not full parallel) |
+
+bfloat16 was required because SEA-LION failed to load under fp16. Turing
+provides no native bfloat16, so the compute path is emulated and slower than
+newer hardware would give. The seconds-per-message figures are therefore an
+upper bound for this hardware, not a general measure of generative model
+speed. The same constraint is what ended the 8B teacher attempt in [C7](#8-caveats).
+
+The two baselines' latencies are not comparable to each other. Sahabat-AI
+does not emit EOS reliably and runs to `max_new_tokens` on every call,
+SEA-LION terminates early. Each figure is comparable to the tagger, not to the
+other baseline.
+
+The baseline numbers are a lower bound. The prompt was not optimised, the
+few-shot count and retrieval strategy were not varied, and no constrained
+decoding or grammar-based sampling was used, the latter would eliminate all 9
+schema failures outright. A full run took roughly three hours for Sahabat-AI,
+so iterative tuning was not possible within the competition window. See
+[C15](#8-caveats).
+
+### 3.4 Evaluation data
 
 | | |
 |---|---|
@@ -362,10 +471,11 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | F6 | Synthetic-to-real transfer holds: 0.902 on real messages from generated training data | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F7 | Templated training produces a saturated, uninformative confidence signal | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F8 | Nearly half of real orders contain no product name (implicit item) | 14 of 31 annotated orders |
-| F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883 — a 0.017 spread, inside the ±0.02 resolution limit of a 31-message set. See [C11](#8-caveats) |
+| F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883, a 0.017 spread, inside the ±0.02 resolution limit of a 31-message set. See [C11](#8-caveats) |
 | F10 | Depth determines speed where parameter count does not | 4 layers at 2.4 ms vs 12 layers at 21.6 ms, same task. See [3.2](#32-o2-distillation-into-a-reduced-layer-student) |
 | F11 | A 124M teacher does not outperform an 11.7M model on this task | 0.9016 vs 0.9022 under matched hyperparameters. F1 replicated on the target domain |
-
+| F12 | Hallucination is structural, not statistical | 10 and 72 invented spans against 0 by construction. See §3.3 |
+| F13 | Generative baseline behaviour is unpredictable from size | Same 8B scale, same language focus: 0.856 vs 0.762 F1, 10 vs 72 hallucinations |
 ---
 
 ## 5. Decisions derived
@@ -380,16 +490,17 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | Do not surface tagging confidence in the UI | F7 |
 | Ship O1, not the distilled student | 3.2, 0.027 F1 for imperceptible latency gain |
 | Contribution described as small and offline, not distilled | 3.2 |
+| Ship the tagger despite Sahabat-AI's higher F1 | §3.3, 0.019 F1 for 6,000× latency and ~700× size |
 
 ---
 
 ## 6. Quantization recipe
 
-Supporting detail for **F5**.
+Supporting detail for F5.
 
-**Symptom.** Default `quantize_dynamic` on an ALBERT export produced 1.1× compression against an expected 4×.
+Symptom: Default `quantize_dynamic` on an ALBERT export produced 1.1× compression against an expected 4×.
 
-**Investigation.** ONNX initializer data types, `1`=FLOAT, `2`=UINT8, `3`=INT8:
+Investigation: ONNX initializer data types, `1`=FLOAT, `2`=UINT8, `3`=INT8:
 
 ```
 fp32                {1: 25}
@@ -403,7 +514,7 @@ int8 default        {1: 31, 2: 22}
   word_embeddings_quantized   3.7 MB  dtype=2
 ```
 
-Cause. ALBERT shares one transformer layer's weights across all 12 layers, so the exporter emits them as anonymous shared graph constants (`onnx::MatMul_*`). ONNX Runtime's default dynamic quantizer skips shared initializers, converting only the embedding table. Fix is three parts, all required. Passing `MatMulConstBOnly` alone does not work, the pre-processing step is what makes the shared constants reachable.
+Cause: ALBERT shares one transformer layer's weights across all 12 layers, so the exporter emits them as anonymous shared graph constants (`onnx::MatMul_*`). ONNX Runtime's default dynamic quantizer skips shared initializers, converting only the embedding table. Fix is three parts, all required. Passing `MatMulConstBOnly` alone does not work, the pre-processing step is what makes the shared constants reachable.
 
 ```python
 from onnxruntime.quantization import quantize_dynamic, QuantType
@@ -427,9 +538,9 @@ quantize_dynamic(
 | Variant | Converts |
 |---|---|
 | v2 | MatMul weights only; embedding table stays fp32 |
-| v3 | MatMul **and** `Gather` (the embedding lookup) |
+| v3 | MatMul and `Gather` (the embedding lookup) |
 
-**Verification.** Check initializer dtypes rather than trusting file size, `quantize_dynamic` writes a pre-processed copy alongside the quantized model, and summing a directory double-counts.
+Verification: Check initializer dtypes rather than trusting file size, `quantize_dynamic` writes a pre-processed copy alongside the quantized model, and summing a directory double-counts.
 
 Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1, v3 was smallest with no measurable accuracy difference across variants, so v3 shipped. On B2 (BERT, no shared weights) default quantization already recovers full compression and v3 is unnecessary.
 
@@ -466,9 +577,10 @@ Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1
 | **C8** | Tagging confidence is saturated and uninformative (F7). |
 | **C9** | O1 evaluation contains only messages that carry spans. Nothing currently measures whether the model correctly outputs *nothing* on non-order messages, the most likely live-demo failure. |
 | **C10** | Evaluation data comes from a single seller in one city. Real, but narrow. Cake and pastry orders are undersampled: 4 conversations, 1 in evaluation. |
-| **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. All differences are below the resolution limit (one span ≈ 0.011 F1), so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only — span vocabulary remains 99.2% real-corpus. |
+| **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. All differences are below the resolution limit (one span ≈ 0.011 F1), so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only, span vocabulary remains 99.2% real-corpus. |
 | **C12** | B-series latency was measured single-thread for v3 only. Other variants use a superseded multi-thread mean-of-50 protocol and are not comparable to each other or to O1. F4's 1.6-2.6× range derives from those figures and should be re-derived if they are re-measured. |
 | **C13** | The student's ANAPHORIC collapse (0.286 F1, 2 true positives against 10 false) was not investigated. Reducing the generator's anaphoric variety would have changed two variables and invalidated the O1 comparison. |
+| **C14** | Generative baselines were run once without prompt tuning, constrained decoding, or few-shot variation. Their numbers are a lower bound. A fair comparison would optimise the prompt; a single full run cost ~3 hours on the available hardware. |
 
 ---
 
