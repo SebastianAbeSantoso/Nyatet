@@ -4,7 +4,7 @@
 
 A span-tagging model small enough to ship with the app and run on the shop's own device. It replaces a large-model API for pulling structure out of informal Indonesian text.
 
-> **Status:** The order-parsing pipeline runs end to end. Distillation was evaluated and not shipped. The RAG comparison is outstanding. Progress is listed under [Status](#status).
+> **Status:** The order-parsing pipeline runs end to end. Distillation was evaluated and not shipped. The RAG comparison is completed, details below. Progress is listed under [Status](#status).
 
 ![Model](https://img.shields.io/badge/model-IndoBERT--lite--p2-blue)
 ![Size](https://img.shields.io/badge/ONNX%20int8-11.00%20MB-brightgreen)
@@ -205,6 +205,20 @@ Full methodology, per-class breakdowns, and quantization detail: [docs/RESULTS.m
 
 ---
 
+### Against generative baselines
+
+Two 8B instruction-tuned LLMs, few-shot prompted for the same five span types, same 81 messages, same scoring.
+
+| | F1 | Size | sec/msg | Schema fails | Hallucinated spans |
+|---|---|---|---|---|---|
+| Nyatet tagger | 0.837 | **11 MB** | **0.022** | **0** | **0** |
+| Sahabat-AI 8B | **0.856** | ~8 GB | 136.7 | 0 | 10 |
+| SEA-LION v4 8B | 0.762 | ~8 GB | 13.0 | 9 | 72 |
+
+Sahabat-AI beats the shipped model on F1 by 0.019. No single number here is the result, speed alone is meaningless with a server, and 11 MB is worth nothing in isolation. The result is the combination: 0.837 at 11 MB at 22 ms, offline, on one CPU thread. The baseline buys 0.019 F1 for ~6,000× the latency and ~700× the storage.
+
+Both baselines emitted spans whose text does not appear in the input — 10 and 72. The tagger's rate is zero by construction. Baselines were run once without prompt tuning; their numbers are a lower bound. Detail: [docs/RESULTS.md](docs/RESULTS.md).
+
 ## Repo structure
 
 ```
@@ -281,7 +295,7 @@ POST /parse
 - Standing orders are detected and flagged, not parsed. A weekly-schedule customer is the highest-value customer in this dataset and the MVP declines to handle them.
 - Unit conversion only handles pack units the catalog declares.
 - Latency was measured on Kaggle CPU, not the machine the demo will run on.
-
+- Generative baselines were run once without prompt tuning or constrained decoding, their numbers are a lower bound.
 ---
 
 ## Status
@@ -296,12 +310,7 @@ POST /parse
 - Order-domain training and evaluation (O1, O1b)
 - Teacher-student distillation into a reduced-layer student (O2, not shipped)
 - Normalizer, resolver, standing-order detection, and frontend wiring
-
-**In progress**
 - RAG comparison baseline
-
-**Deferred to final round**
-- `PACK_SIZE`, `PAYMENT_NOTE`, `LOCATION` span types
 
 ---
 
