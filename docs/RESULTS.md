@@ -260,9 +260,8 @@ Not fixed. Changing the generator would invalidate the O2 comparison ([3.2](#32-
 
 ### 3.2 O2: distillation into a reduced-layer student
 
-`indobert-base-p2` fine-tuned on the order data as teacher, distilled into a
-4-layer non-shared BERT. Same generator, same held-out set, same seed as O1,
-one variable changed.
+- `indobert-base-p2` fine-tuned on the order data as teacher, distilled into a
+4-layer non-shared BERT. Same generator, same held-out set, same seed as O1,one variable changed.
 
 | | |
 |---|---|
@@ -272,80 +271,76 @@ one variable changed.
 | Loss | `0.5 · CE(hard) + 0.5 · T² · KL(student/T ‖ teacher/T)`, T = 3.0 |
 | Training | 8 epochs · lr 1e-4 · batch 32 · warmup 0.1 |
 
-#### Teacher variants
-
-Single thread · 100 runs · 13 tokens · batch 1
-
-| Variant | F1 | Size | Median | p95 |
-|---|---|---|---|---|
-| fp32 | 0.9016 | 472.73 MB | 46.2 ms | 52.2 ms |
-| int8 v2 | 0.9016 | 229.79 MB | 24.1 ms | 24.9 ms |
-| int8 v3 | 0.9016 | 118.80 MB | 24.0 ms | 27.2 ms |
-
-Quantization is exactly accuracy-neutral here: identical F1 across all three.
-
-#### Student variants
-
-| Variant | F1 | Size | Median | p95 |
-|---|---|---|---|---|
-| fp32 | 0.8643 | 101.18 MB | 3.6 ms | 3.8 ms |
-| int8 v2 | 0.8600 | 80.94 MB | 2.5 ms | 2.6 ms |
-| int8 v3 | 0.8756 | 25.45 MB | 2.4 ms | 2.8 ms |
-
 #### Three-way comparison
 
-| | Params | Layers | F1 | Size (int8 v3) | Median |
-|---|---|---|---|---|---|
-| O2 teacher · base-p2 | 124 M | 12 | 0.9016 | 118.80 MB | 24.0 ms |
-| O1 · lite-p2, shipped | 11.7 M | 12 | 0.9022 | 11.00 MB | 21.6 ms |
-| O2 student · distilled | ~20 M | 4 | 0.8756 | 25.45 MB | 2.4 ms |
+All rows evaluated on the same 81-message set.
 
-Two results, in opposite directions:
+| | Params | Layers | F1 | Size (int8 v3) | Median | FP on 41 negatives |
+|---|---|---|---|---|---|---|
+| Teacher · base-p2 | 124 M | 12 | 0.8378 | 118.80 MB | 24.0 ms | 5 (12%) |
+| O1 · lite-p2 | **11.7 M** | **12** | **0.8365** | **11.00 MB** | 21.6 ms | 5 (12%) |
+| Student · distilled | ~20 M | **4** | 0.6917 | 25.45 MB | **2.4 ms** | 16 (39%) |
 
-Parameters move size, not speed: A 10.6× parameter increase at constant
-depth gives 0.9016 against 0.9022 and 24.0 ms against 21.6 ms. Size moved
-10.8×; latency moved 11%.
+Experiment showed three results:
 
-Depth moves speed: Cutting 12 layers to 4 gives 2.4 ms against 21.6 ms, 
-9× faster. This is [F2](#4-findings) confirmed from the other side, on the
-target task rather than the benchmark.
+Parameters move size, not speed or accuracy. A 10.6× parameter
+increase at constant depth gives 0.8378 against 0.8365, 0.0013 apart, far
+inside the resolution limit, and 24.0 ms against 21.6 ms. Both models produce
+identical false-positive counts. [F11](#4-findings) confirmed on the full set.
 
-Note the student is larger than O1 (25.45 MB vs 11.00) while being 9×
-faster. Fewer layers, but no cross-layer weight sharing, so its parameters sit
-in storage rather than in compute. The same point from a third angle.
+Depth moves speed. Cutting 12 layers to 4 gives 2.4 ms against 21.6 ms,
+9× faster. [F2](#4-findings) confirmed from the other side, on the target task
+rather than the benchmark.
+
+Depth also buys restraint, and losing it is expensive. The student's false
+positive rate on ordinary chatter is 39% against 12% for both 12-layer models.
+Since the teacher and the shipped model, different architectures, different
+parameter counts, produce identical rates, this is a student capacity
+effect rather than a training-data effect.
+
+Note the student is larger than the shipped model (25.45 MB against 11.00)
+while being 9× faster. Fewer layers, but no cross-layer weight sharing, so its
+parameters sit in storage rather than in compute.
 
 #### Per-class, student int8 v3
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| QTY | 0.897 | 1.000 | 0.946 | 35 |
-| ITEM | 0.842 | 1.000 | 0.914 | 16 |
-| VARIANT | 0.875 | 0.933 | 0.903 | 15 |
-| UNIT | 0.808 | 1.000 | 0.894 | 21 |
-| ANAPHORIC | 0.167 | 1.000 | 0.286 | 2 |
+| VARIANT | 0.773 | 0.895 | 0.829 | 19 |
+| QTY | 0.686 | 1.000 | 0.814 | 35 |
+| ITEM | 0.654 | 0.810 | 0.723 | 21 |
+| UNIT | 0.467 | 1.000 | 0.636 | 21 |
+| ANAPHORIC | 0.083 | 1.000 | 0.154 | 2 |
+| micro avg | 0.548 | 0.939 | 0.692 | 98 |
 
-The 0.027 gap to O1 is concentrated in one class. Every content class
-holds up, and `VARIANT` is actually *better* on the student than on O1 (0.903
-vs 0.611). `ANAPHORIC` collapses: 2 true positives against 10 false ones.
+The shape is the finding. Recall 0.939 with precision 0.548 three classes
+at recall 1.000. The student finds everything, including what is not there. It
+did not fail to learn the entity types; it failed to learn when to output
+nothing.
 
-Likely cause: `ANAPHORIC` spans are long, multi-word and semantically loose
-(`ky biasa`, `kaya kmrn`), and a 4-layer model has less context capacity to
-bound them. The generator's 19 anaphoric surface forms may also be too varied
-for a student of this size. Not tested, modifying the generator would change
-two variables and invalidate the comparison against O1. See [C13](#8-caveats).
+`VARIANT` is the one class where the student beats the shipped model (0.829
+against 0.583). Not investigated, see [C13](#8-caveats).
 
 #### Decision
 
-O1 ships. The student's 0.027 deficit is outside the resolution limit, so
-it is a real difference rather than noise.
+O1 ships. The student loses 0.145 F1 and triples the false-positive rate on
+non-order messages.
+
+An earlier evaluation on a 31-message set containing only span-bearing
+messages put the gap at 0.027, which made the decision look marginal. Adding 41
+negatives moved it to 0.145 and revealed the cause. That set could not measure
+the failure mode that matters here, and the difference between the two
+measurements is the argument for having expanded it ([3.1b](#31b-o1b-re-evaluation-on-expanded-set)).
 
 The distilled student is retained as measured evidence for the architecture
-finding, not as a candidate for deployment: at sixty messages a night the
-difference between 21.6 ms and 2.4 ms is imperceptible, while 0.027 F1 is not.
+finding, not as a deployment candidate: at sixty messages a night the
+difference between 21.6 ms and 2.4 ms is imperceptible, while 0.145 F1 and a
+tripled false-positive rate are not.
 
-Consequence for the contribution claim. The project describes a small
-model that runs offline. It does not describe a distilled one. Wording that
-implied distillation has been corrected in the PRD and README.
+**Consequence for the contribution claim.** The project describes a small model
+that runs offline. It does not describe a distilled one. Wording that implied
+distillation has been corrected in the PRD and README.
+
 ### 3.3 O3: generative baselines
 
 The organisers' 22 July clarification permits RAG, agentic workflows and tool
@@ -471,11 +466,13 @@ Three standing-order conversations (a reseller sending weekly day-to-quantity sc
 | F6 | Synthetic-to-real transfer holds: 0.902 on real messages from generated training data | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F7 | Templated training produces a saturated, uninformative confidence signal | [3.1](#31-o1-indobert-lite-p2-synthetic-training) |
 | F8 | Nearly half of real orders contain no product name (implicit item) | 14 of 31 annotated orders |
-| F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883, a 0.017 spread, inside the ±0.02 resolution limit of a 31-message set. See [C11](#8-caveats) |
-| F10 | Depth determines speed where parameter count does not | 4 layers at 2.4 ms vs 12 layers at 21.6 ms, same task. See [3.2](#32-o2-distillation-into-a-reduced-layer-student) |
+| F9 | Generator vocabulary expansion produced no measurable effect | Three configurations scored 0.895 / 0.878 / 0.883 on the earlier 31-message set, a 0.017 spread inside that set's ±0.02 resolution limit. See [C11](#8-caveats) |
+| F10 | Depth determines speed where parameter count does not | 4 layers at 2.4 ms vs 12 layers at 21.6 ms, same task. but adding that depth also costs restraint: 39% vs 12% false positives. See [3.2](#32-o2-distillation-into-a-reduced-layer-student) |
 | F11 | A 124M teacher does not outperform an 11.7M model on this task | 0.9016 vs 0.9022 under matched hyperparameters. F1 replicated on the target domain |
 | F12 | Hallucination is structural, not statistical | 10 and 72 invented spans against 0 by construction. See §3.3 |
 | F13 | Generative baseline behaviour is unpredictable from size | Same 8B scale, same language focus: 0.856 vs 0.762 F1, 10 vs 72 hallucinations |
+| F14 | Depth determines the ability to output nothing | 4-layer student 39% FP on negatives vs 12% for both 12-layer models, identical training data |
+
 ---
 
 ## 5. Decisions derived
@@ -572,14 +569,13 @@ Which to use is task-dependent. On B1, v3 gave 3.7× for no accuracy cost. On O1
 | **C3** | B1 per-class breakdown not recorded. |
 | **C4** | EVT class at 0.388 F1, unaddressed. |
 | **C5** | B-series validates the pipeline, not the target task. **No B-series number predicts Order accuracy.** |
-| **C6** | O1 F1 varies ~±0.015 across training runs (seed nondeterminism). At *n*=31, one span flipping moves F1 by ~0.011. Report as a range, not a point. |
+| **C6** | O1 F1 varies ~±0.015 across training runs (seed nondeterminism). At n=81, one span flipping moves F1 by ~0.010. Report as a range, not a point. |
 | **C7** | A Sahabat-AI 8B teacher was attempted on 2× T4 and abandoned. The architecture loads and LoRA attaches, but fp16 compute produces non-finite gradients from the freshly-initialized classification head and fp32 compute exceeds memory during loading. Turing provides no native bf16. A configuration that did train reached 0.0011 F1 after 500 examples, insufficient training to assess the approach. Not a measurement of the method, only of its feasibility on this hardware. |
 | **C8** | Tagging confidence is saturated and uninformative (F7). |
-| **C9** | O1 evaluation contains only messages that carry spans. Nothing currently measures whether the model correctly outputs *nothing* on non-order messages, the most likely live-demo failure. |
 | **C10** | Evaluation data comes from a single seller in one city. Real, but narrow. Cake and pastry orders are undersampled: 4 conversations, 1 in evaluation. |
-| **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. All differences are below the resolution limit (one span ≈ 0.011 F1), so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only, span vocabulary remains 99.2% real-corpus. |
+| **C11** | Three generator configurations were evaluated against the same held-out set: baseline, plus elicited vocabulary at two negative-example ratios for the `di-` prefix (10:1 and 4.9:1). F1 was 0.895 / 0.878 / 0.883 respectively. These runs predate the evaluation-set expansion and were measured on the earlier 31-message set, where one span ≈ 0.011 F1; all differences are below that resolution limit, so no configuration is measurably better and the baseline was retained. The elicited vocabulary contributed anaphoric surface forms and untagged sentence furniture only, span vocabulary remains 99.2% real-corpus. |
 | **C12** | B-series latency was measured single-thread for v3 only. Other variants use a superseded multi-thread mean-of-50 protocol and are not comparable to each other or to O1. F4's 1.6-2.6× range derives from those figures and should be re-derived if they are re-measured. |
-| **C13** | The student's ANAPHORIC collapse (0.286 F1, 2 true positives against 10 false) was not investigated. Reducing the generator's anaphoric variety would have changed two variables and invalidated the O1 comparison. |
+| **C13** | The student's ANAPHORIC collapse (0.154 F1, precision 0.083 at recall 1.000) was not investigated. Reducing the generator's anaphoric variety would have changed two variables and invalidated the O1 comparison. |
 | **C14** | Generative baselines were run once without prompt tuning, constrained decoding, or few-shot variation. Their numbers are a lower bound. A fair comparison would optimise the prompt; a single full run cost ~3 hours on the available hardware. |
 
 ---
