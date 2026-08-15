@@ -8,10 +8,11 @@ pesanan terstruktur.
 
 | | |
 |---|---|
-| F1 | 0.902 (31 pesan nyata, held-out per percakapan) |
+| F1 | 0.837 (81 pesan nyata, held-out per percakapan) |
 | Ukuran | 11.00 MB (ONNX int8) |
 | Latensi | 21.6 ms median, 1 thread |
 | Inferensi | 100% offline, tanpa API, tanpa jaringan |
+| Span palsu | 5 dari 41 pesan non-pesanan (12%) |
 
 ```bash
 docker compose up --build
