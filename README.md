@@ -20,7 +20,7 @@ A span-tagging model small enough to ship with the app and run on the shop's own
 docker compose up --build
 ```
 
-Then open `http://localhost:8000` the container serves the UI there.
+Then open `http://localhost:8000`. The container serves the UI there.
 
 Try `Pesan resoles 50 biji`. The quantity resolves, the SKU stays open with three candidates, and the response asks which variant. That is the two-score design in one request.
 
@@ -45,6 +45,14 @@ Om esk pagi ibu ambil ky biasa jam 6 pagi 45 buting bisalh
 Existing automation tools (Dazo, WATI, Qiscus) handle this by constraining the input: catalogs, order forms, guided dialogue. That works for a first-time buyer browsing an online store. It fails for the weekly regular, who won't navigate a menu to order the one thing they always order, so the seller keeps transcribing by hand.
 
 Nyatet goes the other way: keep the message as it is, and parse it.
+
+---
+
+## Why this generalizes
+
+The order-parsing task is the demonstration, not the contribution. Nothing in `serving/` names a span type. The label inventory is read from the model's own `config.json` at load time, so the same code serves the IndoNLU NERP model (person, place, industry, event, food) and the order model (item, quantity, unit, variant, anaphoric).
+
+Any task where the answer is *spans inside the input* fits the same pipeline: receipts, forms, delivery notes, or a different trade. What the demonstration establishes is that a bounded output space makes a small offline model sufficient for that class of task.
 
 ---
 
@@ -91,8 +99,8 @@ The "tell an LLM to output JSON" approach needs a big model precisely because ge
 | `UNIT` | `biji`, `buting`, `kotak`, `pcs`, `loyang` |
 | `VARIANT` | `mentah`, `digoreng`, `frozen`, `sdh masak` |
 | `ANAPHORIC` | `ky biasa`, `kya kmrn` |
-o
-`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 12 of 29 orders, and it frequently arrives **detached** from the product:
+
+`VARIANT` is a separate type rather than folded into `ITEM`. In the annotated data it appears in 12 of 29 orders, and it frequently arrives detached from the product:
 
 ```
 25 nya di goreng 25 yg mentah
@@ -146,14 +154,6 @@ seller: Mentah kh ka?
 
 ---
 
-## Why this generalizes
-
-The order-parsing task is the demonstration, not the contribution. Nothing in `serving/` names a span type. The label inventory is read from the model's own `config.json` at load time, so the same code serves the IndoNLU NERP model (person, place, industry, event, food) and the order model (item, quantity, unit, variant, anaphoric).
-
-Any task where the answer is *spans inside the input* fits the same pipeline: receipts, forms, delivery notes, or a different trade. What the demonstration establishes is that a bounded output space makes a small offline model sufficient for that class of task.
-
----
-
 ## Data
 
 **60 real WhatsApp conversations, 682 messages, one seller.** Used with the owner's permission. PII such as names, identification and location landmarks are replaced with placeholders.
@@ -162,14 +162,14 @@ Any task where the answer is *spans inside the input* fits the same pipeline: re
 |---|---|
 | Order-bearing buyer messages | 102 |
 | Seller clarifying questions (linked to trigger) | 47 |
-| Split | 45 conversations train / 15 evaluation, split **by conversation** |
+| Split | 45 conversations train / 15 evaluation, split by conversation |
 | Annotated | 81 messages, 40 with spans, 41 non-order negatives |
 
 Splitting by conversation rather than by message matters: the same customer's phrasing must not appear on both sides.
 
-**Spans mark entity mentions, not order content.** The model sees one message with no history, so `mentah` in `Enggeh mentah` and in `risol mentah 20 biji` are indistinguishable to it. Which mentions become order lines is decided by the resolver, not by the annotation.
+Spans mark entity mentions, not order content. The model sees one message with no history, so `mentah` in `Enggeh mentah` and in `risol mentah 20 biji` are indistinguishable to it. Which mentions become order lines is decided by the resolver, not by the annotation.
 
-**Training data is synthetic, evaluation data is real.** The generator (`training/order/generate_data.py`) is built from the observed distributions of the training-side conversations: real unit vocabulary, real variant morphology (`butinglh`, `mentahnya`), and the structural frequencies above. Only the real held-out set produces a reportable number; the synthetic split is diagnostic.
+Training data is synthetic, evaluation data is real. The generator (`training/order/generate_data.py`) is built from the observed distributions of the training-side conversations: real unit vocabulary, real variant morphology (`butinglh`, `mentahnya`), and the structural frequencies above. Only the real held-out set produces a reportable number; the synthetic split is diagnostic.
 
 Three standing-order conversations (a reseller sending weekly day-to-quantity schedules like `selasa - jumat 34, sabtu 38`) are excluded from evaluation and used as negative examples. The MVP detects and flags these rather than parsing them.
 
@@ -193,13 +193,11 @@ At n=81 one span is ~0.010 F1, so differences under ~0.02 are not measurable.
 
 | | Params | Layers | F1 | Size | Median |
 |---|---|---|---|---|---|
-| base-p2 teacher | 124 M | 12 | 0.9016 | 118.80 MB | 24.0 ms |
-| lite-p2, shipped | 11.7 M | 12 | 0.902 | 11.00 MB | 21.6 ms |
-| distilled student | ~20 M | 4 | 0.8756 | 25.45 MB | 2.4 ms |
+| base-p2 teacher | 124 M | 12 | 0.8378 | 118.80 MB | 24.0 ms |
+| lite-p2, shipped | 11.7 M | 12 | 0.8365 | 11.00 MB | 21.6 ms |
+| distilled student | ~20 M | 4 | 0.6917 | 25.45 MB | 2.4 ms |
 
-The teacher and student rows were measured on the earlier 31-message set, where the shipped model scored 0.902. Only the shipped row was re-measured on the expanded set, so read F1 across rows with that in mind.
-
-10.6× the parameters at constant depth changes nothing. Cutting 12 layers to 4 gives 9× the speed for 0.027 F1. The shipped model takes the accuracy.
+10.6× the parameters at constant depth changes nothing, including the false-positive rate. Cutting 12 layers to 4 gives 9× the speed for 0.145 F1 and triples the false-positive rate on ordinary chatter. Depth buys the ability to output nothing, and that only shows up when you test on messages that should produce no output.
 
 Full methodology, per-class breakdowns, and quantization detail: [docs/RESULTS.md](docs/RESULTS.md)
 
@@ -211,13 +209,15 @@ Two 8B instruction-tuned LLMs, few-shot prompted for the same five span types, s
 
 | | F1 | Size | sec/msg | Schema fails | Hallucinated spans |
 |---|---|---|---|---|---|
-| Nyatet tagger | 0.837 | **11 MB** | **0.022** | **0** | **0** |
-| Sahabat-AI 8B | **0.856** | ~8 GB | 136.7 | 0 | 10 |
+| Nyatet tagger | 0.837 | 11 MB | 0.022 | 0 | 0 |
+| Sahabat-AI 8B | 0.856 | ~8 GB | 136.7 | 0 | 10 |
 | SEA-LION v4 8B | 0.762 | ~8 GB | 13.0 | 9 | 72 |
 
 Sahabat-AI beats the shipped model on F1 by 0.019. No single number here is the result, speed alone is meaningless with a server, and 11 MB is worth nothing in isolation. The result is the combination: 0.837 at 11 MB at 22 ms, offline, on one CPU thread. The baseline buys 0.019 F1 for ~6,000× the latency and ~700× the storage.
 
 Both baselines emitted spans whose text does not appear in the input — 10 and 72. The tagger's rate is zero by construction. Baselines were run once without prompt tuning; their numbers are a lower bound. Detail: [docs/RESULTS.md](docs/RESULTS.md).
+
+---
 
 ## Repo structure
 
@@ -284,7 +284,7 @@ POST /parse
 
 ## Known limitations
 
-- The evaluation set is small (n=81, 98 orders) and comes from a single seller in one city. It is real, but narrow, and nothing here shows the model generalizes to other businesses or regional varieties.
+- The evaluation set is small (n=81, 98 spans) and comes from a single seller in one city. It is real, but narrow, and nothing here shows the model generalizes to other businesses or regional varieties.
 - Cake and pastry orders are undersampled: 4 conversations, 1 in the evaluation split.
 - Training data is generated. The gap between synthetic training and real evaluation is the main open risk, and is reported rather than hidden.
 - Tagging confidence is saturated and carries no information. Every predicted span returns ≥0.99999, including on deliberately ambiguous input. Templated training data contains no genuine ambiguity, so the model never learned to express uncertainty. Resolution confidence is unaffected, since it is a retrieval margin rather than a model output, so the two-score design holds, but one of the two scores is currently a constant and is not surfaced in the UI.
@@ -296,6 +296,7 @@ POST /parse
 - Unit conversion only handles pack units the catalog declares.
 - Latency was measured on Kaggle CPU, not the machine the demo will run on.
 - Generative baselines were run once without prompt tuning or constrained decoding, their numbers are a lower bound.
+
 ---
 
 ## Status
