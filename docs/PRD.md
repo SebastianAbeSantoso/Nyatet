@@ -18,13 +18,13 @@ hosted large-model API for pulling structure out of informal Indonesian text.
 We ship one interaction flow: order parsing for a home food producer. The
 method behind it is not specific to that task, which is why we also measure it
 on a public benchmark. The contribution is the task formulation plus offline
-deployment; the demonstration is order parsing; the evidence is the same
+deployment, the demonstration is order parsing, the evidence is the same
 architecture measured across two domains and three model configurations.
 
 One thing to keep straight in everything we write externally: **the claim is
 size and offline capability, not speed.** A 124M model and an 11.7M model land
-at identical latency once quantized (§6.1). Speed comes from *depth*, not from
-parameter count (§6.4). Conflating those would be overclaiming.
+at identical latency once quantized (6.1). Speed comes from *depth*, not from
+parameter count (6.4). Conflating those would be overclaiming.
 
 ### 1.1 What ships and what does not
 
@@ -34,7 +34,7 @@ results table and for about twenty seconds of the video. A second interactive
 flow would breach the MVP scope cap, so there is not one.
 
 The distilled student is also not shipped. It is retained as measured evidence
-for an architectural finding, not as a deployment candidate (§6.4).
+for an architectural finding, not as a deployment candidate (6.4).
 
 ---
 
@@ -161,7 +161,7 @@ would lose the quantity-to-variant pairing.
 
 `ANAPHORIC` covers references the system cannot resolve at all. `ky biasa`
 ("as usual") might mean the usual quantity, the usual variant, the usual
-pickup time, or all three. The seller knows from history; nobody else does.
+pickup time, or all three. The seller knows from history, nobody else does.
 The output is a flag, not a guess.
 
 `PACK_SIZE`, `PAYMENT_NOTE` and `LOCATION` are deferred to the final-round
@@ -207,7 +207,7 @@ buyer:  Pesan resoles 50 biji
 seller: Mentah kh ka?
 ```
 
-`resoles` tags confidently; it is obviously the product. It resolves
+`resoles` tags confidently, it is obviously the product. It resolves
 ambiguously, because *mentah*, *goreng* and *frozen* are equally close catalog
 rows. A single conflated score would report that as bad parsing when the
 parsing was correct and only the variant was missing. The interface state is
@@ -218,8 +218,8 @@ with `triggered_by_idx`), which gives ground truth for when resolution
 *should* fail.
 
 **Known defect.** Tagging confidence is currently saturated and carries no
-information, see §6.5. Resolution confidence is unaffected. The two-score
-architecture holds; one of the two scores is a constant and is not surfaced in
+information, see 6.5. Resolution confidence is unaffected. The two-score
+architecture holds, one of the two scores is a constant and is not surfaced in
 the interface.
 
 ### 4.5 Out-of-scope input returns a result, not a failure
@@ -243,9 +243,9 @@ This matters for the proof-of-work video, which must show a non-working flow.
 | Export | ONNX int8, pre-processed, MatMul + Gather | Yes |
 | Resolver | Fuzzy match over catalog CSV | Yes |
 
-**Distillation was run and measured (§6.4), and the result changed the plan.**
+**Distillation was run and measured (6.4), and the result changed the plan.**
 `indobert-base-p2` was fine-tuned as teacher and distilled into a 4-layer
-student. The student lost 0.027 F1 for a latency advantage that is
+student. The student lost 0.145 F1 for a latency advantage that is
 imperceptible at this workload, so the shipped model is the directly
 fine-tuned one.
 
@@ -259,13 +259,13 @@ during loading, and Turing provides no native bf16. Documented in
 
 Benchmark results established that parameter count determines file size and
 not inference speed. IndoBERT-lite and IndoBERT-base both execute 12
-transformer layers at 768 hidden; ALBERT gets its parameter reduction by
+transformer layers at 768 hidden, ALBERT gets its parameter reduction by
 sharing one layer's weights across all twelve, not by doing less work.
 Measured latency was 31.0 ms against 31.5 ms, no difference.
 
 The distillation student was therefore specified as a reduced-layer,
-non-shared BERT: 4 layers at 384 hidden. Depth removes compute; parameter
-sharing does not. §6.4 confirms this directly: the same task, 9× faster.
+non-shared BERT: 4 layers at 384 hidden. Depth removes compute, parameter
+sharing does not. 6.4 confirms this directly: the same task, 9× faster.
 
 **Size policy.** External claims state the property ("runs offline on low-cost
 hardware") and never the parameter count. Once we say a number, someone will
@@ -298,7 +298,7 @@ two requirements files.
 
 IndoNLU NERP, 6,720 / 840 / 840 sentences, 11 IOB labels. Freely available,
 loaded programmatically. Identical training and export code across both
-models; only the checkpoint name differs.
+models, only the checkpoint name differs.
 
 | | lite (11.7M) | base (124M) |
 |---|---|---|
@@ -306,7 +306,7 @@ models; only the checkpoint name differs.
 | Deployed size | 11.53 MB | 118.9 MB |
 | Median latency, 1 thread | 31.0 ms | 31.5 ms |
 
-**10.6× the parameters buys 0.007 F1 and no latency improvement.** This is the
+10.6× the parameters buys 0.007 F1 and no latency improvement. This is the
 project's thesis, measured on a public benchmark rather than asserted.
 
 Selected over the Shopee Code League address dataset, which is no longer
@@ -317,7 +317,7 @@ which is this project's thesis already expressed as a peer-reviewed baseline.
 
 ### 6.2 Target domain, complete
 
-**Evaluation data is real; training data is generated.**
+Evaluation data is real, training data is generated.
 
 | | |
 |---|---|
@@ -360,7 +360,7 @@ clearest possible argument for evaluating on real data.
 price contexts (`jam 7.30`, `55 ribu`) get tagged `QTY`, and the token `yg`
 triggers `ANAPHORIC`. Both are generator gaps: times appear only as
 `jam 7 pagi diambil`, and most anaphoric forms begin `yg`/`ky`/`kaya`. Not
-fixed, since changing the generator would invalidate the §6.4 comparison.
+fixed, since changing the generator would invalidate the 6.4 comparison.
 
 **Resolution limit.** At *n*=81 one span is ~0.010 F1 and run-to-run seed
 variance is ~±0.015. Differences under ~0.02 are not measurable, and we report
@@ -392,22 +392,17 @@ variable changed.
 
 | | Params | Layers | F1 | Size | Median |
 |---|---|---|---|---|---|
-| Teacher · base-p2 | 124 M | 12 | 0.9016 | 118.80 MB | 24.0 ms |
-| **Fine-tuned · lite-p2, shipped** | **11.7 M** | **12** | **0.9022** | **11.00 MB** | **21.6 ms** |
-| Student · distilled | ~20 M | **4** | 0.8756 | 25.45 MB | **2.4 ms** |
-
-All three rows were measured on the earlier 31-message evaluation set, before
-it was expanded to 81. They are comparable to each other but not to the 0.837
-reported in §6.2 as the shipped model's final result.
+| Teacher base-p2 | 124 M | 12 | 0.8378 | 118.80 MB | 24.0 ms |
+| Fine-tuned lite-p2 | 11.7 M | 12 | 0.8365 | 11.00 MB | 21.6 ms |
+| Student distilled | ~20 M | 4 | 0.6917 | 25.45 MB | 2.4 ms |
 
 Two findings, in opposite directions:
 
-**Depth determines speed, where parameter count does not.** Cutting 12 layers
-to 4 gives 2.4 ms against 21.6 ms, 9× faster. This is §6.1's finding
+Depth determines speed, where parameter count does not. Cutting 12 layers
+to 4 gives 2.4 ms against 21.6 ms, 9× faster. This is 6.1's finding
 confirmed from the other side, on the target task rather than the benchmark.
 
-**A 124M teacher does not outperform an 11.7M model on this task.** 0.9016
-against 0.9022 under matched hyperparameters. §6.1 replicated on the target
+A 124M teacher does not outperform an 11.7M model on this task. 0.8378 against 0.8365 under matched hyperparameters. 6.1 replicated on the target
 domain.
 
 Note the student is *larger* than the shipped model (25.45 MB vs 11.00) while
@@ -415,9 +410,9 @@ being 9× faster. Fewer layers, but no cross-layer weight sharing, so its
 parameters sit in storage rather than in compute. The same point from a third
 angle.
 
-**Decision: the fine-tuned model ships.** The student's 0.027 deficit is
+**Decision: the fine-tuned model ships.** The student's 0.145 deficit and a tripled false-positive rate is
 outside the resolution limit, so it is a real difference. At sixty messages a
-night the gap between 21.6 ms and 2.4 ms is imperceptible; 0.027 F1 is not.
+night the gap between 21.6 ms and 2.4 ms is imperceptible, 0.145 F1 is not.
 
 The student's weakness is concentrated in `ANAPHORIC` (0.286, 2 true positives
 against 10 false). Every content class held, and `VARIANT` was actually better
@@ -429,7 +424,7 @@ changing the generator and that would invalidate the comparison.
 **Confidence saturation.** Every predicted span returns tagging confidence
 ≥0.999995, including on deliberately ambiguous input. Templated training data
 contains no genuine ambiguity, so the model never learned that uncertainty
-exists. Consequence in §4.4.
+exists. Consequence in 4.4.
 
 **Implicit products have two different causes.** Sometimes the product was
 never stated, because the seller makes one thing. Sometimes it was stated in an
@@ -438,16 +433,55 @@ earlier message and the customer is completing an order across turns
 correct for the first, coincidentally correct for the second. A broader
 catalog would need conversation history, which the MVP does not carry.
 
-### 6.6 RAG baseline, outstanding
+### 6.6 Generative baselines
 
-The organisers' 22 July clarification allows RAG, agentic workflows and tool
-calling as alternatives to fine-tuning. We are building a comparison arm
-deliberately, about two days of work, against the target task.
+Two 8B instruction-tuned LLMs, few-shot prompted to extract the same five span
+types as JSON, evaluated on the same 81 messages with the same scoring. Both
+run locally, so the comparison isolates task formulation rather than
+confounding it with cloud against local. Few-shot examples are retrieved per
+message by TF-IDF over character n-grams, the retrieval half of "RAG" in the
+only form this task admits.
 
-It buys three things: a comparison against a permitted architecture rather
-than a strawman, the offline demonstration in §7, and a documented technology
-decision where we implemented the permitted alternative, measured it, and
-declined it on evidence.
+| | F1 | Size | sec/msg | Schema failures | Hallucinated spans | FP on 41 negatives |
+|---|---|---|---|---|---|---|
+| Nyatet tagger | 0.8365 | 11.00 MB | 0.022 | 0 | 0 | 5 (12%) |
+| Sahabat-AI 8B | 0.8556 | ~8 GB | 136.7 | 0 | 10 | 1 (2%) |
+| SEA-LION v4 8B | 0.7623 | ~8 GB | 13.0 | 9 | 72 | 14 (34%) |
+
+Sahabat-AI beats the shipped model on F1 by 0.019, outside the resolution
+limit, and produces fewer false positives on non-order messages. Its precision
+is high across every class and its recall lower: conservative where the tagger
+is eager.
+
+The two baselines differ from each other more than either differs from the
+tagger. Same parameter count, same language focus, and one produced 10
+hallucinations while the other produced 72; one produced zero schema failures
+while the other produced 9. Generative baseline behaviour is not predictable
+from size or language coverage.
+
+No single number here is the result. Sahabat-AI wins on F1. Speed alone is
+meaningless when a server is available. 11 MB is worth nothing in isolation.
+The result is the combination: 0.8365 at 11 MB at 22 ms, offline, on one CPU
+thread. The baseline buys 0.019 F1 for roughly 6,000× the latency and ~700× the
+storage, and no configuration of that approach retains its accuracy while
+fitting on the device the seller owns.
+
+Hallucination is structural, not statistical. Both baselines emitted spans
+whose text does not appear in the input. One case is characteristic: on
+`Pesan hari ni risol 20 adakah Bu`, which contains an item and a quantity but
+no unit, a baseline emitted `UNIT: buting`. That is pattern completion, not
+garbling, it would pass any well-formedness check and reach the resolver as a
+quantity nobody stated. Better prompting reduces the frequency; it cannot make
+it impossible.
+
+Experimental limits. Run once without iteration: single untuned prompt, 8
+retrieved examples, greedy decoding, `max_new_tokens=64`, 4-bit NF4 with
+bfloat16 compute, on 2× T4 with layers split across devices. bfloat16 was
+required because SEA-LION fails to load under fp16, and Turing has no native
+bfloat16, so the compute path is emulated and slower than newer hardware would
+give. The baseline F1 figures are a lower bound: no prompt optimisation, no
+constrained decoding, the latter would eliminate all 9 schema failures. A full
+run cost roughly three hours for Sahabat-AI.
 
 ---
 
@@ -468,7 +502,7 @@ measured false positives, a time or price expression tagged as a quantity, is
 honest, on-brand, and already documented.
 
 **Transfer segment.** About twenty seconds showing the same architecture on
-the benchmark domain. Evidence for the claim in §1, not a second product.
+the benchmark domain. Evidence for the claim in 1, not a second product.
 
 | Deliverable | Requirement |
 |---|---|
@@ -504,8 +538,9 @@ this project loses points.
 
 | Date | Test | Outcome |
 |---|---|---|
-| ~~4 Aug~~ | ~~Evaluation data collected~~ | **Met**: 81 real annotated messages |
-| ~~14 Aug~~ | ~~Distilled student beats the fine-tuned model~~ | **Not met**, resolved early on 10 Aug: 0.8756 vs 0.9022 (§6.4). Fine-tuned model ships; contribution wording changed from "distilled" to "small fine-tuned model, compared against a distilled alternative" |
+| ~~4 Aug~~ | ~~Evaluation data collected~~ | **Met**: 81 real annotated messages, 40 with spans and 41 non-order negatives |
+| ~~10 Aug~~ | ~~Distilled student beats the fine-tuned model~~ | **Not met**: 0.6917 vs 0.8365, and a tripled false-positive rate on non-order messages (§6.4). Fine-tuned model ships; contribution wording changed from "distilled" to "small fine-tuned model, compared against a distilled alternative" |
+| ~~12 Aug~~ | ~~Generative baseline measured~~ | **Complete** (§6.6). Sahabat-AI scores 0.019 F1 above the shipped model at ~6,000× the latency and ~700× the size; the shipped model is chosen on the combination, not on accuracy alone |
 | **18 Aug** | Feature freeze | Unconditional |
 
 ---
@@ -514,10 +549,10 @@ this project loses points.
 
 | Risk | Severity | Status / mitigation |
 |---|---|---|
-| Videos not started, 8 days to freeze | **High** | **The critical-path risk.** Shot sequence planned §7; no-cuts format needs rehearsal |
-| Evaluation set too small to detect anything | High | Stated everywhere as ±0.02; no improvement claimed inside that band |
-| Single-seller data does not generalize | Medium | Stated as a limitation; no generalization claimed |
-| VARIANT class weak | Medium | Cause unidentified after two ablations; reported rather than hidden |
+| Videos not started, 8 days to freeze | **High** | **The critical-path risk.** Shot sequence planned 7, no-cuts format needs rehearsal |
+| Evaluation set too small to detect anything | High | Stated everywhere as ±0.02, no improvement claimed inside that band |
+| Single-seller data does not generalize | Medium | Stated as a limitation, no generalization claimed |
+| VARIANT class weak | Medium | Cause unidentified after two ablations, reported rather than hidden |
 | ~~Pipeline does not converge or export~~ | ~~High~~ | **Closed** |
 | ~~No evaluation data~~ | ~~High~~ | **Closed** |
 | ~~Student capacity insufficient~~ | ~~Medium~~ | **Closed**, 11.7M within 0.007 F1 of 124M |
@@ -530,9 +565,8 @@ Listed on purpose, since the MVP-readiness criterion asks for it.
 
 - 12% of non-order messages get a spurious span, concentrated on numbers in
   time and price contexts and on `yg` triggering `ANAPHORIC`. Cause identified,
-  fix deferred to protect the §6.4 comparison.
-- `VARIANT` is the weakest class (0.583 at *n*=81, 0.611 on the earlier
-  31-message set) in every run. The `di-` prefix hypothesis was tested at two
+  fix deferred to protect the 6.4 comparison.
+- `VARIANT` is the weakest class (0.583 at *n*=81 in every run. The `di-` prefix hypothesis was tested at two
   ratios and neither improved it. Cause unidentified.
 - Order-line grouping uses a positional heuristic. Multi-item quantity
   attachment is unsolved and is where we expect most errors.
@@ -543,7 +577,15 @@ Listed on purpose, since the MVP-readiness criterion asks for it.
 - Cake orders are undersampled: 4 conversations, 1 in evaluation.
 - Unit conversion covers only the pack units the catalog declares.
 - Latency measured on Kaggle CPU, not demonstration hardware.
-
+- Generative baselines were run once without prompt tuning, constrained
+  decoding, or few-shot variation. Their F1 figures are a lower bound, and a
+  fair comparison would optimise the prompt. A single full run cost roughly
+  three hours on the available hardware, so iteration was not possible.
+- A prompted 8B model (Sahabat-AI) scores 0.019 F1 above the shipped model and
+  produces fewer false positives on non-order messages. The shipped model is
+  chosen on the combination of accuracy, size, and latency, not on accuracy
+  alone.
+  
 ### 10.2 Designed but deferred
 
 A distilled small language model invoked **only** on messages the grouping
@@ -559,7 +601,7 @@ the claim.
 
 | Requirement | Status |
 |---|---|
-| Model customization required | Fine-tuned on a task-specific 11-label schema; distillation also implemented and measured |
+| Model customization required | Fine-tuned on a task-specific 11-label schema, distillation also implemented and measured |
 | No live external integration | No messaging-platform API, input is a text area |
 | Synchronous processing only | One inference call per request |
 | `docker compose`, localhost | Model committed to the repository, CPU only, no network, no API key |
@@ -584,7 +626,7 @@ Rupiah-margin trade.
 
 **"Is the small model actually good enough?"**
 Measured twice. On IndoNLU NERP: 0.8014 at 11.7M against 0.8088 at 124M. On
-the target task: 0.9022 against 0.9016. 10.6× the parameters, no gain.
+the target task: 0.8365 against 0.8378. 10.6× the parameters, no gain.
 
 **"Why not a small generative model instead of a tagger?"**
 Bounded output is what makes an 11 MB model sufficient, and pointer-into-input
@@ -593,7 +635,7 @@ size, generating schema-valid JSON is a much harder learning problem than
 picking one of 11 labels per token.
 
 **"You said distillation was the contribution."**
-It was the plan. We ran it, measured it, and the student lost 0.027 F1 for a
+It was the plan. We ran it, measured it, and the student lost 0.145 F1 and tripled the false-positive rate for a
 latency advantage that is imperceptible at this workload. We changed the
 claim, not the data. The student is reported in full as evidence for the
 depth-versus-parameters finding.
@@ -608,8 +650,25 @@ Correct, and we say so everywhere including in the badge. It is real
 operational data from a real business rather than a larger set of authored
 approximations, and we state the resolution limit rather than claiming
 improvements inside it. 41 of those messages are non-orders, so the set also
-measures whether the model correctly stays silent, which the earlier
-31-message version could not.
+measures whether the model correctly stays silent.
+
+**"Why not just use an LLM?"**
+
+We did, and measured it. Two 8B instruction-tuned models, Sahabat-AI and
+SEA-LION v4, few-shot prompted on the same 81 messages with the same scoring.
+
+Sahabat-AI scored 0.8556 against our 0.8365, so it wins on accuracy by 0.019.
+It also produced 10 spans whose text does not appear in the input; SEA-LION
+produced 72, plus 9 unparseable outputs. Ours produces zero of both, by
+construction.
+
+The 0.019 costs roughly 6,000× the latency and ~700× the storage: 136.7 seconds
+per message against 0.022, and ~8 GB against 11 MB. That model does not run on
+the device the seller owns, and does not run at all without a network.
+
+The claim is not that generative extraction is wrong. It is that no
+configuration of it reaches 0.84 F1 at 11 MB at 22 ms offline, which is the
+combination the target user needs.
 
 ---
 
@@ -635,7 +694,7 @@ measures whether the model correctly stays silent, which the earlier
 |---|---|---|
 | 1 | Whether the RAG baseline gets built, or the video ships without the offline comparison | 14 Aug |
 | 2 | Catalog source for the demo: partner seller or constructed | Before video production |
-| 3 | Whether to re-measure the §6.4 distillation comparison on the 81-message set | Before 17 Aug, only if time permits |
+| 3 | Whether to re-measure the 6.4 distillation comparison on the 81-message set | Before 17 Aug, only if time permits |
 
 ---
 
