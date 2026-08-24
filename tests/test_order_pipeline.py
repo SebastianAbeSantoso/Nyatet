@@ -11,8 +11,7 @@ from inference.normalizer import (
 )
 from inference.resolver import CatalogResolver, group_spans
 
-CATALOG = Path(__file__).resolve().parents[1] / "data" / "catalog.csv"
-
+CATALOG = Path(__file__).parent.parent / "serving" / "data" / "catalog.csv"
 
 def spans(*pairs):
     return [{"type": t, "text": x} for t, x in pairs]
